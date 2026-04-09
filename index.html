@@ -4,8 +4,1538 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Campagne Fyrentis — Warhammer 40K</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       ART DIRECTION: Warhammer 40K Grimdark
+       Palette: Deep black/charcoal surfaces, blood-red accent, brass/gold
+       Typography: Cinzel (display, gothic) + Crimson Text (body, immersive)
+       Density: Spacious editorial with dramatic full-bleed moments
+    ============================================================ */
+
+    :root, [data-theme="dark"] {
+      /* Surfaces — grimdark charcoal */
+      --color-bg:              #0a0807;
+      --color-surface:         #0f0d0b;
+      --color-surface-2:       #141210;
+      --color-surface-offset:  #1a1713;
+      --color-surface-offset-2: #201d18;
+      --color-surface-dynamic: #2a2520;
+      --color-divider:         #2e2820;
+      --color-border:          oklch(from #8b1c1c l c h / 0.3);
+
+      /* Text */
+      --color-text:            #e8e0d4;
+      --color-text-muted:      #9a9080;
+      --color-text-faint:      #5a5248;
+      --color-text-inverse:    #0a0807;
+
+      /* Primary Accent — Blood Red */
+      --color-primary:         #8b1c1c;
+      --color-primary-bright:  #cc2929;
+      --color-primary-hover:   #a82222;
+      --color-primary-highlight: #2a1010;
+
+      /* Gold / Brass */
+      --color-gold:            #c8a028;
+      --color-gold-muted:      #8a6e1a;
+      --color-gold-highlight:  #1e1a08;
+
+      /* Radius */
+      --radius-sm: 0.25rem;
+      --radius-md: 0.375rem;
+      --radius-lg: 0.5rem;
+      --radius-xl: 0.75rem;
+      --radius-full: 9999px;
+
+      /* Transitions */
+      --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.4);
+      --shadow-md: 0 4px 16px oklch(0 0 0 / 0.5);
+      --shadow-lg: 0 12px 40px oklch(0 0 0 / 0.6);
+      --shadow-red: 0 0 20px oklch(from #8b1c1c l c h / 0.4);
+
+      /* Spacing */
+      --space-1:0.25rem; --space-2:0.5rem; --space-3:0.75rem; --space-4:1rem;
+      --space-5:1.25rem; --space-6:1.5rem; --space-8:2rem; --space-10:2.5rem;
+      --space-12:3rem; --space-16:4rem; --space-20:5rem; --space-24:6rem;
+
+      /* Type */
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+      --text-hero: clamp(3rem, 0.5rem + 7vw, 8rem);
+
+      --font-display: 'Cinzel', 'Times New Roman', serif;
+      --font-body: 'Crimson Text', 'Georgia', serif;
+
+      --content-narrow: 640px;
+      --content-default: 960px;
+      --content-wide: 1200px;
+    }
+
+    [data-theme="light"] {
+      --color-bg:              #f0ebe3;
+      --color-surface:         #f5f0e8;
+      --color-surface-2:       #faf7f2;
+      --color-surface-offset:  #e8e0d4;
+      --color-surface-offset-2: #ddd4c8;
+      --color-surface-dynamic: #d4c8ba;
+      --color-divider:         #c8bfb0;
+      --color-border:          oklch(from #8b1c1c l c h / 0.25);
+      --color-text:            #1a1208;
+      --color-text-muted:      #4a3e30;
+      --color-text-faint:      #8a7a68;
+      --color-text-inverse:    #f0ebe3;
+      --color-primary:         #7a1515;
+      --color-primary-bright:  #b01e1e;
+      --color-primary-hover:   #8a1818;
+      --color-primary-highlight: #f0d8d8;
+      --color-gold:            #8a6e1a;
+      --color-gold-muted:      #a08020;
+      --color-gold-highlight:  #f0e8c0;
+    }
+
+    /* BASE */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--space-16); -webkit-font-smoothing: antialiased; }
+    body {
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      line-height: 1.7;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; line-height: 1.1; letter-spacing: 0.02em; }
+    p { text-wrap: pretty; max-width: 72ch; }
+    a, button { transition: color var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition); }
+    button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+    ::selection { background: oklch(from var(--color-primary) l c h / 0.3); }
+    :focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; border-radius: var(--radius-sm); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--color-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 3px; }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .container { max-width: var(--content-default); margin-inline: auto; padding-inline: var(--space-6); }
+    .container--wide { max-width: var(--content-wide); margin-inline: auto; padding-inline: var(--space-6); }
+    section { padding-block: clamp(var(--space-12), 8vw, var(--space-24)); }
+
+    /* ORNAMENTAL DIVIDER */
+    .ornament {
+      display: flex; align-items: center; gap: var(--space-4);
+      color: var(--color-gold-muted); margin-block: var(--space-8);
+    }
+    .ornament::before, .ornament::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--color-gold-muted));
+    }
+    .ornament::after { background: linear-gradient(to left, transparent, var(--color-gold-muted)); }
+    .ornament span { font-family: var(--font-display); font-size: var(--text-xs); letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap; }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: oklch(from var(--color-bg) l c h / 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      padding-block: var(--space-3);
+      transition: box-shadow var(--transition);
+    }
+    .nav--scrolled { box-shadow: var(--shadow-md); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: var(--content-wide); margin-inline: auto; padding-inline: var(--space-6);
+      gap: var(--space-6);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: var(--space-3);
+      text-decoration: none; color: var(--color-text);
+      flex-shrink: 0;
+    }
+    .nav-logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
+    .nav-logo-text {
+      font-family: var(--font-display); font-size: var(--text-sm);
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--color-gold);
+    }
+    .nav-logo-sub {
+      display: block; font-family: var(--font-body); font-size: var(--text-xs);
+      color: var(--color-text-muted); letter-spacing: 0.1em; text-transform: uppercase;
+      margin-top: -2px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: var(--space-1); list-style: none;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--color-text-muted);
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-links a:hover { color: var(--color-gold); background: oklch(from var(--color-gold) l c h / 0.1); }
+    .nav-actions { display: flex; align-items: center; gap: var(--space-2); }
+    .btn-theme {
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-full); border: 1px solid var(--color-border);
+      color: var(--color-text-muted); background: var(--color-surface);
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .btn-theme:hover { color: var(--color-gold); border-color: var(--color-gold-muted); }
+
+    /* MOBILE NAV */
+    .nav-mobile-toggle {
+      display: none; width: 36px; height: 36px;
+      align-items: center; justify-content: center;
+      border-radius: var(--radius-sm); border: 1px solid var(--color-border);
+      color: var(--color-text-muted); background: var(--color-surface);
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--color-surface);
+        border-bottom: 1px solid var(--color-border);
+        padding: var(--space-4); gap: var(--space-1);
+      }
+      .nav-mobile-toggle { display: flex; }
+      .nav-inner { flex-wrap: wrap; }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative; min-height: 100dvh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      overflow: hidden; padding-top: 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: #0a0807;
+    }
+    .hero-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
+      opacity: 0.55;
+      filter: saturate(0.8) contrast(1.1);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        oklch(from var(--color-bg) l c h / 0.1) 0%,
+        oklch(from var(--color-bg) l c h / 0.2) 40%,
+        oklch(from var(--color-bg) l c h / 0.8) 75%,
+        oklch(from var(--color-bg) l c h / 1) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      padding: var(--space-16) var(--space-6) var(--space-16);
+      max-width: var(--content-wide); margin-inline: auto; width: 100%;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--color-gold); margin-bottom: var(--space-4);
+      display: flex; align-items: center; gap: var(--space-3);
+    }
+    .hero-eyebrow::before {
+      content: ''; display: inline-block; width: 40px; height: 1px;
+      background: var(--color-gold);
+    }
+    .hero-title {
+      font-size: var(--text-hero);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      color: var(--color-text);
+      text-shadow: 0 0 60px oklch(from var(--color-primary) l c h / 0.5), 0 4px 20px oklch(0 0 0 / 0.8);
+      margin-bottom: var(--space-4);
+    }
+    .hero-title span { color: var(--color-primary-bright); }
+    .hero-subtitle {
+      font-size: var(--text-lg); color: var(--color-text-muted);
+      max-width: 56ch; margin-bottom: var(--space-8);
+      font-style: italic;
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      padding: var(--space-2) var(--space-3);
+      border: 1px solid oklch(from var(--color-border) l c h / 1);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      background: oklch(from var(--color-surface) l c h / 0.8);
+    }
+    .badge--red {color: #ff6b6b; border-color: rgba(255, 107, 107, 0.35); background: rgba(255, 107, 107, 0.12); }
+    .badge--gold {color: #f2c14e; border-color: rgba(242, 193, 78, 0.35); background: rgba(242, 193, 78, 0.12); }
+	.badge--blue {color: #6bb8ff; border-color: rgba(107, 184, 255, 0.35); background: rgba(107, 184, 255, 0.12); }
+    .badge--muted { color: var(--color-text-muted); }
+	.badge--green {color: #65d46e; border-color: rgba(101, 212, 110, 0.35); background: rgba(101, 212, 110, 0.12); }
+	.badge--purple {color: #b57cff; border-color: rgba(181, 124, 255, 0.35); background: rgba(181, 124, 255, 0.12); }
+    .hero-scroll {
+      position: absolute; bottom: var(--space-8); right: var(--space-8); z-index: 1;
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--color-text-faint);
+      writing-mode: vertical-rl;
+      display: flex; align-items: center; gap: var(--space-2);
+    }
+    .hero-scroll::after {
+      content: ''; display: block; width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--color-text-faint), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+    /* ============================================================
+       SECTION TITLES
+    ============================================================ */
+    .section-header { margin-bottom: var(--space-12); }
+    .section-eyebrow {
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-gold);
+      margin-bottom: var(--space-3);
+      display: flex; align-items: center; gap: var(--space-3);
+    }
+    .section-eyebrow::before {
+      content: ''; display: block; width: 24px; height: 1px; background: var(--color-gold);
+    }
+    .section-title {
+      font-size: var(--text-2xl); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--color-text);
+    }
+    .section-title span { color: var(--color-primary-bright); }
+    .section-desc {
+      margin-top: var(--space-4); font-size: var(--text-base);
+      color: var(--color-text-muted); max-width: 65ch;
+      font-style: italic; line-height: 1.8;
+    }
+
+    /* ============================================================
+       JOUEURS
+    ============================================================ */
+    .players-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-6);
+    }
+    .player-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      position: relative; overflow: hidden;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .player-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .player-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .player-card--red::before { background: var(--color-primary); }
+    .player-card--gold::before { background: var(--color-gold); }
+    .player-card--blue::before { background: #3a6fa8; }
+    .player-card--green::before { background: #3a7a32; }
+    .player-card--purple::before { background: #7a3a8a; }
+    .player-name {
+      font-family: var(--font-display); font-size: var(--text-lg);
+      font-weight: 700; letter-spacing: 0.05em; margin-bottom: var(--space-1);
+      color: var(--color-text);
+    }
+    .player-role {
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-gold);
+      margin-bottom: var(--space-4);
+    }
+    .player-armies {
+      list-style: none; display: flex; flex-direction: column; gap: var(--space-2);
+    }
+    .player-armies li {
+      display: flex; align-items: center; gap: var(--space-2);
+      font-size: var(--text-sm); color: var(--color-text-muted);
+    }
+    .player-armies li::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-primary); flex-shrink: 0;
+    }
+    .player-card--gold .player-armies li::before { background: var(--color-gold); }
+    .player-card--blue .player-armies li::before { background: #3a6fa8; }
+    .player-card--green .player-armies li::before { background: #3a7a32; }
+    .player-card--purple .player-armies li::before { background: #7a3a8a; }
+
+    /* ============================================================
+       BACKGROUND — SECTEUR
+    ============================================================ */
+    .bg-surface { background: var(--color-surface); }
+    .bg-surface-2 { background: var(--color-surface-2); }
+
+    .lore-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-8); align-items: start;
+    }
+    @media (max-width: 700px) { .lore-grid { grid-template-columns: 1fr; } }
+
+    .lore-text h3 {
+      font-size: var(--text-xl); letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--color-gold); margin-bottom: var(--space-4);
+    }
+    .lore-text p {
+      font-size: var(--text-base); line-height: 1.8; color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .lore-text p:last-child { margin-bottom: 0; }
+
+    .lore-image {
+      border-radius: var(--radius-lg);
+      overflow: hidden; box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+      position: relative;
+    }
+    .lore-image img { width: 100%; height: 320px; object-fit: cover; }
+    .lore-image-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, oklch(from var(--color-bg) l c h / 0.9));
+      padding: var(--space-6) var(--space-4) var(--space-4);
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    /* MAP */
+    .map-container {
+      border-radius: var(--radius-xl); overflow: hidden;
+      border: 1px solid var(--color-border); box-shadow: var(--shadow-lg);
+      margin-block: var(--space-8);
+    }
+    .map-container img {
+      width: 100%; max-height: 500px; object-fit: cover; object-position: center;
+    }
+    .map-legend {
+      background: var(--color-surface); padding: var(--space-6);
+      display: flex; flex-wrap: wrap; gap: var(--space-6);
+    }
+    .map-legend-item {
+      display: flex; align-items: center; gap: var(--space-2);
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted);
+    }
+    .map-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ============================================================
+       SYSTÈMES / FRONTS
+    ============================================================ */
+    .fronts-tabs {
+      display: flex; gap: var(--space-2); margin-bottom: var(--space-8);
+      border-bottom: 1px solid var(--color-divider); padding-bottom: 0;
+      flex-wrap: wrap;
+    }
+    .front-tab {
+      font-family: var(--font-display); font-size: var(--text-sm);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted);
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px; cursor: pointer;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .front-tab:hover { color: var(--color-text); }
+    .front-tab.active { color: var(--color-gold); border-bottom-color: var(--color-gold); }
+
+    .front-panel { display: none; }
+    .front-panel.active { display: block; }
+
+    .front-header {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: var(--space-6); align-items: start; margin-bottom: var(--space-8);
+    }
+    @media (max-width: 600px) { .front-header { grid-template-columns: 1fr; } }
+
+    .front-title {
+      font-size: var(--text-xl); text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--color-text); margin-bottom: var(--space-2);
+    }
+    .front-status {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full); border: 1px solid currentColor;
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+	.front-visual {
+	  margin: 1.5rem 0 2rem;
+	  border-radius: 18px;
+	  overflow: hidden;
+	  border: 1px solid rgba(255,255,255,0.08);
+	  box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+	  background: rgba(255,255,255,0.02);
+	}
+
+	.front-visual img {
+	  display: block;
+	  width: 100%;
+	  height: auto;
+	  aspect-ratio: 16 / 9;
+	  object-fit: cover;
+	}
+
+	.front-visual--sanctum {
+	  border-color: rgba(200, 160, 40, 0.28);
+	  box-shadow:
+		0 20px 45px rgba(0, 0, 0, 0.42),
+		0 0 0 1px rgba(200, 160, 40, 0.08) inset;
+	}
+    .front-status::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:0.5;transform:scale(1)} 50%{opacity:1;transform:scale(1.2)} }
+    .front-status--active { color: var(--color-primary-bright); }
+    .front-status--contested { color: var(--color-gold); }
+    .front-status--secret { color: #8888ff; }
+
+    .front-desc {
+      font-size: var(--text-base); line-height: 1.8; color: var(--color-text-muted);
+      font-style: italic; max-width: 65ch; margin-bottom: var(--space-6);
+    }
+
+    /* BATTLE LOG */
+    .battle-log { display: flex; flex-direction: column; gap: var(--space-4); }
+    .battle-entry {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg); padding: var(--space-5);
+      position: relative; overflow: hidden;
+    }
+    .battle-entry::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    }
+    .battle-entry--victory::before { background: var(--color-primary); }
+    .battle-entry--contested::before { background: var(--color-gold); }
+    .battle-entry--defeat::before { background: #3a6fa8; }
+    .battle-entry--nurgle::before { background: #4a7a1a; }
+
+    .battle-label {
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-text-faint);
+      margin-bottom: var(--space-2);
+    }
+    .battle-title {
+      font-family: var(--font-display); font-size: var(--text-lg);
+      color: var(--color-text); margin-bottom: var(--space-3);
+      letter-spacing: 0.03em;
+    }
+    .battle-text {
+      font-size: var(--text-sm); line-height: 1.75; color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .battle-factions {
+      display: flex; flex-wrap: wrap; gap: var(--space-2);
+    }
+    .faction-tag {
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm); border: 1px solid var(--color-border);
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted);
+    }
+    .faction-tag--we { border-color: var(--color-primary); color: var(--color-primary-bright); }
+    .faction-tag--bt { border-color: var(--color-gold-muted); color: var(--color-gold); }
+    .faction-tag--ba { border-color: #8a1c1c; color: #cc4444; }
+    .faction-tag--ork { border-color: #3a6a1c; color: #6aaa3c; }
+    .faction-tag--dg { border-color: #3a5c1c; color: #6a9a4c; }
+    .faction-tag--gi { border-color: #3a4a6a; color: #7a9aaa; }
+
+    /* STATIONS GRID */
+    .stations-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(min(180px,100%), 1fr));
+      gap: var(--space-3); margin-top: var(--space-6);
+    }
+    .station-card {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); padding: var(--space-4);
+      text-align: center;
+    }
+    .station-num {
+      font-family: var(--font-display); font-size: var(--text-xl);
+      color: var(--color-text-faint); margin-bottom: var(--space-1);
+    }
+    .station-label {
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-2);
+      color: var(--color-text-muted);
+    }
+    .station-owner {
+      display: inline-block; padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm); font-family: var(--font-display);
+      font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .station-owner--we { background: oklch(from var(--color-primary) l c h / 0.15); color: var(--color-primary-bright); border: 1px solid oklch(from var(--color-primary) l c h / 0.4); }
+    .station-owner--bt { background: oklch(from var(--color-gold) l c h / 0.12); color: var(--color-gold); border: 1px solid oklch(from var(--color-gold-muted) l c h / 0.4); }
+    .station-owner--ba { background: oklch(12% 0.06 25 / 0.3); color: #cc4444; border: 1px solid rgba(139,28,28,0.3); }
+    .station-owner--ork { background: oklch(12% 0.06 140 / 0.3); color: #6aaa3c; border: 1px solid rgba(58,106,28,0.3); }
+    .station-owner--dg { background: oklch(12% 0.05 130 / 0.3); color: #6a9a4c; border: 1px solid rgba(58,92,28,0.3); }
+    .station-owner--st { background: oklch(12% 0.03 220 / 0.3); color: #7a9aaa; border: 1px solid rgba(58,74,106,0.3); }
+    .station-owner--ruine { background: oklch(10% 0 0 / 0.3); color: var(--color-text-faint); border: 1px solid var(--color-divider); }
+
+    /* ============================================================
+       PERSONNAGES
+    ============================================================ */
+    .chars-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px,100%), 1fr));
+      gap: var(--space-6);
+    }
+    .char-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .char-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .char-card-header {
+      padding: var(--space-5) var(--space-5) var(--space-4);
+      border-bottom: 1px solid var(--color-divider);
+      background: var(--color-surface-2);
+    }
+    .char-faction {
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold);
+      margin-bottom: var(--space-2);
+    }
+    .char-name {
+      font-family: var(--font-display); font-size: var(--text-lg);
+      font-weight: 700; letter-spacing: 0.04em; color: var(--color-text);
+      margin-bottom: var(--space-1);
+    }
+    .char-title {
+      font-size: var(--text-sm); color: var(--color-text-muted); font-style: italic;
+    }
+    .char-body { padding: var(--space-5); }
+    .char-lore {
+      font-size: var(--text-sm); line-height: 1.75; color: var(--color-text-muted);
+      border-left: 2px solid var(--color-primary-highlight);
+      padding-left: var(--space-4);
+      font-style: italic;
+    }
+    .char-lore.gold { border-left-color: var(--color-gold-highlight); }
+    .char-lore.blue { border-left-color: #1c2a4a; }
+    .char-lore.green { border-left-color: #1c3a1c; }
+    .char-stats {
+      display: flex; gap: var(--space-3); margin-top: var(--space-4); flex-wrap: wrap;
+    }
+    .char-stat {
+      text-align: center; padding: var(--space-2) var(--space-3);
+      background: var(--color-surface-offset); border-radius: var(--radius-sm);
+      border: 1px solid var(--color-divider);
+    }
+    .char-stat-val {
+      font-family: var(--font-display); font-size: var(--text-lg);
+      font-weight: 700; color: var(--color-primary-bright); display: block;
+    }
+    .char-stat-val.gold { color: var(--color-gold); }
+    .char-stat-label {
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-faint);
+    }
+
+    /* ============================================================
+       VAISSEAU — LE CONQUEROR
+    ============================================================ */
+    .ship-section {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .ship-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-10); align-items: center;
+    }
+    @media (max-width: 700px) { .ship-layout { grid-template-columns: 1fr; } }
+
+    .ship-img-wrap {
+      border-radius: var(--radius-xl); overflow: hidden;
+      border: 1px solid var(--color-border); box-shadow: var(--shadow-red);
+    }
+    .ship-img-wrap img { width: 100%; height: 360px; object-fit: cover; }
+
+    .ship-bonus-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
+    .ship-bonus {
+      display: flex; gap: var(--space-3); align-items: flex-start;
+      padding: var(--space-3); background: var(--color-surface-offset);
+      border-radius: var(--radius-sm); border: 1px solid var(--color-divider);
+    }
+    .ship-bonus-icon {
+      font-size: var(--text-lg); flex-shrink: 0; margin-top: 2px;
+    }
+    .ship-bonus-content {}
+    .ship-bonus-name {
+      font-family: var(--font-display); font-size: var(--text-sm);
+      letter-spacing: 0.05em; color: var(--color-gold);
+      margin-bottom: var(--space-1);
+    }
+    .ship-bonus-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+
+    /* ============================================================
+       MÉCANIQUES DE JEU
+    ============================================================ */
+    .mechanics-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);
+    }
+    @media (max-width: 700px) { .mechanics-grid { grid-template-columns: 1fr; } }
+
+    .mechanic-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg); padding: var(--space-6);
+    }
+    .mechanic-icon {
+      font-size: 2.5rem; margin-bottom: var(--space-4);
+      display: block;
+    }
+    .mechanic-title {
+      font-family: var(--font-display); font-size: var(--text-lg);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--color-text); margin-bottom: var(--space-3);
+    }
+    .mechanic-title span.red { color: var(--color-primary-bright); }
+    .mechanic-title span.gold { color: var(--color-gold); }
+    .mechanic-desc {
+      font-size: var(--text-sm); line-height: 1.75;
+      color: var(--color-text-muted); margin-bottom: var(--space-4);
+    }
+    .mechanic-tiers { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+    .mechanic-tiers li {
+      display: flex; gap: var(--space-3); align-items: flex-start;
+      font-size: var(--text-sm); color: var(--color-text-muted);
+      padding: var(--space-2); background: var(--color-surface-offset);
+      border-radius: var(--radius-sm);
+    }
+    .tier-num {
+      font-family: var(--font-display); font-size: var(--text-xs);
+      color: var(--color-primary-bright); flex-shrink: 0; width: 28px;
+      text-align: center; font-weight: 700;
+    }
+    .tier-num.gold { color: var(--color-gold); }
+
+    /* ============================================================
+       TITAN
+    ============================================================ */
+    .titan-section { position: relative; overflow: hidden; }
+    .titan-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, oklch(from var(--color-primary) l c h / 0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .titan-layout {
+      display: grid; grid-template-columns: auto 1fr; gap: var(--space-10); align-items: start;
+    }
+    @media (max-width: 700px) { .titan-layout { grid-template-columns: 1fr; } }
+    .titan-icon-wrap {
+      width: 120px; height: 120px; flex-shrink: 0;
+      background: var(--color-surface); border-radius: var(--radius-lg);
+      border: 1px solid var(--color-primary-highlight);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      box-shadow: var(--shadow-red);
+    }
+    .titan-name {
+      font-family: var(--font-display); font-size: var(--text-2xl);
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--color-text); margin-bottom: var(--space-2);
+    }
+    .titan-name span { color: var(--color-primary-bright); }
+    .titan-legio {
+      font-family: var(--font-display); font-size: var(--text-sm);
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-gold);
+      margin-bottom: var(--space-5);
+    }
+    .titan-crew {
+      display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5);
+    }
+    .crew-card {
+      background: var(--color-surface); border: 1px solid var(--color-divider);
+      border-radius: var(--radius-sm); padding: var(--space-3);
+    }
+    .crew-card-name {
+      font-family: var(--font-display); font-size: var(--text-sm);
+      color: var(--color-text); margin-bottom: var(--space-1);
+    }
+    .crew-card-role {
+      font-size: var(--text-xs); color: var(--color-text-faint);
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--color-surface); border-top: 1px solid var(--color-border);
+      padding-block: var(--space-12);
+      text-align: center;
+    }
+    footer .footer-logo {
+      font-family: var(--font-display); font-size: var(--text-lg);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-gold);
+      margin-bottom: var(--space-3);
+    }
+    footer .footer-line {
+      font-size: var(--text-sm); color: var(--color-text-faint);
+      font-style: italic;
+    }
+    footer .footer-players {
+      margin-top: var(--space-6); display: flex; justify-content: center;
+      flex-wrap: wrap; gap: var(--space-4);
+    }
+    footer .footer-player {
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-faint);
+    }
+
+    /* ============================================================
+       ANIMATE ON SCROLL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* QUOTE BLOCK */
+    .quote-block {
+      border-left: 3px solid var(--color-primary);
+      padding: var(--space-5) var(--space-6);
+      background: var(--color-surface);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin-block: var(--space-6);
+    }
+    .quote-text {
+      font-size: var(--text-base); font-style: italic; color: var(--color-text-muted);
+      line-height: 1.8; margin-bottom: var(--space-3);
+    }
+    .quote-author {
+      font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold);
+    }
+
+    /* BACK TO TOP */
+    .back-top {
+      position: fixed; bottom: var(--space-6); right: var(--space-6); z-index: 50;
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-full); color: var(--color-text-muted);
+      box-shadow: var(--shadow-md); opacity: 0; pointer-events: none;
+      transition: opacity var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { color: var(--color-gold); border-color: var(--color-gold-muted); }
+  </style>
 </head>
 <body>
-<p>Contenu complet disponible dans campagne-narrative.html</p>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="Campagne Fyrentis">
+      <svg class="nav-logo-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <polygon points="18,2 34,28 2,28" fill="none" stroke="currentColor" stroke-width="1.5" color="#c8a028"/>
+        <circle cx="18" cy="18" r="6" fill="none" stroke="currentColor" stroke-width="1.5" color="#8b1c1c"/>
+        <line x1="18" y1="2" x2="18" y2="12" stroke="currentColor" stroke-width="1" color="#c8a028"/>
+        <line x1="18" y1="24" x2="18" y2="28" stroke="currentColor" stroke-width="1" color="#c8a028"/>
+        <line x1="8.5" y1="22.3" x2="13.5" y2="18.9" stroke="currentColor" stroke-width="1" color="#c8a028"/>
+        <line x1="27.5" y1="22.3" x2="22.5" y2="18.9" stroke="currentColor" stroke-width="1" color="#c8a028"/>
+      </svg>
+      <div>
+        <span class="nav-logo-text">Fyrentis</span>
+        <span class="nav-logo-sub">Campagne 40K</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="#joueurs">Joueurs</a></li>
+      <li><a href="#contexte">Contexte</a></li>
+      <li><a href="#fronts">Fronts</a></li>
+      <li><a href="#personnages">Personnages</a></li>
+      <li><a href="#titan">Titan</a></li>
+      <li><a href="#specificites-jean">Armée de Jean</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-theme" data-theme-toggle aria-label="Basculer le thème">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg">
+    <img class="hero-img" src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/cc81c932-69ed-4f21-99c2-02b4a3164dfc.png" alt="Angron et le Titan Syrgalah mènent les World Eaters à la bataille" width="1920" height="1080" loading="eager">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Warhammer 40 000 • Campagne Narrative</p>
+    <h1 class="hero-title">Sous-Secteur<br><span>Fyrentis</span></h1>
+    <p class="hero-subtitle">Dans les ténèbres du 41ème millénaire, cinq seigneurs de guerre façonnent le destin d'un secteur entier. Des ruines de Jakku aux forges de Sanctum, la guerre n'a pas de fin.</p>
+	<div class="hero-badges">
+		<span class="badge badge--purple">⚒ Iron Warriors de Khorne</span>
+		<span class="badge badge--gold">🗡 Silver Templars</span>
+		<span class="badge badge--red">🪓 World Eaters</span>
+		<span class="badge badge--gold">✠ Black Templars</span>
+		<span class="badge badge--blue">🩸 Blood Angels</span>
+		<span class="badge badge--gold">☣ Death Guard</span>
+		<span class="badge badge--green">🦅 Garde Impériale</span>
+		<span class="badge badge--gold">☥ Nécrons</span>
+	</div>
+  </div>
+  <span class="hero-scroll" aria-hidden="true">Défiler</span>
+</header>
+
+<!-- ============================================================
+     JOUEURS
+============================================================ -->
+<section id="joueurs">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Les Protagonistes</p>
+      <h2 class="section-title">Les <span>seigneurs de guerre</span></h2>
+      <p class="section-desc">Cinq seigneurs de guerre — cinq destins entremêlés dans le carnage du sous-secteur Fyrentis.</p>
+    </div>
+    <div class="players-grid">
+	<article class="player-card player-card--gold reveal reveal-delay-2">
+        <p class="player-name">Freddy</p>
+        <p class="player-role">Maître de jeu</p>
+        <ul class="player-armies" role="list">
+          <li>Black Templars</li>
+		  <li>Silver Templars</li>
+          <li>Death Guard</li>
+          <li>Nécrons</li>
+        </ul>
+      </article>
+      <article class="player-card player-card--red reveal reveal-delay-1">
+        <p class="player-name">Jean</p>
+        <p class="player-role">Du sang pour le Dieu du sang</p>
+        <ul class="player-armies" role="list">
+          <li>World Eaters</li>
+        </ul>
+      </article>
+      <article class="player-card player-card--blue reveal reveal-delay-3">
+        <p class="player-name">David</p>
+        <p class="player-role">Les anges tombés</p>
+        <ul class="player-armies" role="list">
+          <li>Blood Angels</li>
+        </ul>
+      </article>
+      <article class="player-card player-card--green reveal reveal-delay-4">
+        <p class="player-name">Jérémy</p>
+        <p class="player-role">Pour l'Empereur !</p>
+        <ul class="player-armies" role="list">
+          <li>Garde Impériale</li>
+        </ul>
+      </article>
+      <article class="player-card player-card--purple reveal reveal-delay-1">
+        <p class="player-name">Vincent</p>
+        <p class="player-role">Cœur de fer, Main de fer</p>
+        <ul class="player-armies" role="list">
+          <li>Iron Warriors de Khorne</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTEXTE
+============================================================ -->
+<section id="contexte" class="bg-surface">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Histoire & Lore</p>
+      <h2 class="section-title">Le Sous-Secteur <span>Fyrentis</span></h2>
+      <p class="section-desc">Depuis huit millénaires sous la coupe de la dynastie Fyrentis, ce secteur fut dévasté par la Cicatrix Maledictum avant d'être stabilisé par les Black Templars du Haut Sénéchal Helbrecht. Vingt-cinq ans de paix relative s'achèvent.</p>
+    </div>
+
+    <div class="lore-grid">
+      <div class="lore-text reveal">
+        <h3>La Dynastie Fyrentis</h3>
+        <p>Fondée au M32 par un Libre-Marchand explorateur, la dynastie Fyrentis contrôla ce sous-secteur d'une poigne de fer pendant huit millénaires. L'ouverture de la Cicatrix Maledictum ravagea la région pendant soixante ans, les Chevaliers de Riga repoussant les démons au prix de pertes immenses.</p>
+        <p>L'arrivée du Haut Sénéchal Helbrecht avec ses 1 500 Astartes sauva le secteur et établit le "Chemin du Dévot", une route warp sécurisée vers l'Imperium Nihilus. Les Black Templars s'installèrent sur la lune du monde-forge Sanctum.</p>
+        <div class="quote-block">
+          <p class="quote-text">« Dans les tréfonds du cosmos, deux entités se jaugent. L'une possède un regard perçant et impérieux, l'autre arbore un sourire méprisant et une aura sinistre. Leurs voix résonnent à l'unisson : "Que la partie commence !" »</p>
+          <span class="quote-author">— Archives de la Campagne</span>
+        </div>
+      </div>
+      <div class="lore-text reveal reveal-delay-2">
+        <h3>La Situation Actuelle</h3>
+        <p>Vingt-cinq ans après la croisade victorieuse, une nouvelle route warp corrompue déstabilise le secteur. L'agri-monde de Jakku est tombé sous la Waaagh! du Big Boss Dégotte. Le Haut-Gouverneur Agastus Lionel Fyrentis supporte mal la présence des Black Templars.</p>
+        <p>Le Fabricator-Général Horgell Dyass de Sanctum tente de s'affranchir des accords avec la dynastie Fyrentis. Et dans l'espace, des flottes non identifiées approchent d'un système inconnu…</p>
+        <div class="quote-block" style="border-left-color: var(--color-gold)">
+          <p class="quote-text">« Perturbation des routes de saut warp détectée — plusieurs vaisseaux cargos appartenant aux forces du Mechanicus et à la dynastie Riga signalés disparus. »</p>
+          <span class="quote-author">— Rapport de l'Inquisiteur Semius Hortis, Ordo Hereticus</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-container reveal">
+      <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/b71bc516-78a7-4e12-b7c7-04d58066c9bb.png" alt="Carte du sous-secteur Fyrentis avec les systèmes stellaires clés" width="1200" height="500" loading="lazy">
+      <div class="map-legend">
+        <div class="map-legend-item"><span class="map-dot" style="background:#c8a028"></span>Sanctum — Monde-Forge</div>
+        <div class="map-legend-item"><span class="map-dot" style="background:#6aaa3c"></span>Jakku — Agri-Monde</div>
+        <div class="map-legend-item"><span class="map-dot" style="background:#7a9aaa"></span>Colchis — Agri-Monde</div>
+        <div class="map-legend-item"><span class="map-dot" style="background:#cc2929"></span>Système Secret — Nécrons ?</div>
+        <div class="map-legend-item"><span class="map-dot" style="background:#ff4444"></span>Nouvelle Route Warp Corrompue</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FRONTS DE BATAILLE
+============================================================ -->
+<section id="fronts">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Théâtres d'Opérations</p>
+      <h2 class="section-title">Les <span>Fronts</span> de Bataille</h2>
+      <p class="section-desc">Trois systèmes stellaires, trois théâtres de guerre simultanés. Chaque victoire, chaque défaite résonne à travers le secteur.</p>
+    </div>
+
+    <div class="fronts-tabs" role="tablist">
+      <button class="front-tab active" role="tab" aria-selected="true" data-tab="jakku">Jakku</button>
+      <button class="front-tab" role="tab" aria-selected="false" data-tab="sanctum">Sanctum</button>
+      <button class="front-tab" role="tab" aria-selected="false" data-tab="secret">Système Secret</button>
+    </div>
+
+    <!-- JAKKU -->
+    <div class="front-panel active" id="tab-jakku" role="tabpanel">
+      <div class="front-header">
+        <div>
+          <h3 class="front-title">Jakku — Agri-Monde Dévasté</h3>
+          <p class="front-desc">L'agri-monde organisé autour de 10 stations gérant les méga-récoltes. La Waaagh! Dégotte a débarqué, la Death Guard a corrompu des populations entières, et les World Eaters ont saigné le monde pour Khorne.</p>
+        </div>
+        <span class="front-status front-status--active">Front Actif</span>
+      </div>
+
+      <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/95ca4ae3-116f-40d4-b775-97c3e6a41598.png" alt="Bataille sur Jakku - les agro-stations en flammes" width="1200" height="400" loading="lazy" style="width:100%;height:280px;object-fit:cover;border-radius:var(--radius-lg);border:1px solid var(--color-border);margin-bottom:var(--space-6)">
+
+      <h4 style="font-family:var(--font-display);font-size:var(--text-base);text-transform:uppercase;letter-spacing:0.1em;color:var(--color-gold);margin-bottom:var(--space-4)">Statut des 10 Agro-Stations</h4>
+      <div class="stations-grid">
+        <div class="station-card"><div class="station-num">01</div><div class="station-label">Station</div><span class="station-owner station-owner--ork">Orks</span></div>
+        <div class="station-card"><div class="station-num">02</div><div class="station-label">Station</div><span class="station-owner station-owner--bt">Black Templars</span></div>
+        <div class="station-card"><div class="station-num">03</div><div class="station-label">Station</div><span class="station-owner station-owner--ork">Orks</span></div>
+        <div class="station-card"><div class="station-num">04</div><div class="station-label">Station</div><span class="station-owner station-owner--st">Silver Templars</span></div>
+        <div class="station-card"><div class="station-num">05</div><div class="station-label">Station</div><span class="station-owner station-owner--we">World Eaters</span></div>
+        <div class="station-card"><div class="station-num">06</div><div class="station-label">Station</div><span class="station-owner station-owner--dg">Death Guard</span></div>
+        <div class="station-card"><div class="station-num">07</div><div class="station-label">Station</div><span class="station-owner station-owner--we">World Eaters</span></div>
+        <div class="station-card"><div class="station-num">08</div><div class="station-label">Station</div><span class="station-owner station-owner--ruine">Inconnue</span></div>
+        <div class="station-card"><div class="station-num">09</div><div class="station-label">Station</div><span class="station-owner station-owner--we">World Eaters</span></div>
+        <div class="station-card"><div class="station-num">10</div><div class="station-label">Station</div><span class="station-owner station-owner--we">World Eaters</span></div>
+      </div>
+
+      <div class="ornament" style="margin-top:var(--space-8)"><span>Chronique des Batailles</span></div>
+      <div class="battle-log">
+        <div class="battle-entry battle-entry--victory">
+          <p class="battle-label">Station 1 • Waaagh!</p>
+          <h4 class="battle-title">La Légende de Bolg</h4>
+          <p class="battle-text">Le Grand Nob Bolg, envoyé par le Big Boss Dégotte, reprend le Grand Bastion et la station 1 face aux Silver Templars. Un tir de Kanon démek détruit un Eradicator. Bolg affronte le capitaine Silver Templar en duel et lui inflige une défaite mémorable.</p>
+          <div class="battle-factions"><span class="faction-tag faction-tag--ork">Orks Victoire</span><span class="faction-tag faction-tag--bt">Silver Templars Défaite</span></div>
+        </div>
+        <div class="battle-entry battle-entry--contested">
+          <p class="battle-label">Station 5 • Le Carnage</p>
+          <h4 class="battle-title">L'Agro-Station de l'Enfer</h4>
+          <p class="battle-text">Quatre factions s'affrontent dans un carnage total. Le Chapelain Varus (Blood Angels) terrasse l'Invocatus en duel. Mais les World Eaters, galvanisés par la mort de leur champion, massacrent tout sur leur passage. L'Agro-Station est consacrée à Khorne.</p>
+          <div class="battle-factions"><span class="faction-tag faction-tag--we">World Eaters Victoire</span><span class="faction-tag faction-tag--ba">Blood Angels</span><span class="faction-tag faction-tag--ork">Orks</span><span class="faction-tag faction-tag--gi">Garde Impériale</span></div>
+        </div>
+        <div class="battle-entry battle-entry--victory">
+          <p class="battle-label">Station 7 • L'Écho Sanglant</p>
+          <h4 class="battle-title">La Chute de Thaddeus</h4>
+          <p class="battle-text">Les Berzerkers de Khârn jaillissent de Rhinos sacrifiés comme des offrandes. Le Dreadnought Thaddeus tombe après un combat épique contre les Ferrocerberus. Le capitaine Cassius est forcé à la retraite. La station 7 devient un avant-poste de Khorne.</p>
+          <div class="battle-factions"><span class="faction-tag faction-tag--we">World Eaters Victoire</span><span class="faction-tag faction-tag--bt">Silver Templars Défaite</span></div>
+        </div>
+        <div class="battle-entry battle-entry--nurgle">
+          <p class="battle-label">Station 6 • La Pestilence</p>
+          <h4 class="battle-title">Le Jardin de Grand-Père Nurgle</h4>
+          <p class="battle-text">Les Death Guard, invisibles dans leur brume occulte, encerclent une force combinée Blood Angels / Silver Templars. L'Essaimeur "Hérault des Charognes" crée un jardin immonde. Les proglandes sont récupérées pour créer de futurs Space Marines corrompus.</p>
+          <div class="battle-factions"><span class="faction-tag faction-tag--dg">Death Guard Victoire</span><span class="faction-tag faction-tag--ba">Blood Angels Défaite</span><span class="faction-tag faction-tag--bt">Silver Templars Défaite</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SANCTUM -->
+    <div class="front-panel" id="tab-sanctum" role="tabpanel">
+      <div class="front-header">
+        <div>
+          <h3 class="front-title">Sanctum — Monde-Forge</h3>
+          <p class="front-desc">Principal fournisseur d'armes du sous-secteur depuis huit millénaires, lié à Metallica. Angron investit les villes-forge tandis que le Fabricator-Général Horgell Dyass tisse ses intrigues. Le Collegia Titanica est la cible ultime.</p>
+        </div>
+        <span class="front-status front-status--contested">Contesté</span>
+      </div>
+	  
+	  <div class="front-visual front-visual--sanctum">
+		<img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/6cc84782-0efa-495d-819e-93f12af1a7fb.png" alt="Vue panoramique du monde-forge Sanctum, avec cité-usine gothique et Titan en maintenance" width="1600" height="900" loading="lazy">
+	  </div>
+	  
+      <div class="battle-log">
+        <div class="battle-entry battle-entry--victory">
+          <p class="battle-label">Colchis • Grande Bataille</p>
+          <h4 class="battle-title">La Cité-Ruche Grimah</h4>
+          <p class="battle-text">Grimaldus et les Black Templars défendent la cité-ruche contre Angron et ses Octoliés. Le Héros de Helsreach défie Angron en combat singulier — un halo sacré se manifeste autour de lui. Malgré l'héroïsme des Templiers, la Porte Est tombe. Le Seigneur Invocatus avec ses Ferrocerberus Scythak et Morthrex ravage la Porte Ouest.</p>
+          <div class="battle-factions"><span class="faction-tag faction-tag--we">World Eaters Victoire</span><span class="faction-tag faction-tag--bt">Black Templars Défaite Partielle</span></div>
+        </div>
+        <div class="battle-entry battle-entry--contested">
+          <p class="battle-label">Sanctum • Infiltration</p>
+          <h4 class="battle-title">Le Techno-Prêtre Corrompu</h4>
+          <p class="battle-text">Angron libère un techno-prêtre corrompu de haut rang qui l'aide à percer les lignes DCA de Sanctum. En échange : les codes secrets du monde-forge au moment opportun. Une ville-forge mineure dédiée aux armes et munitions est infiltrée. L'usine d'équipement Astartes est sous surveillance.</p>
+          <div class="battle-factions"><span class="faction-tag faction-tag--we">World Eaters Progression</span><span class="faction-tag faction-tag--bt">Sanctum Alerte</span></div>
+        </div>
+        <div class="battle-entry battle-entry--contested">
+          <p class="battle-label">Sanctum • À Venir</p>
+          <h4 class="battle-title">La Grande Cité-Forge du Sud</h4>
+          <p class="battle-text">Prochaine mission : Angron investit la grande cité-forge du sud où se trouvent le Collegia Titanica, la légion de Titans et les usines de méga-armes. La mission face à Jérémy (Garde Impériale) déterminera le contrôle des Titans du secteur.</p>
+          <div class="battle-factions"><span class="faction-tag faction-tag--we">World Eaters En Cours</span><span class="faction-tag faction-tag--gi">Garde Impériale</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECRET -->
+    <div class="front-panel" id="tab-secret" role="tabpanel">
+      <div class="front-header">
+        <div>
+          <h3 class="front-title">Système Secret — Centre de la Campagne</h3>
+          <p class="front-desc">Un système inconnu, apparu sur les auspex des forces impériales. Khârn et le Conqueror font face à une flotte Nécron encerclant une immense Forteresse Noire. Le centre narratif ultime de la campagne.</p>
+        </div>
+        <span class="front-status front-status--secret">??? Mystère</span>
+      </div>
+	  
+	  <div class="front-visual front-visual--secret">
+        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/66c1018d-2dce-4529-aca7-8f1aa603a713.png" alt="Forteresse Noire encerclée par une flotte nécron dans le Système Secret" width="1600" height="900" loading="lazy">
+      </div>
+	  
+      <div class="battle-log">
+        <div class="battle-entry" style="border-left-color: #8888ff">
+          <p class="battle-label">Système Inconnu</p>
+          <h4 class="battle-title">La Forteresse Noire des Nécrons</h4>
+          <p class="battle-text">Khârn et le vaisseau amiral le Conqueror se retrouvent face à une flotte Nécron encerclant une immense Forteresse Noire. L'enjeu de cette confrontation dépasse la simple bataille — les secrets du système secret pourraient décider du destin de tout le sous-secteur Fyrentis.</p>
+          <div class="battle-factions"><span class="faction-tag" style="border-color:#8888ff;color:#aaaaff">Khârn & Le Conqueror</span><span class="faction-tag" style="border-color:#44aa88;color:#88ccaa">Nécrons</span></div>
+        </div>
+        <div class="battle-entry" style="border-left-color: #5a5a80">
+          <p class="battle-label">Indice Narratif</p>
+          <h4 class="battle-title">Qu'est-ce qui s'y cache ?</h4>
+          <p class="battle-text">Les trajets warp destabilisés entre Balvarum–Jakku–Kuvak signalent l'apparition d'un système inconnu sur les auspex. La nouvelle route warp corrompue y mène directement. L'Inquisiteur Hortis enquête sur l'origine de la perturbation et sa connexion avec les activités du Haut-Gouverneur.</p>
+          <div class="battle-factions"><span class="faction-tag">Inquisition</span><span class="faction-tag">Mystère Warp</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PERSONNAGES CLÉS
+============================================================ -->
+<section id="personnages" class="bg-surface">
+  <div class="container--wide">
+    <div class="container" style="padding-inline:0">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Légendes du Secteur</p>
+        <h2 class="section-title">Personnages <span>Clés</span></h2>
+        <p class="section-desc">Des héros et des monstres dont les actes résonneront à travers les âges.</p>
+      </div>
+    </div>
+    <div style="padding-inline:var(--space-6)">
+      <div class="chars-grid">
+
+        <article class="char-card reveal">
+          <div class="char-card-header">
+            <p class="char-faction">World Eaters • Primarch Démon</p>
+            <h3 class="char-name">Angron</h3>
+            <p class="char-title">Le Seigneur Rouge de Nuceria</p>
+          </div>
+          <div class="char-body">
+            <p class="char-lore">« Angron naquit dans la boue rouge de Nuceria et ne connut jamais que la chaîne, le fouet et le cri des arènes. Les Clous du Boucher martelèrent son crâne jusqu'à ce que toute pensée devienne douleur, et que seule la guerre apaise le tumulte. »</p>
+            <div class="char-stats">
+              <div class="char-stat"><span class="char-stat-val">Samni'arius et  Brise-échine</span><span class="char-stat-label">Arme</span></div>
+              <div class="char-stat"><span class="char-stat-val">Sanctum</span><span class="char-stat-label">Front</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="char-card reveal reveal-delay-1">
+          <div class="char-card-header">
+            <p class="char-faction">World Eaters • Champion de Khorne</p>
+            <h3 class="char-name">Khârn le Félon</h3>
+            <p class="char-title">Le Traître de Skalathrax</p>
+          </div>
+          <div class="char-body">
+            <p class="char-lore">« Khârn le Sanglant avance au cœur du fracas, là où les vox sont saturés de hurlements. On dit que son compteur de morts s'est arrêté depuis longtemps, incapable de suivre ses massacres, mais qu'il continue de cliquer dans le noir. »</p>
+            <div class="char-stats">
+              <div class="char-stat"><span class="char-stat-val">La Carnassière</span><span class="char-stat-label">Arme</span></div>
+              <div class="char-stat"><span class="char-stat-val">Secret</span><span class="char-stat-label">Front</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="char-card reveal reveal-delay-2">
+          <div class="char-card-header" style="background:var(--color-surface-offset)">
+            <p class="char-faction" style="color:#cc4444">Blood Angels • Chapelain</p>
+            <h3 class="char-name">Varus</h3>
+            <p class="char-title">Gardien de la Mémoire de Sanguinius</p>
+          </div>
+          <div class="char-body">
+            <p class="char-lore blue">« Le Chapelain Varus terrassa l'Invocatus en duel singulier — sa victoire personnelle ne fut qu'une note de clarté dans une symphonie de hurlements. Il lutte constamment contre la malédiction qui bouillonne dans ses veines. »</p>
+          </div>
+        </article>
+
+        <article class="char-card reveal reveal-delay-3">
+          <div class="char-card-header" style="background:var(--color-surface-offset)">
+            <p class="char-faction" style="color:#c8a028">Black Templars • Reclusiarch</p>
+            <h3 class="char-name">Grimaldus</h3>
+            <p class="char-title">Héros de Helsreach</p>
+          </div>
+          <div class="char-body">
+            <p class="char-lore gold">« Grimaldus se dresse comme un pilier de granit noir face à la tempête. Il osa défier Angron en combat singulier. Un halo sacré se manifesta miraculeusement autour de lui et de sa garde d'honneur contre les coups terrifiants du Primarch Démon. »</p>
+          </div>
+        </article>
+
+        <article class="char-card reveal reveal-delay-1">
+          <div class="char-card-header">
+            <p class="char-faction">World Eaters • Berserker d'élite</p>
+            <h3 class="char-name">Kharak le Sanguinaire</h3>
+            <p class="char-title">L'Ancien Gladiateur</p>
+          </div>
+          <div class="char-body">
+            <p class="char-lore">« Sur Jakku, à la Station 9, la mort de Morgath le Faucheur fit voler en éclats ses dernières brides mentales. Kharak continua de frapper en hurlant le nom de Khorne. Les premiers autels furent élevés sur un tas de cadavres Silver Templars marqués par ses coups. »</p>
+          </div>
+        </article>
+
+        <article class="char-card reveal reveal-delay-2">
+          <div class="char-card-header">
+            <p class="char-faction">World Eaters • Maître des Exécutions</p>
+            <h3 class="char-name">Morgath le Faucheur</h3>
+            <p class="char-title">L'Introuvable</p>
+          </div>
+          <div class="char-body">
+            <p class="char-lore">« À la Station 9 de Jakku, il éventra le Capitaine Essios des Silver Templars. Sa chute brisa un équilibre précaire. Nul n'a retrouvé son corps — seulement une traînée de sang séché. Certains Inquisiteurs affirment l'avoir vu sur d'autres mondes, hache au poing. »</p>
+          </div>
+        </article>
+
+        <article class="char-card reveal">
+          <div class="char-card-header" style="background:var(--color-surface-offset)">
+            <p class="char-faction" style="color:#6aaa3c">Orks — Waaagh! Dégotte</p>
+            <h3 class="char-name">Bolg & Nawak</h3>
+            <p class="char-title">Le Nob Cavalier & le Mek Brikoleur</p>
+          </div>
+          <div class="char-body">
+            <p class="char-lore green">« Bolg mènerait lui-même les assauts depuis l'arrivée de la Waaagh! Il affronta le chef Astartes en duel et lui infligea une défaite humiliante. Nawak bidouilla un techno-crâne de zom et trouva les informations sur les dix stations que le Big Boss veut démanteler. »</p>
+          </div>
+        </article>
+
+        <article class="char-card reveal reveal-delay-1">
+          <div class="char-card-header" style="background:var(--color-surface-offset)">
+            <p class="char-faction" style="color:#c8a028">Le Conqueror • Âme du Vaisseau</p>
+            <h3 class="char-name">Lotara Sarrin</h3>
+            <p class="char-title">La Rose Nourrie par le Sang</p>
+          </div>
+          <div class="char-body">
+            <p class="char-lore gold">« Désormais liée au Conqueror, elle en est devenue l'âme indissociable, une volonté spectrale qui imprègne chaque coursive. Le vaisseau est sa chair, ses systèmes l'expression de son autorité absolue. Les vox tonnent parfois de sa voix impérieuse. »</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TITAN SYRGALAH
+============================================================ -->
+<section id="titan" class="titan-section bg-surface">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Legio Audax • Les Loups de Braise</p>
+      <h2 class="section-title">Le Titan <span>Syrgalah</span></h2>
+    </div>
+
+    <div class="titan-layout">
+      <div class="titan-icon-wrap reveal" aria-hidden="true">🤖</div>
+      <div class="reveal reveal-delay-1">
+        <h3 class="titan-name"><span>SYRGALAH</span></h3>
+        <p class="titan-legio">Legio Audax • Forgé à Sarum • Nourri par la violence de Bodt</p>
+        <p style="font-size:var(--text-base);line-height:1.8;color:var(--color-text-muted);margin-bottom:var(--space-4);font-style:italic">
+          « Dans les ténèbres insondables de la galaxie, s'élève la silhouette titanesque de Syrgalah, prédateur d'acier indomptable. Son Inferno Gun vomit des torrents de flammes infernales, transformant les terres en un enfer vivant. Le Vulcan Mega-Bolter crache sa fureur implacable, déchirant chair et acier. »
+        </p>
+        <div style="display:flex;gap:var(--space-3);margin-bottom:var(--space-6);flex-wrap:wrap">
+          <span class="badge badge--red">Inferno Gun</span>
+          <span class="badge badge--red">Vulcan Mega-Bolter</span>
+          <span class="badge badge--gold">Couleurs Sang & Ombre</span>
+        </div>
+        <div class="titan-crew">
+          <div class="crew-card">
+            <p class="crew-card-name">Princeps Venric Solotine</p>
+            <p class="crew-card-role">Maître de la Bête • Nerfs d'Acier</p>
+          </div>
+          <div class="crew-card">
+            <p class="crew-card-name">Toth Kol</p>
+            <p class="crew-card-role">Moderatii • Maître des Armes</p>
+          </div>
+          <div class="crew-card">
+            <p class="crew-card-name">Keeda Bly</p>
+            <p class="crew-card-role">Moderatii • Gardienne des Défenses</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LE CONQUEROR
+============================================================ -->
+<section id="specificites-jean" class="ship-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">World Eaters • Armée de Jean</p>
+      <h2 class="section-title">Spécificités de <span>l'Armée de Jean</span></h2>
+      <p class="section-desc">Cette section regroupe les éléments uniques de l'armée World Eaters : le vaisseau amiral Le Conqueror, ses bonus de campagne, ainsi que les mécaniques spéciales liées aux Crânes, au Sang et à Saint Carnage.</p>
+    </div>
+
+    <div class="ornament"><span>Le Conqueror</span></div>
+
+    <div class="ship-layout">
+      <div class="ship-img-wrap reveal">
+        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/c7360bd4-359d-4c1e-8404-28860a730bbd.png" alt="Le Conqueror, vaisseau Gloriana corrompu par Khorne avec Lotara Sarrin" width="800" height="360" loading="lazy">
+      </div>
+      <div class="reveal reveal-delay-2">
+        <h3 style="font-family:var(--font-display);font-size:var(--text-lg);text-transform:uppercase;letter-spacing:0.06em;color:var(--color-gold);margin-bottom:var(--space-4)">Bonus de Vaisseau</h3>
+        <ul class="ship-bonus-list" role="list">
+          <li class="ship-bonus">
+            <span class="ship-bonus-icon">🌌</span>
+            <div>
+              <p class="ship-bonus-name">Bombardement Orbital</p>
+              <p class="ship-bonus-desc">1/bataille : met un pion, et à la prochaine phase de tir, inflige 1D6 BM sur 6" de rayon. Dégâts sur toute la carte.</p>
+            </div>
+          </li>
+          <li class="ship-bonus">
+            <span class="ship-bonus-icon">🔥</span>
+            <div>
+              <p class="ship-bonus-name">Arène de Combat</p>
+              <p class="ship-bonus-desc">Permet des rituels avec les Crânes et le Sang. Voir recette et objectif du rituel.</p>
+            </div>
+          </li>
+          <li class="ship-bonus">
+            <span class="ship-bonus-icon">⚙️</span>
+            <div>
+              <p class="ship-bonus-name">Audaxia</p>
+              <p class="ship-bonus-desc">Énorme avenue dans le vaisseau permettant le transport de Titans ! Le seul à pouvoir en transporter de monde en monde.</p>
+            </div>
+          </li>
+          <li class="ship-bonus">
+            <span class="ship-bonus-icon">👻</span>
+            <div>
+              <p class="ship-bonus-name">La Maîtresse (Lotara Sarrin)</p>
+              <p class="ship-bonus-desc">Mission rituelle à réaliser. Permet une FeP Warp durant un abordage. Si abordé, donne un bonus en modifiant le décor.</p>
+            </div>
+          </li>
+          <li class="ship-bonus">
+            <span class="ship-bonus-icon">⚓</span>
+            <div>
+              <p class="ship-bonus-name">Griffes d'Ursus</p>
+              <p class="ship-bonus-desc">Énormes crochets offrant un bonus en combat d'abordage. Bloque un vaisseau amiral adverse et force une mission spéciale.</p>
+            </div>
+          </li>
+          <li class="ship-bonus">
+            <span class="ship-bonus-icon">💥</span>
+            <div>
+              <p class="ship-bonus-name">Fureur du Gloriana</p>
+              <p class="ship-bonus-desc">Macro-canons gigantesques. Si 5 Crânes ET 50 Sangs sacrifiés : terrible bombardement orbital ! Torpilles Cycloniques : Exterminatus d'un monde.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<div class="ornament"><span>Mécaniques Spéciales</span></div>
+
+    <div class="mechanics-grid">
+      <div class="mechanic-card reveal">
+        <span class="mechanic-icon">💀</span>
+        <h3 class="mechanic-title"><span class="red">Des Crânes</span> pour le Trône</h3>
+        <p class="mechanic-desc">Chaque officier tué (personnage & sergent) rapporte un Crâne trophée. Les Crânes s'accumulent et se dépensent lors de rituels. Hors bataille, ils renforcent les rituels avec des effets aléatoires.</p>
+        <ul class="mechanic-tiers" role="list">
+          <li><span class="tier-num">2☠</span>+1A sur un personnage pour toute une bataille (hors Angron)</li>
+          <li><span class="tier-num">4☠</span>FnP 4+ sur un personnage pour toute une bataille (hors Angron)</li>
+          <li><span class="tier-num">6☠</span>Touche Soutenue 2 + Précision sur les armes de mêlée d'un personnage</li>
+          <li><span class="tier-num">8☠</span>Vision d'une mission de Khorne + 1A sur chacune de tes unités</li>
+          <li><span class="tier-num">10☠</span>Créer une arme relique — optimisation gratuite custom !</li>
+        </ul>
+      </div>
+
+      <div class="mechanic-card reveal reveal-delay-2">
+        <span class="mechanic-icon">🩸</span>
+        <h3 class="mechanic-title">Du <span class="red">Sang</span> pour le Dieu du Sang</h3>
+        <p class="mechanic-desc">Les PV tués s'accumulent. Selon le nombre obtenu, une bénédiction de Khorne est accordée au début d'un tour. Plus on accumule, plus c'est puissant.</p>
+        <ul class="mechanic-tiers" role="list">
+          <li><span class="tier-num gold">10🩸</span>+2M pour toutes les unités !</li>
+          <li><span class="tier-num gold">20🩸</span>-1 à la SVG non Inv de toutes les unités ennemies</li>
+          <li><span class="tier-num gold">30🩸</span>-1 à la PA pour toutes les unités</li>
+          <li><span class="tier-num gold">40🩸</span>+1 à la CC pour toutes les unités</li>
+          <li><span class="tier-num gold">50🩸</span>+1 au jet de blesse pour toutes les unités</li>
+        </ul>
+      </div>
+
+      <div class="mechanic-card reveal" style="grid-column: 1 / -1">
+        <span class="mechanic-icon">⚔️</span>
+        <h3 class="mechanic-title">Règle <span class="red">Saint Carnage</span></h3>
+        <p class="mechanic-desc">Les unités suivantes ne peuvent pas tirer ni utiliser le stratagème Grenade — mais gagnent des bonus massifs en mêlée :</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--space-3);margin-top:var(--space-4)">
+          <div style="background:var(--color-surface-offset);padding:var(--space-3);border-radius:var(--radius-sm);border:1px solid var(--color-divider)">
+            <p style="font-family:var(--font-display);font-size:var(--text-sm);color:var(--color-primary-bright);margin-bottom:var(--space-1)">Berzerkers</p>
+            <p style="font-size:var(--text-xs);color:var(--color-text-muted)">1 Champion par unité — 3PV, CC2+, Porte-Icône</p>
+          </div>
+          <div style="background:var(--color-surface-offset);padding:var(--space-3);border-radius:var(--radius-sm);border:1px solid var(--color-divider)">
+            <p style="font-family:var(--font-display);font-size:var(--text-sm);color:var(--color-primary-bright);margin-bottom:var(--space-1)">Rhino</p>
+            <p style="font-size:var(--text-xs);color:var(--color-text-muted)">Gagne une arme CAC spéciale : Pare-buffle empaleur (4A, CC4+, F6, PA-1, D2)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Sous-Secteur Fyrentis</div>
+    <p class="footer-line">« Dans le futur sombre de l'humanité, il n'y a que la guerre. »</p>
+    <p class="footer-line" style="margin-top:var(--space-2);font-style:normal;color:var(--color-text-faint)">Warhammer 40 000 • Campagne Narrative • 41ème Millénaire</p>
+    <div class="footer-players">
+      <span class="footer-player" style="color:var(--color-primary-bright)">Jean — World Eaters</span>
+      <span class="footer-player" style="color:var(--color-gold)">Freddy — Black Templars / Silver Templars / Death Guard / Nécrons</span>
+      <span class="footer-player" style="color:blue">David — Blood Angels</span>
+      <span class="footer-player" style="color:green">Jérémy — Garde Impériale</span>
+      <span class="footer-player" style="color:purple">Vincent — Orks / Iron Warriors</span>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<a href="#top" class="back-top" id="back-top" aria-label="Retour en haut">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+</a>
+
+<script>
+(function(){
+  // THEME TOGGLE
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  r.setAttribute('data-theme', d);
+  function updateThemeBtn() {
+    if (!t) return;
+    t.innerHTML = d === 'dark'
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    t.setAttribute('aria-label', 'Basculer vers le mode ' + (d === 'dark' ? 'clair' : 'sombre'));
+  }
+  updateThemeBtn();
+  if (t) {
+    t.addEventListener('click', () => {
+      d = d === 'dark' ? 'light' : 'dark';
+      r.setAttribute('data-theme', d);
+      updateThemeBtn();
+    });
+  }
+
+  // MOBILE NAV
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // NAV SCROLLED
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 60) nav.classList.add('nav--scrolled');
+    else nav.classList.remove('nav--scrolled');
+    const bt = document.getElementById('back-top');
+    if (window.scrollY > 300) bt.classList.add('visible');
+    else bt.classList.remove('visible');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // TABS
+  const tabs = document.querySelectorAll('.front-tab');
+  const panels = document.querySelectorAll('.front-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const id = tab.dataset.tab;
+      tabs.forEach(t2 => { t2.classList.remove('active'); t2.setAttribute('aria-selected', 'false'); });
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById('tab-' + id);
+      if (panel) panel.classList.add('active');
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
