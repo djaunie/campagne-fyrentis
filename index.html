@@ -7,14 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  
-  <!-- Feuille de style externalisée pour séparer la présentation -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<!-- NAVIGATION -->
-<!-- Navigation principale : liens d'accès aux sections -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="Campagne Fyrentis">
@@ -50,9 +46,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<!-- Bloc d'ouverture : image d'ambiance, titre principal et résumé de la campagne -->
-<!-- En-tête principal : identité visuelle et navigation rapide -->
 <header class="hero" id="top">
   <div class="hero-bg">
     <img class="hero-img" src="assets/img/berserk.png" alt="Angron et le Titan Syrgalah mènent les World Eaters à la bataille" width="1920" height="1080" loading="eager">
@@ -62,24 +55,21 @@
     <p class="hero-eyebrow">Warhammer 40 000 • Campagne Narrative</p>
     <h1 class="hero-title">Sous-Secteur<br><span>Fyrentis</span></h1>
     <p class="hero-subtitle">Dans les ténèbres du 41ème millénaire, cinq seigneurs de guerre façonnent le destin d'un secteur entier. Des ruines de Jakku aux forges de Sanctum, la guerre n'a pas de fin.</p>
-	<div class="hero-badges">
-		<span class="badge badge--purple">⚒ Iron Warriors de Khorne</span>
-		<span class="badge badge--gold">🗡 Silver Templars</span>
-		<span class="badge badge--red">🪓 World Eaters</span>
-		<span class="badge badge--gold">✠ Black Templars</span>
-		<span class="badge badge--blue">🩸 Blood Angels</span>
-		<span class="badge badge--gold">☣ Death Guard</span>
-		<span class="badge badge--green">🦅 Garde Impériale</span>
-		<span class="badge badge--gold">☥ Nécrons</span>
-	</div>
+    <div class="hero-badges">
+      <span class="badge badge--purple">⚒ Iron Warriors de Khorne</span>
+      <span class="badge badge--gold">🗡 Silver Templars</span>
+      <span class="badge badge--red">🪓 World Eaters</span>
+      <span class="badge badge--gold">✠ Black Templars</span>
+      <span class="badge badge--blue">🩸 Blood Angels</span>
+      <span class="badge badge--gold">☣ Death Guard</span>
+      <span class="badge badge--green">🦅 Garde Impériale</span>
+      <span class="badge badge--gold">☥ Nécrons</span>
+    </div>
   </div>
   <span class="hero-scroll" aria-hidden="true">Défiler</span>
 </header>
 
-<!-- ============================================================
-     JOUEURS
-============================================================ -->
-<!-- Cartes de présentation des participants et de leurs factions -->
+<!-- JOUEURS -->
 <section id="joueurs">
   <div class="container">
     <div class="section-header reveal">
@@ -87,88 +77,23 @@
       <h2 class="section-title">Les <span>seigneurs de guerre</span></h2>
       <p class="section-desc">Cinq seigneurs de guerre — cinq destins entremêlés dans le carnage du sous-secteur Fyrentis.</p>
     </div>
-    <div class="players-grid">
-	<article class="player-card player-card--gold reveal reveal-delay-2">
-        <p class="player-name">Freddy</p>
-        <p class="player-role">Maître de jeu</p>
-        <ul class="player-armies" role="list">
-          <li>Black Templars</li>
-		  <li>Silver Templars</li>
-          <li>Death Guard</li>
-          <li>Nécrons</li>
-        </ul>
-      </article>
-      <article class="player-card player-card--red reveal reveal-delay-1">
-        <p class="player-name">Jean</p>
-        <p class="player-role">Du sang pour le Dieu du sang</p>
-        <ul class="player-armies" role="list">
-          <li>World Eaters</li>
-        </ul>
-      </article>
-      <article class="player-card player-card--blue reveal reveal-delay-3">
-        <p class="player-name">David</p>
-        <p class="player-role">Les anges tombés</p>
-        <ul class="player-armies" role="list">
-          <li>Blood Angels</li>
-        </ul>
-      </article>
-      <article class="player-card player-card--green reveal reveal-delay-4">
-        <p class="player-name">Jérémy</p>
-        <p class="player-role">Pour l'Empereur !</p>
-        <ul class="player-armies" role="list">
-          <li>Garde Impériale</li>
-        </ul>
-      </article>
-      <article class="player-card player-card--purple reveal reveal-delay-1">
-        <p class="player-name">Vincent</p>
-        <p class="player-role">Cœur de fer, Main de fer</p>
-        <ul class="player-armies" role="list">
-          <li>Iron Warriors de Khorne</li>
-        </ul>
-      </article>
-    </div>
+    <div class="players-grid" id="players-grid"><!-- injecté par JS --></div>
   </div>
 </section>
 
-<!-- ============================================================
-     CONTEXTE
-============================================================ -->
-<!-- Section de lore : contexte narratif et citations -->
+<!-- CONTEXTE -->
 <section id="contexte" class="bg-surface">
   <div class="container">
     <div class="section-header reveal">
       <p class="section-eyebrow">Histoire & Lore</p>
       <h2 class="section-title">Le Sous-Secteur <span>Fyrentis</span></h2>
-      <p class="section-desc">Depuis huit millénaires sous la coupe de la dynastie Fyrentis, ce secteur fut dévasté par la Cicatrix Maledictum avant d'être stabilisé par les Black Templars du Haut Sénéchal Helbrecht. Vingt-cinq ans de paix relative s'achèvent.</p>
+      <p class="section-desc" id="lore-desc"></p>
     </div>
-
-    <div class="lore-grid">
-      <div class="lore-text reveal">
-        <h3>La Dynastie Fyrentis</h3>
-        <p>Fondée au M32 par un Libre-Marchand explorateur, la dynastie Fyrentis contrôla ce sous-secteur d'une poigne de fer pendant huit millénaires. L'ouverture de la Cicatrix Maledictum ravagea la région pendant soixante ans, les Chevaliers de Riga repoussant les démons au prix de pertes immenses.</p>
-        <p>L'arrivée du Haut Sénéchal Helbrecht avec ses 1 500 Astartes sauva le secteur et établit le "Chemin du Dévot", une route warp sécurisée vers l'Imperium Nihilus. Les Black Templars s'installèrent sur la lune du monde-forge Sanctum.</p>
-        <div class="quote-block">
-          <p class="quote-text">« Dans les tréfonds du cosmos, deux entités se jaugent. L'une possède un regard perçant et impérieux, l'autre arbore un sourire méprisant et une aura sinistre. Leurs voix résonnent à l'unisson : "Que la partie commence !" »</p>
-          <span class="quote-author">— Archives de la Campagne</span>
-        </div>
-      </div>
-      <div class="lore-text reveal reveal-delay-2">
-        <h3>La Situation Actuelle</h3>
-        <p>Vingt-cinq ans après la croisade victorieuse, une nouvelle route warp corrompue déstabilise le secteur. L'agri-monde de Jakku est tombé sous la Waaagh! du Big Boss Dégotte. Le Haut-Gouverneur Agastus Lionel Fyrentis supporte mal la présence des Black Templars.</p>
-        <p>Le Fabricator-Général Horgell Dyass de Sanctum tente de s'affranchir des accords avec la dynastie Fyrentis. Et dans l'espace, des flottes non identifiées approchent d'un système inconnu…</p>
-        <div class="quote-block quote-block--alert">
-          <p class="quote-text">« Perturbation des routes de saut warp détectée — plusieurs vaisseaux cargos appartenant aux forces du Mechanicus et à la dynastie Riga signalés disparus. »</p>
-          <span class="quote-author">— Rapport de l'Inquisiteur Semius Hortis, Ordo Hereticus</span>
-        </div>
-      </div>
-    </div>
+    <div class="lore-grid" id="lore-grid"><!-- injecté par JS --></div>
   </div>
 </section>
 
-<!-- ============================================================
-     FRONTS DE BATAILLE
-============================================================ -->
-<!-- Section interactive : changement de contenu via onglets sans recharger la page -->
+<!-- FRONTS -->
 <section id="fronts">
   <div class="container">
     <div class="section-header reveal">
@@ -176,299 +101,37 @@
       <h2 class="section-title">Les <span>Fronts</span> de Bataille</h2>
       <p class="section-desc">Trois systèmes stellaires, trois théâtres de guerre simultanés. Chaque victoire, chaque défaite résonne à travers le secteur.</p>
     </div>
-
-    <div class="fronts-tabs" role="tablist">
-      <button class="front-tab active" role="tab" aria-selected="true" data-tab="jakku">Jakku</button>
-      <button class="front-tab" role="tab" aria-selected="false" data-tab="sanctum">Sanctum</button>
-      <button class="front-tab" role="tab" aria-selected="false" data-tab="secret">Système Secret</button>
-    </div>
-
-    <!-- JAKKU -->
-    <!-- Panneau d'onglet : théâtre d'opérations de Jakku -->
-    <div class="front-panel active" id="tab-jakku" role="tabpanel">
-      <div class="front-header">
-        <div>
-          <h3 class="front-title">Jakku — Agri-Monde Dévasté</h3>
-          <p class="front-desc">L'agri-monde organisé autour de 10 stations gérant les méga-récoltes. La Waaagh! Dégotte a débarqué, la Death Guard a corrompu des populations entières, et les World Eaters ont saigné le monde pour Khorne.</p>
-        </div>
-        <span class="front-status front-status--active">Front Actif</span>
-      </div>
-
-      <img src="assets/img/jakku.png" alt="Bataille sur Jakku - les agro-stations en flammes" width="1200" height="400" loading="lazy">
-
-      <h4>Statut des 10 Agro-Stations</h4>
-      <div class="stations-grid">
-        <div class="station-card"><div class="station-num">01</div><div class="station-label">Station</div><span class="station-owner station-owner--ork">Orks</span></div>
-        <div class="station-card"><div class="station-num">02</div><div class="station-label">Station</div><span class="station-owner station-owner--bt">Black Templars</span></div>
-        <div class="station-card"><div class="station-num">03</div><div class="station-label">Station</div><span class="station-owner station-owner--ork">Orks</span></div>
-        <div class="station-card"><div class="station-num">04</div><div class="station-label">Station</div><span class="station-owner station-owner--st">Silver Templars</span></div>
-        <div class="station-card"><div class="station-num">05</div><div class="station-label">Station</div><span class="station-owner station-owner--we">World Eaters</span></div>
-        <div class="station-card"><div class="station-num">06</div><div class="station-label">Station</div><span class="station-owner station-owner--dg">Death Guard</span></div>
-        <div class="station-card"><div class="station-num">07</div><div class="station-label">Station</div><span class="station-owner station-owner--we">World Eaters</span></div>
-        <div class="station-card"><div class="station-num">08</div><div class="station-label">Station</div><span class="station-owner station-owner--ruine">Inconnue</span></div>
-        <div class="station-card"><div class="station-num">09</div><div class="station-label">Station</div><span class="station-owner station-owner--we">World Eaters</span></div>
-        <div class="station-card"><div class="station-num">10</div><div class="station-label">Station</div><span class="station-owner station-owner--we">World Eaters</span></div>
-      </div>
-
-      <div class="ornament section-ornament"><span>Chronique des Batailles</span></div>
-      <div class="battle-log">
-        <div class="battle-entry battle-entry--victory">
-          <p class="battle-label">Station 1 • Waaagh!</p>
-          <h4 class="battle-title">La Légende de Bolg</h4>
-          <p class="battle-text">Le Grand Nob Bolg, envoyé par le Big Boss Dégotte, reprend le Grand Bastion et la station 1 face aux Silver Templars. Un tir de Kanon démek détruit un Eradicator. Bolg affronte le capitaine Silver Templar en duel et lui inflige une défaite mémorable.</p>
-          <div class="battle-factions"><span class="faction-tag faction-tag--ork">Orks Victoire</span><span class="faction-tag faction-tag--bt">Silver Templars Défaite</span></div>
-        </div>
-        <div class="battle-entry battle-entry--contested">
-          <p class="battle-label">Station 5 • Le Carnage</p>
-          <h4 class="battle-title">L'Agro-Station de l'Enfer</h4>
-          <p class="battle-text">Quatre factions s'affrontent dans un carnage total. Le Chapelain Varus (Blood Angels) terrasse l'Invocatus en duel. Mais les World Eaters, galvanisés par la mort de leur champion, massacrent tout sur leur passage. L'Agro-Station est consacrée à Khorne.</p>
-          <div class="battle-factions"><span class="faction-tag faction-tag--we">World Eaters Victoire</span><span class="faction-tag faction-tag--ba">Blood Angels</span><span class="faction-tag faction-tag--ork">Orks</span><span class="faction-tag faction-tag--gi">Garde Impériale</span></div>
-        </div>
-        <div class="battle-entry battle-entry--victory">
-          <p class="battle-label">Station 7 • L'Écho Sanglant</p>
-          <h4 class="battle-title">La Chute de Thaddeus</h4>
-          <p class="battle-text">Les Berzerkers de Khârn jaillissent de Rhinos sacrifiés comme des offrandes. Le Dreadnought Thaddeus tombe après un combat épique contre les Ferrocerberus. Le capitaine Cassius est forcé à la retraite. La station 7 devient un avant-poste de Khorne.</p>
-          <div class="battle-factions"><span class="faction-tag faction-tag--we">World Eaters Victoire</span><span class="faction-tag faction-tag--bt">Silver Templars Défaite</span></div>
-        </div>
-        <div class="battle-entry battle-entry--nurgle">
-          <p class="battle-label">Station 6 • La Pestilence</p>
-          <h4 class="battle-title">Le Jardin de Grand-Père Nurgle</h4>
-          <p class="battle-text">Les Death Guard, invisibles dans leur brume occulte, encerclent une force combinée Blood Angels / Silver Templars. L'Essaimeur "Hérault des Charognes" crée un jardin immonde. Les proglandes sont récupérées pour créer de futurs Space Marines corrompus.</p>
-          <div class="battle-factions"><span class="faction-tag faction-tag--dg">Death Guard Victoire</span><span class="faction-tag faction-tag--ba">Blood Angels Défaite</span><span class="faction-tag faction-tag--bt">Silver Templars Défaite</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SANCTUM -->
-    <!-- Panneau d'onglet : affrontements autour du monde-forge Sanctum -->
-    <div class="front-panel" id="tab-sanctum" role="tabpanel">
-      <div class="front-header">
-        <div>
-          <h3 class="front-title">Sanctum — Monde-Forge</h3>
-          <p class="front-desc">Principal fournisseur d'armes du sous-secteur depuis huit millénaires, lié à Metallica. Angron investit les villes-forge tandis que le Fabricator-Général Horgell Dyass tisse ses intrigues. Le Collegia Titanica est la cible ultime.</p>
-        </div>
-        <span class="front-status front-status--contested">Contesté</span>
-      </div>
-	  
-	  <div class="front-visual front-visual--sanctum">
-		<img src="assets/img/sanctum.png" alt="Vue panoramique du monde-forge Sanctum, avec cité-usine gothique et Titan en maintenance" width="1600" height="900" loading="lazy">
-	  </div>
-	  
-      <div class="battle-log">
-        <div class="battle-entry battle-entry--victory">
-          <p class="battle-label">Colchis • Grande Bataille</p>
-          <h4 class="battle-title">La Cité-Ruche Grimah</h4>
-          <p class="battle-text">Grimaldus et les Black Templars défendent la cité-ruche contre Angron et ses Octoliés. Le Héros de Helsreach défie Angron en combat singulier — un halo sacré se manifeste autour de lui. Malgré l'héroïsme des Templiers, la Porte Est tombe. Le Seigneur Invocatus avec ses Ferrocerberus Scythak et Morthrex ravage la Porte Ouest.</p>
-          <div class="battle-factions"><span class="faction-tag faction-tag--we">World Eaters Victoire</span><span class="faction-tag faction-tag--bt">Black Templars Défaite Partielle</span></div>
-        </div>
-        <div class="battle-entry battle-entry--contested">
-          <p class="battle-label">Sanctum • Infiltration</p>
-          <h4 class="battle-title">Le Techno-Prêtre Corrompu</h4>
-          <p class="battle-text">Angron libère un techno-prêtre corrompu de haut rang qui l'aide à percer les lignes DCA de Sanctum. En échange : les codes secrets du monde-forge au moment opportun. Une ville-forge mineure dédiée aux armes et munitions est infiltrée. L'usine d'équipement Astartes est sous surveillance.</p>
-          <div class="battle-factions"><span class="faction-tag faction-tag--we">World Eaters Progression</span><span class="faction-tag faction-tag--bt">Sanctum Alerte</span></div>
-        </div>
-        <div class="battle-entry battle-entry--contested">
-          <p class="battle-label">Sanctum • À Venir</p>
-          <h4 class="battle-title">La Grande Cité-Forge du Sud</h4>
-          <p class="battle-text">Prochaine mission : Angron investit la grande cité-forge du sud où se trouvent le Collegia Titanica, la légion de Titans et les usines de méga-armes. La mission face à Jérémy (Garde Impériale) déterminera le contrôle des Titans du secteur.</p>
-          <div class="battle-factions"><span class="faction-tag faction-tag--we">World Eaters En Cours</span><span class="faction-tag faction-tag--gi">Garde Impériale</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECRET -->
-    <div class="front-panel" id="tab-secret" role="tabpanel">
-      <div class="front-header">
-        <div>
-          <h3 class="front-title">Système Secret — Centre de la Campagne</h3>
-          <p class="front-desc">Un système inconnu, apparu sur les auspex des forces impériales. Khârn et le Conqueror font face à une flotte Nécron encerclant une immense Forteresse Noire. Le centre narratif ultime de la campagne.</p>
-        </div>
-        <span class="front-status front-status--secret">??? Mystère</span>
-      </div>
-	  
-	  <div class="front-visual front-visual--secret">
-        <img src="assets/img/system_secret.png" alt="Forteresse Noire encerclée par une flotte nécron dans le Système Secret" width="1600" height="900" loading="lazy">
-      </div>
-	  
-      <div class="battle-log">
-        <div class="battle-entry inline-style-14">
-          <p class="battle-label">Système Inconnu</p>
-          <h4 class="battle-title">La Forteresse Noire des Nécrons</h4>
-          <p class="battle-text">Khârn et le vaisseau amiral le Conqueror se retrouvent face à une flotte Nécron encerclant une immense Forteresse Noire. L'enjeu de cette confrontation dépasse la simple bataille — les secrets du système secret pourraient décider du destin de tout le sous-secteur Fyrentis.</p>
-          <div class="battle-factions"><span class="faction-tag inline-style-12">Khârn & Le Conqueror</span><span class="faction-tag inline-style-11">Nécrons</span></div>
-        </div>
-        <div class="battle-entry inline-style-13">
-          <p class="battle-label">Indice Narratif</p>
-          <h4 class="battle-title">Qu'est-ce qui s'y cache ?</h4>
-          <p class="battle-text">Les trajets warp destabilisés entre Balvarum–Jakku–Kuvak signalent l'apparition d'un système inconnu sur les auspex. La nouvelle route warp corrompue y mène directement. L'Inquisiteur Hortis enquête sur l'origine de la perturbation et sa connexion avec les activités du Haut-Gouverneur.</p>
-          <div class="battle-factions"><span class="faction-tag">Inquisition</span><span class="faction-tag">Mystère Warp</span></div>
-        </div>
-      </div>
-    </div>
+    <div class="fronts-tabs" id="fronts-tabs" role="tablist"><!-- injecté par JS --></div>
+    <div id="fronts-panels"><!-- injecté par JS --></div>
   </div>
 </section>
 
-<!-- ============================================================
-     PERSONNAGES CLÉS
-============================================================ -->
+<!-- PERSONNAGES -->
 <section id="personnages" class="bg-surface">
   <div class="container--wide">
-    <div class="container inline-style-31">
+    <div class="container">
       <div class="section-header reveal">
         <p class="section-eyebrow">Légendes du Secteur</p>
         <h2 class="section-title">Personnages <span>Clés</span></h2>
         <p class="section-desc">Des héros et des monstres dont les actes résonneront à travers les âges.</p>
       </div>
     </div>
-    <div>
-      <div class="chars-grid">
-
-        <article class="char-card reveal">
-          <div class="char-card-header">
-            <p class="char-faction">World Eaters • Primarch Démon</p>
-            <h3 class="char-name">Angron</h3>
-            <p class="char-title">Le Seigneur Rouge de Nuceria</p>
-          </div>
-          <div class="char-body">
-            <p class="char-lore">« Angron naquit dans la boue rouge de Nuceria et ne connut jamais que la chaîne, le fouet et le cri des arènes. Les Clous du Boucher martelèrent son crâne jusqu'à ce que toute pensée devienne douleur, et que seule la guerre apaise le tumulte. »</p>
-            <div class="char-stats">
-              <div class="char-stat"><span class="char-stat-val">Samni'arius et  Brise-échine</span><span class="char-stat-label">Arme</span></div>
-              <div class="char-stat"><span class="char-stat-val">Sanctum</span><span class="char-stat-label">Front</span></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="char-card reveal reveal-delay-1">
-          <div class="char-card-header">
-            <p class="char-faction">World Eaters • Champion de Khorne</p>
-            <h3 class="char-name">Khârn le Félon</h3>
-            <p class="char-title">Le Traître de Skalathrax</p>
-          </div>
-          <div class="char-body">
-            <p class="char-lore">« Khârn le Sanglant avance au cœur du fracas, là où les vox sont saturés de hurlements. On dit que son compteur de morts s'est arrêté depuis longtemps, incapable de suivre ses massacres, mais qu'il continue de cliquer dans le noir. »</p>
-            <div class="char-stats">
-              <div class="char-stat"><span class="char-stat-val">La Carnassière</span><span class="char-stat-label">Arme</span></div>
-              <div class="char-stat"><span class="char-stat-val">Secret</span><span class="char-stat-label">Front</span></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="char-card reveal reveal-delay-2">
-          <div class="char-card-header inline-style-1">
-            <p class="char-faction inline-style-17">Blood Angels • Chapelain</p>
-            <h3 class="char-name">Varus</h3>
-            <p class="char-title">Gardien de la Mémoire de Sanguinius</p>
-          </div>
-          <div class="char-body">
-            <p class="char-lore blue">« Le Chapelain Varus terrassa l'Invocatus en duel singulier — sa victoire personnelle ne fut qu'une note de clarté dans une symphonie de hurlements. Il lutte constamment contre la malédiction qui bouillonne dans ses veines. »</p>
-          </div>
-        </article>
-
-        <article class="char-card reveal reveal-delay-3">
-          <div class="char-card-header inline-style-1">
-            <p class="char-faction inline-style-3">Black Templars • Reclusiarch</p>
-            <h3 class="char-name">Grimaldus</h3>
-            <p class="char-title">Héros de Helsreach</p>
-          </div>
-          <div class="char-body">
-            <p class="char-lore gold">« Grimaldus se dresse comme un pilier de granit noir face à la tempête. Il osa défier Angron en combat singulier. Un halo sacré se manifesta miraculeusement autour de lui et de sa garde d'honneur contre les coups terrifiants du Primarch Démon. »</p>
-          </div>
-        </article>
-
-        <article class="char-card reveal reveal-delay-1">
-          <div class="char-card-header">
-            <p class="char-faction">World Eaters • Berserker d'élite</p>
-            <h3 class="char-name">Kharak le Sanguinaire</h3>
-            <p class="char-title">L'Ancien Gladiateur</p>
-          </div>
-          <div class="char-body">
-            <p class="char-lore">« Sur Jakku, à la Station 9, la mort de Morgath le Faucheur fit voler en éclats ses dernières brides mentales. Kharak continua de frapper en hurlant le nom de Khorne. Les premiers autels furent élevés sur un tas de cadavres Silver Templars marqués par ses coups. »</p>
-          </div>
-        </article>
-
-        <article class="char-card reveal reveal-delay-2">
-          <div class="char-card-header">
-            <p class="char-faction">World Eaters • Maître des Exécutions</p>
-            <h3 class="char-name">Morgath le Faucheur</h3>
-            <p class="char-title">L'Introuvable</p>
-          </div>
-          <div class="char-body">
-            <p class="char-lore">« À la Station 9 de Jakku, il éventra le Capitaine Essios des Silver Templars. Sa chute brisa un équilibre précaire. Nul n'a retrouvé son corps — seulement une traînée de sang séché. Certains Inquisiteurs affirment l'avoir vu sur d'autres mondes, hache au poing. »</p>
-          </div>
-        </article>
-
-        <article class="char-card reveal">
-          <div class="char-card-header inline-style-1">
-            <p class="char-faction inline-style-16">Orks — Waaagh! Dégotte</p>
-            <h3 class="char-name">Bolg & Nawak</h3>
-            <p class="char-title">Le Nob Cavalier & le Mek Brikoleur</p>
-          </div>
-          <div class="char-body">
-            <p class="char-lore green">« Bolg mènerait lui-même les assauts depuis l'arrivée de la Waaagh! Il affronta le chef Astartes en duel et lui infligea une défaite humiliante. Nawak bidouilla un techno-crâne de zom et trouva les informations sur les dix stations que le Big Boss veut démanteler. »</p>
-          </div>
-        </article>
-
-        <article class="char-card reveal reveal-delay-1">
-          <div class="char-card-header inline-style-1">
-            <p class="char-faction inline-style-3">Le Conqueror • Âme du Vaisseau</p>
-            <h3 class="char-name">Lotara Sarrin</h3>
-            <p class="char-title">La Rose Nourrie par le Sang</p>
-          </div>
-          <div class="char-body">
-            <p class="char-lore gold">« Désormais liée au Conqueror, elle en est devenue l'âme indissociable, une volonté spectrale qui imprègne chaque coursive. Le vaisseau est sa chair, ses systèmes l'expression de son autorité absolue. Les vox tonnent parfois de sa voix impérieuse. »</p>
-          </div>
-        </article>
-
-      </div>
-    </div>
+    <div class="chars-grid" id="chars-grid"><!-- injecté par JS --></div>
   </div>
 </section>
 
-<!-- ============================================================
-     TITAN SYRGALAH
-============================================================ -->
+<!-- TITAN -->
 <section id="titan" class="titan-section bg-surface">
   <div class="container">
     <div class="section-header reveal">
       <p class="section-eyebrow">Legio Audax • Les Loups de Braise</p>
       <h2 class="section-title">Le Titan <span>Syrgalah</span></h2>
     </div>
-
-    <div class="titan-layout">
-      <div class="titan-icon-wrap reveal" aria-hidden="true">🤖</div>
-      <div class="reveal reveal-delay-1">
-        <h3 class="titan-name"><span>SYRGALAH</span></h3>
-        <p class="titan-legio">Legio Audax • Forgé à Sarum • Nourri par la violence de Bodt</p>
-        <p>
-          « Dans les ténèbres insondables de la galaxie, s'élève la silhouette titanesque de Syrgalah, prédateur d'acier indomptable. Son Inferno Gun vomit des torrents de flammes infernales, transformant les terres en un enfer vivant. Le Vulcan Mega-Bolter crache sa fureur implacable, déchirant chair et acier. »
-        </p>
-        <div>
-          <span class="badge badge--red">Inferno Gun</span>
-          <span class="badge badge--red">Vulcan Mega-Bolter</span>
-          <span class="badge badge--gold">Couleurs Sang & Ombre</span>
-        </div>
-        <div class="titan-crew">
-          <div class="crew-card">
-            <p class="crew-card-name">Princeps Venric Solotine</p>
-            <p class="crew-card-role">Maître de la Bête • Nerfs d'Acier</p>
-          </div>
-          <div class="crew-card">
-            <p class="crew-card-name">Toth Kol</p>
-            <p class="crew-card-role">Moderatii • Maître des Armes</p>
-          </div>
-          <div class="crew-card">
-            <p class="crew-card-name">Keeda Bly</p>
-            <p class="crew-card-role">Moderatii • Gardienne des Défenses</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="titan-layout" id="titan-layout"><!-- injecté par JS --></div>
   </div>
 </section>
 
-<!-- ============================================================
-     LE CONQUEROR
-============================================================ -->
+<!-- MECANIQUES JEAN -->
 <section id="specificites-jean" class="ship-section">
   <div class="container">
     <div class="section-header reveal">
@@ -476,210 +139,255 @@
       <h2 class="section-title">Spécificités de <span>l'Armée de Jean</span></h2>
       <p class="section-desc">Cette section regroupe les éléments uniques de l'armée World Eaters : le vaisseau amiral Le Conqueror, ses bonus de campagne, ainsi que les mécaniques spéciales liées aux Crânes, au Sang et à Saint Carnage.</p>
     </div>
-
-    <div class="ornament"><span>Le Conqueror</span></div>
-
-    <div class="ship-layout">
-      <div class="ship-img-wrap reveal">
-        <img src="assets/img/vaisseau_le_conqueror.png" alt="Le Conqueror, vaisseau Gloriana corrompu par Khorne avec Lotara Sarrin" width="800" height="360" loading="lazy">
-      </div>
-      <div class="reveal reveal-delay-2">
-        <h3>Bonus de Vaisseau</h3>
-        <ul class="ship-bonus-list" role="list">
-          <li class="ship-bonus">
-            <span class="ship-bonus-icon">🌌</span>
-            <div>
-              <p class="ship-bonus-name">Bombardement Orbital</p>
-              <p class="ship-bonus-desc">1/bataille : met un pion, et à la prochaine phase de tir, inflige 1D6 BM sur 6" de rayon. Dégâts sur toute la carte.</p>
-            </div>
-          </li>
-          <li class="ship-bonus">
-            <span class="ship-bonus-icon">🔥</span>
-            <div>
-              <p class="ship-bonus-name">Arène de Combat</p>
-              <p class="ship-bonus-desc">Permet des rituels avec les Crânes et le Sang. Voir recette et objectif du rituel.</p>
-            </div>
-          </li>
-          <li class="ship-bonus">
-            <span class="ship-bonus-icon">⚙️</span>
-            <div>
-              <p class="ship-bonus-name">Audaxia</p>
-              <p class="ship-bonus-desc">Énorme avenue dans le vaisseau permettant le transport de Titans ! Le seul à pouvoir en transporter de monde en monde.</p>
-            </div>
-          </li>
-          <li class="ship-bonus">
-            <span class="ship-bonus-icon">👻</span>
-            <div>
-              <p class="ship-bonus-name">La Maîtresse (Lotara Sarrin)</p>
-              <p class="ship-bonus-desc">Mission rituelle à réaliser. Permet une FeP Warp durant un abordage. Si abordé, donne un bonus en modifiant le décor.</p>
-            </div>
-          </li>
-          <li class="ship-bonus">
-            <span class="ship-bonus-icon">⚓</span>
-            <div>
-              <p class="ship-bonus-name">Griffes d'Ursus</p>
-              <p class="ship-bonus-desc">Énormes crochets offrant un bonus en combat d'abordage. Bloque un vaisseau amiral adverse et force une mission spéciale.</p>
-            </div>
-          </li>
-          <li class="ship-bonus">
-            <span class="ship-bonus-icon">💥</span>
-            <div>
-              <p class="ship-bonus-name">Fureur du Gloriana</p>
-              <p class="ship-bonus-desc">Macro-canons gigantesques. Si 5 Crânes ET 50 Sangs sacrifiés : terrible bombardement orbital ! Torpilles Cycloniques : Exterminatus d'un monde.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-<div class="ornament"><span>Mécaniques Spéciales</span></div>
-
-    <div class="mechanics-grid">
-      <div class="mechanic-card reveal">
-        <span class="mechanic-icon">💀</span>
-        <h3 class="mechanic-title"><span class="red">Des Crânes</span> pour le Trône</h3>
-        <p class="mechanic-desc">Chaque officier tué (personnage & sergent) rapporte un Crâne trophée. Les Crânes s'accumulent et se dépensent lors de rituels. Hors bataille, ils renforcent les rituels avec des effets aléatoires.</p>
-        <ul class="mechanic-tiers" role="list">
-          <li><span class="tier-num">2☠</span>+1A sur un personnage pour toute une bataille (hors Angron)</li>
-          <li><span class="tier-num">4☠</span>FnP 4+ sur un personnage pour toute une bataille (hors Angron)</li>
-          <li><span class="tier-num">6☠</span>Touche Soutenue 2 + Précision sur les armes de mêlée d'un personnage</li>
-          <li><span class="tier-num">8☠</span>Vision d'une mission de Khorne + 1A sur chacune de tes unités</li>
-          <li><span class="tier-num">10☠</span>Créer une arme relique — optimisation gratuite custom !</li>
-        </ul>
-      </div>
-
-      <div class="mechanic-card reveal reveal-delay-2">
-        <span class="mechanic-icon">🩸</span>
-        <h3 class="mechanic-title">Du <span class="red">Sang</span> pour le Dieu du Sang</h3>
-        <p class="mechanic-desc">Les PV tués s'accumulent. Selon le nombre obtenu, une bénédiction de Khorne est accordée au début d'un tour. Plus on accumule, plus c'est puissant.</p>
-        <ul class="mechanic-tiers" role="list">
-          <li><span class="tier-num gold">10🩸</span>+2M pour toutes les unités !</li>
-          <li><span class="tier-num gold">20🩸</span>-1 à la SVG non Inv de toutes les unités ennemies</li>
-          <li><span class="tier-num gold">30🩸</span>-1 à la PA pour toutes les unités</li>
-          <li><span class="tier-num gold">40🩸</span>+1 à la CC pour toutes les unités</li>
-          <li><span class="tier-num gold">50🩸</span>+1 au jet de blesse pour toutes les unités</li>
-        </ul>
-      </div>
-
-      <div class="mechanic-card reveal inline-style-28">
-        <span class="mechanic-icon">⚔️</span>
-        <h3 class="mechanic-title">Règle <span class="red">Saint Carnage</span></h3>
-        <p class="mechanic-desc">Les unités suivantes ne peuvent pas tirer ni utiliser le stratagème Grenade — mais gagnent des bonus massifs en mêlée :</p>
-        <div>
-          <div>
-            <p>Berzerkers</p>
-            <p>1 Champion par unité — 3PV, CC2+, Porte-Icône</p>
-          </div>
-          <div>
-            <p>Rhino</p>
-            <p>Gagne une arme CAC spéciale : Pare-buffle empaleur (4A, CC4+, F6, PA-1, D2)</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="mecaniques-container"><!-- injecté par JS --></div>
   </div>
 </section>
 
-
-
-<!-- ============================================================
-     FOOTER
-============================================================ -->
-<!-- Pied de page : informations de clôture -->
 <footer>
   <div class="container">
     <div class="footer-logo">Sous-Secteur Fyrentis</div>
     <p class="footer-line">« Dans le futur sombre de l'humanité, il n'y a que la guerre. »</p>
-    <p class="footer-line inline-style-29">Warhammer 40 000 • Campagne Narrative • 41ème Millénaire</p>
-    <div class="footer-players">
-      <span class="footer-player inline-style-22">Jean — World Eaters</span>
-      <span class="footer-player inline-style-21">Freddy — Black Templars / Silver Templars / Death Guard / Nécrons</span>
-      <span class="footer-player inline-style-18">David — Blood Angels</span>
-      <span class="footer-player inline-style-19">Jérémy — Garde Impériale</span>
-      <span class="footer-player inline-style-20">Vincent — Orks / Iron Warriors</span>
-    </div>
+    <p class="footer-line">Warhammer 40 000 • Campagne Narrative • 41ème Millénaire</p>
+    <div class="footer-players" id="footer-players"><!-- injecté par JS --></div>
   </div>
 </footer>
 
-<!-- BACK TO TOP -->
 <a href="#top" class="back-top" id="back-top" aria-label="Retour en haut">
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
 </a>
 
-<!-- Logique JavaScript : interactions et comportement dynamique -->
-<!-- Cette partie pilote les onglets, les effets visuels et les comportements liés à l'interface. -->
 <script>
-(function(){
-  // THEME TOGGLE
-  const t = document.querySelector('[data-theme-toggle]');
-  const r = document.documentElement;
-  let d = r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  r.setAttribute('data-theme', d);
+(function () {
+
+  // ── THEME TOGGLE ──────────────────────────────────────────────
+  const themeBtn = document.querySelector('[data-theme-toggle]');
+  const root = document.documentElement;
+  let theme = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', theme);
   function updateThemeBtn() {
-    if (!t) return;
-    t.innerHTML = d === 'dark'
+    if (!themeBtn) return;
+    themeBtn.innerHTML = theme === 'dark'
       ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
       : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-    t.setAttribute('aria-label', 'Basculer vers le mode ' + (d === 'dark' ? 'clair' : 'sombre'));
+    themeBtn.setAttribute('aria-label', 'Basculer vers le mode ' + (theme === 'dark' ? 'clair' : 'sombre'));
   }
   updateThemeBtn();
-  if (t) {
-    t.addEventListener('click', () => {
-      d = d === 'dark' ? 'light' : 'dark';
-      r.setAttribute('data-theme', d);
-      updateThemeBtn();
+  if (themeBtn) themeBtn.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; root.setAttribute('data-theme', theme); updateThemeBtn(); });
+
+  // ── MOBILE NAV ────────────────────────────────────────────────
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks  = document.getElementById('nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open);
     });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }));
   }
 
-  // MOBILE NAV
-  const toggle = document.getElementById('nav-toggle');
-  const links = document.getElementById('nav-links');
-  if (toggle && links) {
-    toggle.addEventListener('click', () => {
-      const open = links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    links.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        links.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
+  // ── NAV SCROLL + BACK-TO-TOP ──────────────────────────────────
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav--scrolled', window.scrollY > 60);
+    document.getElementById('back-top').classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
+
+  // ── REVEAL ON SCROLL ─────────────────────────────────────────
+  function initReveal() {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  }
+
+  // ── TABS ─────────────────────────────────────────────────────
+  function initTabs() {
+    const tabs   = document.querySelectorAll('.front-tab');
+    const panels = document.querySelectorAll('.front-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        panels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
+        const p = document.getElementById('tab-' + tab.dataset.tab);
+        if (p) p.classList.add('active');
       });
     });
   }
 
-  // NAV SCROLLED
-  const nav = document.getElementById('nav');
-  const onScroll = () => {
-    if (window.scrollY > 60) nav.classList.add('nav--scrolled');
-    else nav.classList.remove('nav--scrolled');
-    const bt = document.getElementById('back-top');
-    if (window.scrollY > 300) bt.classList.add('visible');
-    else bt.classList.remove('visible');
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
+  // ── HELPERS ───────────────────────────────────────────────────
+  function h(tag, cls, inner) { return `<${tag}${cls ? ' class="'+cls+'"' : ''}>${inner}</${tag}>`; }
+  function delayClass(n) { return n ? ` reveal-delay-${n}` : ''; }
 
-  // REVEAL ON SCROLL
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
+  // ── RENDER FUNCTIONS ─────────────────────────────────────────
+  function renderJoueurs(joueurs) {
+    document.getElementById('players-grid').innerHTML = joueurs.map(j =>
+      `<article class="player-card player-card--${j.couleur} reveal${delayClass(j.delai)}">
+        <p class="player-name">${j.nom}</p>
+        <p class="player-role">${j.role}</p>
+        <ul class="player-armies" role="list">${j.armees.map(a => `<li>${a}</li>`).join('')}</ul>
+      </article>`
+    ).join('');
+  }
 
-  // TABS
-  const tabs = document.querySelectorAll('.front-tab');
-  const panels = document.querySelectorAll('.front-panel');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const id = tab.dataset.tab;
-      tabs.forEach(t2 => { t2.classList.remove('active'); t2.setAttribute('aria-selected', 'false'); });
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      const panel = document.getElementById('tab-' + id);
-      if (panel) panel.classList.add('active');
+  function renderLore(lore) {
+    document.getElementById('lore-desc').textContent = lore.description;
+    document.getElementById('lore-grid').innerHTML = lore.blocs.map((b, i) =>
+      `<div class="lore-text reveal${i > 0 ? ' reveal-delay-2' : ''}">
+        <h3>${b.titre}</h3>
+        ${b.paragraphes.map(p => `<p>${p}</p>`).join('')}
+        <div class="quote-block${b.citation.alerte ? ' quote-block--alert' : ''}">
+          <p class="quote-text">${b.citation.texte}</p>
+          <span class="quote-author">${b.citation.auteur}</span>
+        </div>
+      </div>`
+    ).join('');
+  }
+
+  function renderFronts(fronts) {
+    document.getElementById('fronts-tabs').innerHTML = fronts.map((f, i) =>
+      `<button class="front-tab${i===0?' active':''}" role="tab" aria-selected="${i===0}" data-tab="${f.id}">${f.nom}</button>`
+    ).join('');
+
+    document.getElementById('fronts-panels').innerHTML = fronts.map((f, i) => {
+      const stationsHTML = f.stations ? `
+        <h4>Statut des ${f.stations.length} Agro-Stations</h4>
+        <div class="stations-grid">${f.stations.map(s =>
+          `<div class="station-card"><div class="station-num">${s.num}</div><div class="station-label">Station</div><span class="station-owner ${s.classe}">${s.proprietaire}</span></div>`
+        ).join('')}</div>` : '';
+
+      const imageHTML = f.image ? (f.stations
+        ? `<img src="${f.image}" alt="${f.image_alt}" width="1200" height="400" loading="lazy">`
+        : `<div class="front-visual"><img src="${f.image}" alt="${f.image_alt}" width="1600" height="900" loading="lazy"></div>`
+      ) : '';
+
+      const bataillesHTML = f.batailles.map(b =>
+        `<div class="battle-entry ${b.classe}">
+          <p class="battle-label">${b.label}</p>
+          <h4 class="battle-title">${b.titre}</h4>
+          <p class="battle-text">${b.texte}</p>
+          <div class="battle-factions">${b.factions.map(f => `<span class="faction-tag ${f.classe}">${f.label}</span>`).join('')}</div>
+        </div>`
+      ).join('');
+
+      return `<div class="front-panel${i===0?' active':''}" id="tab-${f.id}" role="tabpanel">
+        <div class="front-header">
+          <div><h3 class="front-title">${f.titre}</h3><p class="front-desc">${f.description}</p></div>
+          <span class="front-status ${f.statut_classe}">${f.statut}</span>
+        </div>
+        ${imageHTML}${stationsHTML}
+        ${f.stations ? '<div class="ornament section-ornament"><span>Chronique des Batailles</span></div>' : ''}
+        <div class="battle-log">${bataillesHTML}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderPersonnages(personnages) {
+    document.getElementById('chars-grid').innerHTML = personnages.map(p => {
+      const statsHTML = p.stats.length ? `<div class="char-stats">${p.stats.map(s =>
+        `<div class="char-stat"><span class="char-stat-val">${s.valeur}</span><span class="char-stat-label">${s.label}</span></div>`
+      ).join('')}</div>` : '';
+      return `<article class="char-card reveal${delayClass(p.delai)}">
+        <div class="char-card-header">
+          <p class="char-faction">${p.faction}</p>
+          <h3 class="char-name">${p.nom}</h3>
+          <p class="char-title">${p.titre}</p>
+        </div>
+        <div class="char-body">
+          <p class="char-lore ${p.couleur}">${p.lore}</p>
+          ${statsHTML}
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  function renderTitan(t) {
+    document.getElementById('titan-layout').innerHTML =
+      `<div class="titan-icon-wrap reveal" aria-hidden="true">🤖</div>
+      <div class="reveal reveal-delay-1">
+        <h3 class="titan-name"><span>${t.nom}</span></h3>
+        <p class="titan-legio">${t.legio}</p>
+        <p>${t.description}</p>
+        <div>${t.armes.map(a => `<span class="badge badge--red">${a}</span>`).join('')}<span class="badge badge--gold">${t.couleurs}</span></div>
+        <div class="titan-crew">${t.equipage.map(e =>
+          `<div class="crew-card"><p class="crew-card-name">${e.nom}</p><p class="crew-card-role">${e.role}</p></div>`
+        ).join('')}</div>
+      </div>`;
+  }
+
+  function renderMecaniques(m) {
+    const vaisseau = m.vaisseau;
+    const cranes   = m.cranes;
+    const sang     = m.sang;
+    const sc       = m.saint_carnage;
+
+    document.getElementById('mecaniques-container').innerHTML = `
+      <div class="ornament"><span>Le Conqueror</span></div>
+      <div class="ship-layout">
+        <div class="ship-img-wrap reveal">
+          <img src="${vaisseau.image}" alt="${vaisseau.image_alt}" width="800" height="360" loading="lazy">
+        </div>
+        <div class="reveal reveal-delay-2">
+          <h3>Bonus de Vaisseau</h3>
+          <ul class="ship-bonus-list" role="list">${vaisseau.bonus.map(b =>
+            `<li class="ship-bonus"><span class="ship-bonus-icon">${b.icone}</span><div><p class="ship-bonus-name">${b.nom}</p><p class="ship-bonus-desc">${b.desc}</p></div></li>`
+          ).join('')}</ul>
+        </div>
+      </div>
+
+      <div class="ornament"><span>Mécaniques Spéciales</span></div>
+      <div class="mechanics-grid">
+        <div class="mechanic-card reveal">
+          <span class="mechanic-icon">${cranes.icone}</span>
+          <h3 class="mechanic-title"><span class="red">${cranes.titre}</span></h3>
+          <p class="mechanic-desc">${cranes.desc}</p>
+          <ul class="mechanic-tiers" role="list">${cranes.paliers.map(p =>
+            `<li><span class="tier-num">${p.seuil}</span>${p.effet}</li>`
+          ).join('')}</ul>
+        </div>
+        <div class="mechanic-card reveal reveal-delay-2">
+          <span class="mechanic-icon">${sang.icone}</span>
+          <h3 class="mechanic-title"><span class="red">${sang.titre}</span></h3>
+          <p class="mechanic-desc">${sang.desc}</p>
+          <ul class="mechanic-tiers" role="list">${sang.paliers.map(p =>
+            `<li><span class="tier-num gold">${p.seuil}</span>${p.effet}</li>`
+          ).join('')}</ul>
+        </div>
+        <div class="mechanic-card reveal">
+          <span class="mechanic-icon">${sc.icone}</span>
+          <h3 class="mechanic-title">Règle <span class="red">${sc.titre}</span></h3>
+          <p class="mechanic-desc">${sc.desc}</p>
+          <div>${sc.unites.map(u => `<div><p>${u.nom}</p><p>${u.detail}</p></div>`).join('')}</div>
+        </div>
+      </div>`;
+  }
+
+  function renderFooter(joueurs) {
+    const couleurs = { red: 'inline-style-22', gold: 'inline-style-21', blue: 'inline-style-18', green: 'inline-style-19', purple: 'inline-style-20' };
+    document.getElementById('footer-players').innerHTML = joueurs.map(j =>
+      `<span class="footer-player ${couleurs[j.couleur] || ''}">${j.nom} — ${j.armees.join(' / ')}</span>`
+    ).join('');
+  }
+
+  // ── MAIN : FETCH + RENDER ────────────────────────────────────
+  fetch('assets/data/campagne.json')
+    .then(r => r.json())
+    .then(d => {
+      renderJoueurs(d.joueurs);
+      renderLore(d.lore);
+      renderFronts(d.fronts);
+      renderPersonnages(d.personnages);
+      renderTitan(d.titan);
+      renderMecaniques(d.mecaniques);
+      renderFooter(d.joueurs);
+      initReveal();
+      initTabs();
+    })
+    .catch(err => {
+      console.error('Erreur chargement campagne.json :', err);
+      document.body.insertAdjacentHTML('afterbegin', '<div style="background:#8b1c1c;color:#fff;padding:1rem;text-align:center">Erreur : impossible de charger campagne.json</div>');
     });
-  });
+
 })();
 </script>
 
