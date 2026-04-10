@@ -297,12 +297,11 @@
   }
 
   function showDetail(data, pid) {
-    // Clear previous
+    // Déselectionne tous, sélectionne le cliqué
     document.querySelectorAll('.planet-group, .marker-group').forEach(g => g.classList.remove('selected'));
     document.querySelectorAll('[data-pid="' + pid + '"]').forEach(g => g.classList.add('selected'));
 
     const zone = document.getElementById('detail-zone');
-    document.getElementById('empty-state').style.display = 'none';
 
     let html = '';
     if (pid === 'brokha') {
@@ -342,7 +341,9 @@
         </div>`;
       }
     }
-    zone.innerHTML = html || '<div class="empty-state"><p>Aucune donnée disponible.</p></div>';
+
+    // Toujours écraser le contenu de la zone — qu'il y ait déjà un détail ou l'empty-state
+    zone.innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">◈</div><p>Aucune donnée disponible.</p></div>';
   }
 
   function bindClicks(data) {
