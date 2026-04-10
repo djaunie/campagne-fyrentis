@@ -8,6 +8,121 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ── BOUTONS DE NAVIGATION PAGES ───────────────────────── */
+    .nav-page-links {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .btn-nav-page {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.85rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 1px solid;
+      transition: background 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-nav-page--carte {
+      color: #c8a028;
+      border-color: rgba(200, 160, 40, 0.45);
+      background: rgba(200, 160, 40, 0.07);
+    }
+    .btn-nav-page--carte:hover {
+      background: rgba(200, 160, 40, 0.18);
+      border-color: #c8a028;
+      box-shadow: 0 0 10px rgba(200, 160, 40, 0.25);
+      color: #e8c050;
+    }
+    .btn-nav-page--sanctum {
+      color: #c84040;
+      border-color: rgba(200, 60, 60, 0.45);
+      background: rgba(200, 60, 60, 0.07);
+    }
+    .btn-nav-page--sanctum:hover {
+      background: rgba(200, 60, 60, 0.18);
+      border-color: #c84040;
+      box-shadow: 0 0 10px rgba(200, 60, 60, 0.25);
+      color: #e06060;
+    }
+    [data-theme="light"] .btn-nav-page--carte {
+      color: #8a6800;
+      border-color: rgba(138, 104, 0, 0.4);
+      background: rgba(138, 104, 0, 0.06);
+    }
+    [data-theme="light"] .btn-nav-page--carte:hover {
+      background: rgba(138, 104, 0, 0.14);
+      border-color: #8a6800;
+    }
+    [data-theme="light"] .btn-nav-page--sanctum {
+      color: #8b1c1c;
+      border-color: rgba(139, 28, 28, 0.4);
+      background: rgba(139, 28, 28, 0.06);
+    }
+    [data-theme="light"] .btn-nav-page--sanctum:hover {
+      background: rgba(139, 28, 28, 0.14);
+      border-color: #8b1c1c;
+    }
+    /* ── BLOC HERO CTA (boutons dans le hero) ───────────────── */
+    .hero-nav-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .btn-hero-page {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 1px solid;
+      backdrop-filter: blur(4px);
+      transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 120ms ease;
+    }
+    .btn-hero-page:hover { transform: translateY(-1px); }
+    .btn-hero-page:active { transform: translateY(0); }
+    .btn-hero-page--carte {
+      color: #f0d070;
+      border-color: rgba(200, 160, 40, 0.6);
+      background: rgba(200, 160, 40, 0.12);
+    }
+    .btn-hero-page--carte:hover {
+      background: rgba(200, 160, 40, 0.22);
+      border-color: #c8a028;
+      box-shadow: 0 0 18px rgba(200, 160, 40, 0.3);
+    }
+    .btn-hero-page--sanctum {
+      color: #f08080;
+      border-color: rgba(200, 60, 60, 0.6);
+      background: rgba(200, 60, 60, 0.12);
+    }
+    .btn-hero-page--sanctum:hover {
+      background: rgba(200, 60, 60, 0.22);
+      border-color: #c84040;
+      box-shadow: 0 0 18px rgba(200, 60, 60, 0.3);
+    }
+    @media (max-width: 600px) {
+      .nav-page-links { gap: 0.35rem; }
+      .btn-nav-page { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
+      .btn-hero-page { font-size: 0.72rem; padding: 0.55rem 1rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -36,6 +151,17 @@
       <li><a href="#specificites-jean">Armée de Jean</a></li>
     </ul>
     <div class="nav-actions">
+      <!-- Boutons de navigation vers les autres pages -->
+      <div class="nav-page-links">
+        <a href="carte.html" class="btn-nav-page btn-nav-page--carte" aria-label="Voir la Carte du secteur">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          Carte
+        </a>
+        <a href="sanctum.html" class="btn-nav-page btn-nav-page--sanctum" aria-label="Accéder au Sanctum">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Sanctum
+        </a>
+      </div>
       <button class="btn-theme" data-theme-toggle aria-label="Basculer le thème">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
@@ -64,6 +190,17 @@
       <span class="badge badge--gold">☣ Death Guard</span>
       <span class="badge badge--green">🦅 Garde Impériale</span>
       <span class="badge badge--gold">☥ Nécrons</span>
+    </div>
+    <!-- Boutons de navigation hero -->
+    <div class="hero-nav-btns">
+      <a href="carte.html" class="btn-hero-page btn-hero-page--carte">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        Carte du Secteur
+      </a>
+      <a href="sanctum.html" class="btn-hero-page btn-hero-page--sanctum">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Accéder au Sanctum
+      </a>
     </div>
   </div>
   <span class="hero-scroll" aria-hidden="true">Défiler</span>
