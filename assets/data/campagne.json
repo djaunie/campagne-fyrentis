@@ -282,18 +282,6 @@
       "delai": 1
     }
   ],
-  "titan": {
-    "nom": "SYRGALAH",
-    "legio": "Legio Audax • Forgé à Sarum • Nourri par la violence de Bodt",
-    "description": "« Dans les ténèbres insondables de la galaxie, s'élève la silhouette titanesque de Syrgalah, prédateur d'acier indomptable. Son Inferno Gun vomit des torrents de flammes infernales, transformant les terres en un enfer vivant. Le Vulcan Mega-Bolter crache sa fureur implacable, déchirant chair et acier. »",
-    "armes": ["Inferno Gun", "Vulcan Mega-Bolter"],
-    "couleurs": "Couleurs Sang & Ombre",
-    "equipage": [
-      { "nom": "Princeps Venric Solotine", "role": "Maître de la Bête • Nerfs d'Acier" },
-      { "nom": "Toth Kol", "role": "Moderatii • Maître des Armes" },
-      { "nom": "Keeda Bly", "role": "Moderatii • Gardienne des Défenses" }
-    ]
-  },
   "mecaniques": {
     "vaisseau": {
       "nom": "Le Conqueror",
