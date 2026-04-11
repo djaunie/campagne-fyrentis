@@ -812,21 +812,33 @@ footer {
 }
 footer .footer-logo {
   font-family: var(--font-display); font-size: var(--text-lg);
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-gold);
-  margin-bottom: var(--space-3);
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold);
+  margin-bottom: var(--space-4);
+  display: block;
+  width: 100%;
+  text-align: center;
 }
 footer .footer-line {
-  font-size: var(--text-sm); color: var(--color-text-faint);
+  font-family: var(--font-body);
+  font-size: var(--text-sm); color: var(--color-text-muted);
   font-style: italic;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: var(--space-2);
 }
-footer .footer-players {
-  margin-top: var(--space-6); display: flex; justify-content: center;
-  flex-wrap: wrap; gap: var(--space-4);
+footer .footer-sub {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  display: block;
+  width: 100%;
+  text-align: center;
 }
-footer .footer-player {
-  font-family: var(--font-display); font-size: var(--text-xs);
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-faint);
-}
+/* Masquer la liste des joueurs dans le footer */
+footer .footer-players { display: none; }
 
 /* ============================================================
    ANIMATE ON SCROLL
