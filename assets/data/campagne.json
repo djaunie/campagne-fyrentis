@@ -221,10 +221,7 @@
       "titre": "Le Seigneur Rouge de Nuceria",
       "lore": "« Angron naquit dans la boue rouge de Nuceria et ne connut jamais que la chaîne, le fouet et le cri des arènes. Les Clous du Boucher martelèrent son crâne jusqu'à ce que toute pensée devienne douleur, et que seule la guerre apaise le tumulte. »",
       "couleur": "red",
-      "stats": [
-        { "valeur": "Samni'arius et Brise-échine", "label": "Arme" },
-        { "valeur": "Sanctum", "label": "Front" }
-      ],
+      "stats": [],
       "delai": 0
     },
     {
@@ -233,10 +230,7 @@
       "titre": "Le Traître de Skalathrax",
       "lore": "« Khârn le Sanglant avance au cœur du fracas, là où les vox sont saturés de hurlements. On dit que son compteur de morts s'est arrêté depuis longtemps, incapable de suivre ses massacres, mais qu'il continue de cliquer dans le noir. »",
       "couleur": "red",
-      "stats": [
-        { "valeur": "La Carnassière", "label": "Arme" },
-        { "valeur": "Secret", "label": "Front" }
-      ],
+      "stats": [],
       "delai": 1
     },
     {
