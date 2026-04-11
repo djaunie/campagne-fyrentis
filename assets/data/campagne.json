@@ -22,14 +22,14 @@
     },
     {
       "nom": "David",
-      "role": "Les anges tombés",
+      "role": "Une compagnie en péril",
       "couleur": "blue",
       "delai": 3,
       "armees": ["Blood Angels"]
     },
     {
       "nom": "Jérémy",
-      "role": "Pour l'Empereur !",
+      "role": "Apporter la liberté dans les étoiles",
       "couleur": "green",
       "delai": 4,
       "armees": ["Garde Impériale"]
@@ -82,16 +82,10 @@
       "image": "assets/img/jakku.png",
       "image_alt": "Bataille sur Jakku - les agro-stations en flammes",
       "stations": [
-        { "num": "01", "proprietaire": "Orks", "classe": "station-owner--ork" },
         { "num": "02", "proprietaire": "Black Templars", "classe": "station-owner--bt" },
-        { "num": "03", "proprietaire": "Orks", "classe": "station-owner--ork" },
         { "num": "04", "proprietaire": "Silver Templars", "classe": "station-owner--st" },
-        { "num": "05", "proprietaire": "World Eaters", "classe": "station-owner--we" },
         { "num": "06", "proprietaire": "Death Guard", "classe": "station-owner--dg" },
-        { "num": "07", "proprietaire": "World Eaters", "classe": "station-owner--we" },
-        { "num": "08", "proprietaire": "Inconnue", "classe": "station-owner--ruine" },
-        { "num": "09", "proprietaire": "World Eaters", "classe": "station-owner--we" },
-        { "num": "10", "proprietaire": "World Eaters", "classe": "station-owner--we" }
+        { "num": "08", "proprietaire": "Inconnue", "classe": "station-owner--ruine" }
       ],
       "batailles": [
         {
