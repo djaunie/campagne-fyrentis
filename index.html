@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    /* ── BOUTONS DE NAVIGATION PAGES ───────────────────────── */
+    /* ── BOUTONS DE NAVIGATION PAGES ─────────────────────────────────────── */
     .nav-page-links {
       display: flex;
       gap: 0.5rem;
@@ -72,7 +72,7 @@
       background: rgba(139, 28, 28, 0.14);
       border-color: #8b1c1c;
     }
-    /* ── BLOC HERO CTA (boutons dans le hero) ───────────────── */
+    /* ── BLOC HERO CTA (boutons dans le hero) ───────────────────────────────────── */
     .hero-nav-btns {
       display: flex;
       flex-wrap: wrap;
@@ -123,7 +123,7 @@
       .btn-hero-page { font-size: 0.72rem; padding: 0.55rem 1rem; }
     }
 
-    /* ── BOUTONS ARMÉES HERO : BASE ─────────────────────────── */
+    /* ── BOUTONS ARMÉES HERO : BASE ────────────────────────────────────────────────── */
     .btn-armee {
       display: inline-flex;
       align-items: center;
@@ -320,9 +320,8 @@
 <footer>
   <div class="container">
     <div class="footer-logo">Sous-Secteur Fyrentis</div>
-    <p class="footer-line">« Dans le futur sombre de l'humanité, il n'y a que la guerre. »</p>
-    <p class="footer-line">Warhammer 40 000 • Campagne Narrative • 41ème Millénaire</p>
-    <p id="footer-players" class="footer-line"></p>
+    <p class="footer-line">« Dans le futur sombre de l'humanité, il n'y a que la guerre. »</p>
+    <p class="footer-line">Warhammer 40 000 • Campagne Narrative • 41ème Millénaire</p>
   </div>
 </footer>
 
@@ -333,7 +332,7 @@
 <script>
 (function () {
 
-  // ── THEME TOGGLE ──────────────────────────────────────────────
+  // ── THEME TOGGLE ─────────────────────────────────────────────────────────────
   const themeBtn = document.querySelector('[data-theme-toggle]');
   const root = document.documentElement;
   let theme = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -348,7 +347,7 @@
   updateThemeBtn();
   if (themeBtn) themeBtn.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; root.setAttribute('data-theme', theme); updateThemeBtn(); });
 
-  // ── MOBILE NAV ────────────────────────────────────────────────
+  // ── MOBILE NAV ─────────────────────────────────────────────────────────────
   const navToggle = document.getElementById('nav-toggle');
   const navLinks  = document.getElementById('nav-links');
   if (navToggle && navLinks) {
@@ -359,14 +358,14 @@
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }));
   }
 
-  // ── NAV SCROLL + BACK-TO-TOP ──────────────────────────────────
+  // ── NAV SCROLL + BACK-TO-TOP ────────────────────────────────────────────────────
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('nav--scrolled', window.scrollY > 60);
     document.getElementById('back-top').classList.toggle('visible', window.scrollY > 300);
   }, { passive: true });
 
-  // ── REVEAL ON SCROLL ─────────────────────────────────────────
+  // ── REVEAL ON SCROLL ───────────────────────────────────────────────────────────
   function initReveal() {
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
@@ -374,7 +373,7 @@
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   }
 
-  // ── TABS ─────────────────────────────────────────────────────
+  // ── TABS ───────────────────────────────────────────────────────────────────
   function initTabs() {
     const tabs   = document.querySelectorAll('.front-tab');
     const panels = document.querySelectorAll('.front-panel');
@@ -389,10 +388,10 @@
     });
   }
 
-  // ── HELPERS ───────────────────────────────────────────────────
+  // ── HELPERS ────────────────────────────────────────────────────────────────────
   function delayClass(n) { return n ? ` reveal-delay-${n}` : ''; }
 
-  // ── RENDER FUNCTIONS ─────────────────────────────────────────
+  // ── RENDER FUNCTIONS ──────────────────────────────────────────────────────────
   function renderJoueurs(joueurs) {
     document.getElementById('players-grid').innerHTML = joueurs.map(j =>
       `<article class="player-card player-card--${j.couleur} reveal${delayClass(j.delai)}">
@@ -488,15 +487,7 @@
       </div>`;
   }
 
-  function renderFooter(joueurs) {
-    const el = document.getElementById('footer-players');
-    if (!el) return;
-    el.innerHTML = joueurs.map(j =>
-      `<span style="margin-right:1rem;opacity:0.7">${j.nom} — ${j.armees.join(' / ')}</span>`
-    ).join('');
-  }
-
-  // ── MAIN : FETCH + RENDER ────────────────────────────────────
+  // ── MAIN : FETCH + RENDER ────────────────────────────────────────────────────
   fetch('assets/data/campagne.json')
     .then(r => r.json())
     .then(d => {
@@ -505,13 +496,12 @@
       renderFronts(d.fronts);
       renderPersonnages(d.personnages);
       renderTitan(d.titan);
-      renderFooter(d.joueurs);
       initReveal();
       initTabs();
     })
     .catch(err => {
       console.error('Erreur chargement campagne.json :', err);
-      document.body.insertAdjacentHTML('afterbegin', '<div style="background:#8b1c1c;color:#fff;padding:1rem;text-align:center">Erreur : impossible de charger campagne.json</div>');
+      document.body.insertAdjacentHTML('afterbegin', '<div style="background:#8b1c1c;color:#fff;padding:1rem;text-align:center">Erreur : impossible de charger campagne.json</div>');
     });
 
 })();
