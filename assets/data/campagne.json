@@ -8,7 +8,7 @@
   "joueurs": [
     {
       "nom": "Freddy",
-      "role": "Maître de jeu",
+      "role": "Maître du jeu",
       "couleur": "gold",
       "delai": 2,
       "armees": ["Black Templars", "Silver Templars", "Death Guard", "Nécrons"]
