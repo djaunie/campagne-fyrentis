@@ -122,6 +122,44 @@
       .btn-nav-page { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
       .btn-hero-page { font-size: 0.72rem; padding: 0.55rem 1rem; }
     }
+
+    /* ── SECTION CTA ARMÉE DE JEAN ──────────────────────────── */
+    .jean-cta-section {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(139,28,28,0.12) 0%, transparent 70%);
+      border-top: 1px solid rgba(139,28,28,0.15);
+    }
+    .jean-cta-section .section-eyebrow { margin-bottom: 0.5rem; }
+    .jean-cta-section .section-title   { margin-bottom: 0.75rem; }
+    .jean-cta-section .section-desc    { max-width: 58ch; margin: 0 auto 2rem; }
+    .btn-jean {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.85rem 2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 1px solid rgba(200,60,60,0.6);
+      background: rgba(200,60,60,0.12);
+      color: #f08080;
+      transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 120ms ease;
+    }
+    .btn-jean:hover {
+      background: rgba(200,60,60,0.22);
+      border-color: #c84040;
+      box-shadow: 0 0 22px rgba(200,60,60,0.35);
+      color: #ffaaaa;
+      transform: translateY(-1px);
+    }
+    .btn-jean:active { transform: translateY(0); }
+    [data-theme="light"] .btn-jean { color: #8b1c1c; border-color: rgba(139,28,28,0.5); background: rgba(139,28,28,0.07); }
+    [data-theme="light"] .btn-jean:hover { background: rgba(139,28,28,0.15); border-color: #8b1c1c; box-shadow: 0 0 18px rgba(139,28,28,0.2); color: #5c0d0d; }
   </style>
 </head>
 <body>
@@ -148,7 +186,7 @@
       <li><a href="#fronts">Fronts</a></li>
       <li><a href="#personnages">Personnages</a></li>
       <li><a href="#titan">Titan</a></li>
-      <li><a href="#specificites-jean">Armée de Jean</a></li>
+      <li><a href="armee-jean.html">Armée de Jean</a></li>
     </ul>
     <div class="nav-actions">
       <!-- Boutons de navigation vers les autres pages -->
@@ -257,15 +295,18 @@
   </div>
 </section>
 
-<!-- MECANIQUES JEAN -->
-<section id="specificites-jean" class="ship-section">
+<!-- CTA ARMÉE DE JEAN -->
+<section id="specificites-jean" class="jean-cta-section">
   <div class="container">
-    <div class="section-header reveal">
+    <div class="reveal">
       <p class="section-eyebrow">World Eaters • Armée de Jean</p>
       <h2 class="section-title">Spécificités de <span>l'Armée de Jean</span></h2>
-      <p class="section-desc">Cette section regroupe les éléments uniques de l'armée World Eaters : le vaisseau amiral Le Conqueror, ses bonus de campagne, ainsi que les mécaniques spéciales liées aux Crânes, au Sang et à Saint Carnage.</p>
+      <p class="section-desc">Découvrez les éléments uniques des World Eaters : le vaisseau amiral Le Conqueror, les mécaniques Crânes &amp; Sang, et la règle Saint Carnage.</p>
+      <a href="armee-jean.html" class="btn-jean">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+        Voir l'Armée de Jean
+      </a>
     </div>
-    <div id="mecaniques-container"><!-- injecté par JS --></div>
   </div>
 </section>
 
@@ -441,53 +482,6 @@
       </div>`;
   }
 
-  function renderMecaniques(m) {
-    const vaisseau = m.vaisseau;
-    const cranes   = m.cranes;
-    const sang     = m.sang;
-    const sc       = m.saint_carnage;
-
-    document.getElementById('mecaniques-container').innerHTML = `
-      <div class="ornament"><span>Le Conqueror</span></div>
-      <div class="ship-layout">
-        <div class="ship-img-wrap reveal">
-          <img src="${vaisseau.image}" alt="${vaisseau.image_alt}" width="800" height="360" loading="lazy">
-        </div>
-        <div class="reveal reveal-delay-2">
-          <h3>Bonus de Vaisseau</h3>
-          <ul class="ship-bonus-list" role="list">${vaisseau.bonus.map(b =>
-            `<li class="ship-bonus"><span class="ship-bonus-icon">${b.icone}</span><div><p class="ship-bonus-name">${b.nom}</p><p class="ship-bonus-desc">${b.desc}</p></div></li>`
-          ).join('')}</ul>
-        </div>
-      </div>
-
-      <div class="ornament"><span>Mécaniques Spéciales</span></div>
-      <div class="mechanics-grid">
-        <div class="mechanic-card reveal">
-          <span class="mechanic-icon">${cranes.icone}</span>
-          <h3 class="mechanic-title"><span class="red">${cranes.titre}</span></h3>
-          <p class="mechanic-desc">${cranes.desc}</p>
-          <ul class="mechanic-tiers" role="list">${cranes.paliers.map(p =>
-            `<li><span class="tier-num">${p.seuil}</span>${p.effet}</li>`
-          ).join('')}</ul>
-        </div>
-        <div class="mechanic-card reveal reveal-delay-2">
-          <span class="mechanic-icon">${sang.icone}</span>
-          <h3 class="mechanic-title"><span class="red">${sang.titre}</span></h3>
-          <p class="mechanic-desc">${sang.desc}</p>
-          <ul class="mechanic-tiers" role="list">${sang.paliers.map(p =>
-            `<li><span class="tier-num gold">${p.seuil}</span>${p.effet}</li>`
-          ).join('')}</ul>
-        </div>
-        <div class="mechanic-card reveal">
-          <span class="mechanic-icon">${sc.icone}</span>
-          <h3 class="mechanic-title">Règle <span class="red">${sc.titre}</span></h3>
-          <p class="mechanic-desc">${sc.desc}</p>
-          <div>${sc.unites.map(u => `<div><p>${u.nom}</p><p>${u.detail}</p></div>`).join('')}</div>
-        </div>
-      </div>`;
-  }
-
   function renderFooter(joueurs) {
     const couleurs = { red: 'inline-style-22', gold: 'inline-style-21', blue: 'inline-style-18', green: 'inline-style-19', purple: 'inline-style-20' };
     document.getElementById('footer-players').innerHTML = joueurs.map(j =>
@@ -504,7 +498,6 @@
       renderFronts(d.fronts);
       renderPersonnages(d.personnages);
       renderTitan(d.titan);
-      renderMecaniques(d.mecaniques);
       renderFooter(d.joueurs);
       initReveal();
       initTabs();
