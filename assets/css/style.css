@@ -817,6 +817,7 @@ footer .footer-logo {
   display: block;
   width: 100%;
   text-align: center;
+  margin-inline: auto;
 }
 footer .footer-line {
   font-family: var(--font-body);
@@ -825,7 +826,9 @@ footer .footer-line {
   display: block;
   width: 100%;
   text-align: center;
+  margin-inline: auto;
   margin-bottom: var(--space-2);
+  max-width: 100%;
 }
 footer .footer-sub {
   font-family: var(--font-display);
@@ -836,6 +839,7 @@ footer .footer-sub {
   display: block;
   width: 100%;
   text-align: center;
+  margin-inline: auto;
 }
 /* Masquer la liste des joueurs dans le footer */
 footer .footer-players { display: none; }
