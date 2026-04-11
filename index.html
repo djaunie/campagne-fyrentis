@@ -123,17 +123,8 @@
       .btn-hero-page { font-size: 0.72rem; padding: 0.55rem 1rem; }
     }
 
-    /* ── SECTION CTA ARMÉE DE JEAN ──────────────────────────── */
-    .jean-cta-section {
-      padding: clamp(3rem, 6vw, 5rem) 0;
-      text-align: center;
-      background: radial-gradient(ellipse at center, rgba(139,28,28,0.12) 0%, transparent 70%);
-      border-top: 1px solid rgba(139,28,28,0.15);
-    }
-    .jean-cta-section .section-eyebrow { margin-bottom: 0.5rem; }
-    .jean-cta-section .section-title   { margin-bottom: 0.75rem; }
-    .jean-cta-section .section-desc    { max-width: 58ch; margin: 0 auto 2rem; }
-    .btn-jean {
+    /* ── BOUTONS ARMÉES HERO : BASE ─────────────────────────── */
+    .btn-armee {
       display: inline-flex;
       align-items: center;
       gap: 0.55rem;
@@ -145,21 +136,133 @@
       text-transform: uppercase;
       text-decoration: none;
       border-radius: 3px;
-      border: 1px solid rgba(200,60,60,0.6);
-      background: rgba(200,60,60,0.12);
-      color: #f08080;
+      border: 1px solid;
       transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 120ms ease;
     }
-    .btn-jean:hover {
+    .btn-armee:hover  { transform: translateY(-1px); }
+    .btn-armee:active { transform: translateY(0); }
+
+    /* Iron Warriors de Khorne — métal rouillé + rouge sang */
+    .btn-armee--iw {
+      color: #c09878;
+      border-color: rgba(160,120,80,0.55);
+      background: rgba(122,90,60,0.10);
+    }
+    .btn-armee--iw:hover {
+      background: rgba(122,90,60,0.22);
+      border-color: #a07848;
+      box-shadow: 0 0 20px rgba(140,60,20,0.30);
+      color: #d8b898;
+    }
+
+    /* Silver Templars — argent impérial */
+    .btn-armee--st {
+      color: #c0c8d4;
+      border-color: rgba(192,200,212,0.45);
+      background: rgba(192,200,212,0.07);
+    }
+    .btn-armee--st:hover {
+      background: rgba(192,200,212,0.16);
+      border-color: #c0c8d4;
+      box-shadow: 0 0 20px rgba(192,200,212,0.22);
+      color: #e0e6f0;
+    }
+
+    /* World Eaters — rouge Khorne vif */
+    .btn-armee--we {
+      color: #f08080;
+      border-color: rgba(200,60,60,0.55);
+      background: rgba(200,60,60,0.10);
+    }
+    .btn-armee--we:hover {
       background: rgba(200,60,60,0.22);
       border-color: #c84040;
       box-shadow: 0 0 22px rgba(200,60,60,0.35);
       color: #ffaaaa;
-      transform: translateY(-1px);
     }
-    .btn-jean:active { transform: translateY(0); }
-    [data-theme="light"] .btn-jean { color: #8b1c1c; border-color: rgba(139,28,28,0.5); background: rgba(139,28,28,0.07); }
-    [data-theme="light"] .btn-jean:hover { background: rgba(139,28,28,0.15); border-color: #8b1c1c; box-shadow: 0 0 18px rgba(139,28,28,0.2); color: #5c0d0d; }
+
+    /* Black Templars — or impérial */
+    .btn-armee--bt {
+      color: #d4a828;
+      border-color: rgba(200,160,40,0.55);
+      background: rgba(200,160,40,0.08);
+    }
+    .btn-armee--bt:hover {
+      background: rgba(200,160,40,0.20);
+      border-color: #c8a028;
+      box-shadow: 0 0 22px rgba(200,160,40,0.28);
+      color: #f0c840;
+    }
+
+    /* Blood Angels — rouge sang profond */
+    .btn-armee--ba {
+      color: #e06060;
+      border-color: rgba(176,26,26,0.55);
+      background: rgba(176,26,26,0.10);
+    }
+    .btn-armee--ba:hover {
+      background: rgba(176,26,26,0.22);
+      border-color: #b01a1a;
+      box-shadow: 0 0 22px rgba(176,26,26,0.35);
+      color: #ff9090;
+    }
+
+    /* Death Guard — vert putride */
+    .btn-armee--dg {
+      color: #90b848;
+      border-color: rgba(100,140,40,0.55);
+      background: rgba(80,110,30,0.10);
+    }
+    .btn-armee--dg:hover {
+      background: rgba(80,110,30,0.22);
+      border-color: #6a9030;
+      box-shadow: 0 0 22px rgba(100,140,40,0.28);
+      color: #b0d868;
+    }
+
+    /* Garde Impériale — kaki militaire */
+    .btn-armee--gi {
+      color: #b8a860;
+      border-color: rgba(138,122,58,0.55);
+      background: rgba(138,122,58,0.08);
+    }
+    .btn-armee--gi:hover {
+      background: rgba(138,122,58,0.20);
+      border-color: #8a7a3a;
+      box-shadow: 0 0 20px rgba(138,122,58,0.25);
+      color: #d8c878;
+    }
+
+    /* Nécrons — vert dynéthyl */
+    .btn-armee--nc {
+      color: #40dd88;
+      border-color: rgba(26,200,100,0.50);
+      background: rgba(26,200,100,0.07);
+    }
+    .btn-armee--nc:hover {
+      background: rgba(26,200,100,0.16);
+      border-color: #1aff7a;
+      box-shadow: 0 0 22px rgba(26,255,122,0.28);
+      color: #80ffb8;
+    }
+
+    /* light mode overrides */
+    [data-theme="light"] .btn-armee--iw  { color: #5a3a18; border-color: rgba(90,58,24,0.5);   background: rgba(90,58,24,0.06); }
+    [data-theme="light"] .btn-armee--iw:hover  { background: rgba(90,58,24,0.14); border-color: #5a3a18; box-shadow: none; color: #3a2008; }
+    [data-theme="light"] .btn-armee--st  { color: #2a3a50; border-color: rgba(42,58,80,0.5);  background: rgba(42,58,80,0.06); }
+    [data-theme="light"] .btn-armee--st:hover  { background: rgba(42,58,80,0.14); border-color: #2a3a50; box-shadow: none; color: #101a28; }
+    [data-theme="light"] .btn-armee--we  { color: #8b1c1c; border-color: rgba(139,28,28,0.5); background: rgba(139,28,28,0.06); }
+    [data-theme="light"] .btn-armee--we:hover  { background: rgba(139,28,28,0.14); border-color: #8b1c1c; box-shadow: none; color: #5c0d0d; }
+    [data-theme="light"] .btn-armee--bt  { color: #7a5800; border-color: rgba(122,88,0,0.5);  background: rgba(122,88,0,0.06); }
+    [data-theme="light"] .btn-armee--bt:hover  { background: rgba(122,88,0,0.14); border-color: #7a5800; box-shadow: none; color: #4a3200; }
+    [data-theme="light"] .btn-armee--ba  { color: #7a0c0c; border-color: rgba(122,12,12,0.5); background: rgba(122,12,12,0.06); }
+    [data-theme="light"] .btn-armee--ba:hover  { background: rgba(122,12,12,0.14); border-color: #7a0c0c; box-shadow: none; color: #4a0404; }
+    [data-theme="light"] .btn-armee--dg  { color: #3a5a10; border-color: rgba(58,90,16,0.5);  background: rgba(58,90,16,0.06); }
+    [data-theme="light"] .btn-armee--dg:hover  { background: rgba(58,90,16,0.14); border-color: #3a5a10; box-shadow: none; color: #1a3000; }
+    [data-theme="light"] .btn-armee--gi  { color: #4a4010; border-color: rgba(74,64,16,0.5);  background: rgba(74,64,16,0.06); }
+    [data-theme="light"] .btn-armee--gi:hover  { background: rgba(74,64,16,0.14); border-color: #4a4010; box-shadow: none; color: #282000; }
+    [data-theme="light"] .btn-armee--nc  { color: #006a30; border-color: rgba(0,106,48,0.5);  background: rgba(0,106,48,0.06); }
+    [data-theme="light"] .btn-armee--nc:hover  { background: rgba(0,106,48,0.14); border-color: #006a30; box-shadow: none; color: #003a18; }
   </style>
 </head>
 <body>
@@ -218,14 +321,14 @@
     <h1 class="hero-title">Sous-Secteur<br><span>Fyrentis</span></h1>
     <p class="hero-subtitle">Dans les ténèbres du 41ème millénaire, cinq seigneurs de guerre façonnent le destin d'un secteur entier. Des ruines de Jakku aux forges de Sanctum, la guerre n'a pas de fin.</p>
     <div class="hero-badges">
-      <a href="iron-warriors-de-khorne.html" class="btn-jean"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg> ⚒ Iron Warriors de Khorne </a>
-      <a href="silver-templars.html" class="btn-jean"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg> 🗡 Silver Templars </a>
-      <a href="world-eaters.html" class="btn-jean"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg> 🪓 World Eaters </a>
-      <a href="black-templars.html" class="btn-jean"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg> ✠ Black Templars </a>
-      <a href="blood-angels.html" class="btn-jean"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg> 🩸 Blood Angels </a>
-      <a href="death-guard.html" class="btn-jean"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg> ☣ Death Guard </a>
-      <a href="garde-imperiale.html" class="btn-jean"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg> 🦅 Garde Impériale </a>
-      <a href="necrons.html" class="btn-jean"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg> ☥ Nécrons </a>
+      <a href="iron-warriors-de-khorne.html" class="btn-armee btn-armee--iw">⚒ Iron Warriors de Khorne</a>
+      <a href="silver-templars.html"         class="btn-armee btn-armee--st">🗡 Silver Templars</a>
+      <a href="world-eaters.html"            class="btn-armee btn-armee--we">🪓 World Eaters</a>
+      <a href="black-templars.html"          class="btn-armee btn-armee--bt">✠ Black Templars</a>
+      <a href="blood-angels.html"            class="btn-armee btn-armee--ba">🩸 Blood Angels</a>
+      <a href="death-guard.html"             class="btn-armee btn-armee--dg">☣ Death Guard</a>
+      <a href="garde-imperiale.html"         class="btn-armee btn-armee--gi">🦅 Garde Impériale</a>
+      <a href="necrons.html"                 class="btn-armee btn-armee--nc">☥ Nécrons</a>
     </div>
   </div>
   <span class="hero-scroll" aria-hidden="true">Défiler</span>
