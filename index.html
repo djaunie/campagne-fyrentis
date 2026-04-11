@@ -209,7 +209,6 @@
       <li><a href="#contexte">Contexte</a></li>
       <li><a href="#fronts">Fronts</a></li>
       <li><a href="#personnages">Personnages</a></li>
-      <li><a href="#titan">Titan</a></li>
     </ul>
     <div class="nav-actions">
       <div class="nav-page-links">
@@ -309,8 +308,8 @@
 <footer>
   <div class="container">
     <div class="footer-logo">Sous-Secteur Fyrentis</div>
-    <p class="footer-line">« Dans le futur sombre de l'humanité, il n'y a que la guerre. »</p>
-    <p class="footer-line">Warhammer 40 000 • Campagne Narrative • 41ème Millénaire</p>
+    <p class="footer-line">« Dans le futur sombre de l'humanité, il n'y a que la guerre. »</p>
+    <p class="footer-line">Warhammer 40 000 • Campagne Narrative • 41ème Millénaire</p>
   </div>
 </footer>
 
@@ -462,20 +461,6 @@
     }).join('');
   }
 
-  function renderTitan(t) {
-    document.getElementById('titan-layout').innerHTML =
-      `<div class="titan-icon-wrap reveal" aria-hidden="true">🤖</div>
-      <div class="reveal reveal-delay-1">
-        <h3 class="titan-name"><span>${t.nom}</span></h3>
-        <p class="titan-legio">${t.legio}</p>
-        <p>${t.description}</p>
-        <div>${t.armes.map(a => `<span class="badge badge--red">${a}</span>`).join('')}<span class="badge badge--gold">${t.couleurs}</span></div>
-        <div class="titan-crew">${t.equipage.map(e =>
-          `<div class="crew-card"><p class="crew-card-name">${e.nom}</p><p class="crew-card-role">${e.role}</p></div>`
-        ).join('')}</div>
-      </div>`;
-  }
-
   // ── MAIN : FETCH + RENDER ────────────────────────────────────────────────────
   fetch('assets/data/campagne.json')
     .then(r => r.json())
@@ -484,13 +469,12 @@
       renderLore(d.lore);
       renderFronts(d.fronts);
       renderPersonnages(d.personnages);
-      renderTitan(d.titan);
       initReveal();
       initTabs();
     })
     .catch(err => {
       console.error('Erreur chargement campagne.json :', err);
-      document.body.insertAdjacentHTML('afterbegin', '<div style="background:#8b1c1c;color:#fff;padding:1rem;text-align:center">Erreur : impossible de charger campagne.json</div>');
+      document.body.insertAdjacentHTML('afterbegin', '<div style="background:#8b1c1c;color:#fff;padding:1rem;text-align:center">Erreur : impossible de charger campagne.json</div>');
     });
 
 })();
