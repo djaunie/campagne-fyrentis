@@ -13,14 +13,15 @@ campagne-fyrentis/
 ├── index.html                    # Page d'accueil — hub de navigation
 ├── carte.html                    # Carte interactive du sous-secteur
 ├── sanctum.html                  # Fiche du système Sanctum
-├── world-eaters.html             # Fiche armée — World Eaters (Jean)
-├── blood-angels.html             # Fiche armée — Blood Angels (David)
-├── garde-imperiale.html          # Fiche armée — Garde Impériale (Jeremy)
+├── regles.html                   # Recapitulatif des règles
 ├── black-templars.html           # Fiche armée — Black Templars (Freddy)
-├── silver-templars.html          # Fiche armée — Silver Templars (Freddy)
+├── blood-angels.html             # Fiche armée — Blood Angels (David)
 ├── death-guard.html              # Fiche armée — Death Guard (Freddy)
-├── necrons.html                  # Fiche armée — Nécrons (Freddy)
+├── garde-imperiale.html          # Fiche armée — Garde Impériale (Jeremy)
 ├── iron-warriors-de-khorne.html  # Fiche armée — Iron Warriors de Khorne (Vincent)
+├── necrons.html                  # Fiche armée — Nécrons (Freddy)
+├── silver-templars.html          # Fiche armée — Silver Templars (Freddy)
+├── world-eaters.html             # Fiche armée — World Eaters (Jean)
 ├── README.md
 └── assets/
     ├── css/                        # Feuilles de style
