@@ -256,7 +256,7 @@
 
 <!-- ============================================================
      CARROUSEL — Galerie de la Campagne Fyrentis
-     Images : assets/img/1.jpg à assets/img/29.jpg (2.png pour le n°2)
+     Images : assets/img/1.jpg à assets/img/29.jpg
      CSS : section 6 de style.css — JS : script inline ci-dessous
 ============================================================ -->
 <section class="carousel-section" aria-label="Galerie de la campagne Fyrentis" role="region">
@@ -269,7 +269,7 @@
         <img src="assets/img/1.jpg" alt="Black Templar chargeant une horde d'Orks avec une tronçonneuse géante" loading="eager">
       </li>
       <li class="carousel__slide" role="listitem">
-        <img src="assets/img/2.png" alt="Black Templar en armure noire tenant une épée tronçon et un bolter" loading="lazy">
+        <img src="assets/img/2.jpg" alt="Black Templar en armure noire tenant une épée tronçon et un bolter" loading="lazy">
       </li>
       <li class="carousel__slide" role="listitem">
         <img src="assets/img/3.jpg" alt="Castellan Black Templar en armure lourde aux yeux rouges" loading="lazy">
@@ -605,10 +605,10 @@
 
     if (!slides.length || !dotsWrap || !btnPrev || !btnNext) return;
 
-    const INTERVAL     = 2000;
+    const INTERVAL      = 2000;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let current        = 0;
-    let timer          = null;
+    let current         = 0;
+    let timer           = null;
 
     /* --- Génération des dots --- */
     const dots = slides.map((_, i) => {
@@ -654,7 +654,7 @@
     btnPrev.addEventListener('click', () => { goTo(current - 1); if (!reducedMotion) { stop(); start(); } });
     btnNext.addEventListener('click', () => { goTo(current + 1); if (!reducedMotion) { stop(); start(); } });
 
-    /* --- Navigation clavier (flèches) quand le carrousel est dans le focus --- */
+    /* --- Navigation clavier (flèches) quand le carrousel a le focus --- */
     carousel.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft')  { goTo(current - 1); }
       if (e.key === 'ArrowRight') { goTo(current + 1); }
