@@ -54,6 +54,17 @@
       box-shadow: 0 0 10px rgba(200, 60, 60, 0.25);
       color: #e06060;
     }
+    .btn-nav-page--regles {
+      color: #6699cc;
+      border-color: rgba(100, 150, 200, 0.45);
+      background: rgba(100, 150, 200, 0.07);
+    }
+    .btn-nav-page--regles:hover {
+      background: rgba(100, 150, 200, 0.18);
+      border-color: #6699cc;
+      box-shadow: 0 0 10px rgba(100, 150, 200, 0.25);
+      color: #88bbee;
+    }
     [data-theme="light"] .btn-nav-page--carte {
       color: #8a6800;
       border-color: rgba(138, 104, 0, 0.4);
@@ -71,6 +82,15 @@
     [data-theme="light"] .btn-nav-page--sanctum:hover {
       background: rgba(139, 28, 28, 0.14);
       border-color: #8b1c1c;
+    }
+    [data-theme="light"] .btn-nav-page--regles {
+      color: #2255aa;
+      border-color: rgba(34, 85, 170, 0.4);
+      background: rgba(34, 85, 170, 0.06);
+    }
+    [data-theme="light"] .btn-nav-page--regles:hover {
+      background: rgba(34, 85, 170, 0.14);
+      border-color: #2255aa;
     }
     /* ── BLOC HERO CTA ───────────────────────────────────────────────────────── */
     .hero-nav-btns {
@@ -116,6 +136,16 @@
       background: rgba(200, 60, 60, 0.22);
       border-color: #c84040;
       box-shadow: 0 0 18px rgba(200, 60, 60, 0.3);
+    }
+    .btn-hero-page--regles {
+      color: #88bbee;
+      border-color: rgba(100, 150, 200, 0.6);
+      background: rgba(100, 150, 200, 0.12);
+    }
+    .btn-hero-page--regles:hover {
+      background: rgba(100, 150, 200, 0.22);
+      border-color: #6699cc;
+      box-shadow: 0 0 18px rgba(100, 150, 200, 0.3);
     }
     @media (max-width: 600px) {
       .nav-page-links { gap: 0.35rem; }
@@ -209,6 +239,10 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Sanctum
         </a>
+        <a href="regles.html" class="btn-nav-page btn-nav-page--regles" aria-label="Voir les Règles Narratives">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Règles
+        </a>
       </div>
       <button class="btn-theme" data-theme-toggle aria-label="Basculer le thème">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -238,6 +272,20 @@
       <a href="death-guard.html"             class="btn-armee btn-armee--dg">☣ Death Guard</a>
       <a href="garde-imperiale.html"         class="btn-armee btn-armee--gi">🦅 Garde Impériale</a>
       <a href="necrons.html"                 class="btn-armee btn-armee--nc">☥ Nécrons</a>
+    </div>
+    <div class="hero-nav-btns">
+      <a href="carte.html" class="btn-hero-page btn-hero-page--carte">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        Carte du Secteur
+      </a>
+      <a href="sanctum.html" class="btn-hero-page btn-hero-page--sanctum">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Sanctum
+      </a>
+      <a href="regles.html" class="btn-hero-page btn-hero-page--regles">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Règles Narratives
+      </a>
     </div>
   </div>
   <span class="hero-scroll" aria-hidden="true">Défiler</span>
@@ -450,166 +498,195 @@
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-        panels.forEach(p => p.classList.remove('active'));
-        tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
-        const p = document.getElementById('tab-' + tab.dataset.tab);
-        if (p) p.classList.add('active');
+        panels.forEach(p => p.hidden = true);
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        const target = document.getElementById(tab.dataset.panel);
+        if (target) target.hidden = false;
       });
     });
   }
 
-  function delayClass(n) { return n ? ` reveal-delay-${n}` : ''; }
-
-  function renderJoueurs(joueurs) {
-    document.getElementById('players-grid').innerHTML = joueurs.map(j =>
-      `<article class="player-card player-card--${j.couleur} reveal${delayClass(j.delai)}">
-        <p class="player-name">${j.nom}</p>
-        <p class="player-role">${j.role}</p>
-        <ul class="player-armies" role="list">${j.armees.map(a => `<li>${a}</li>`).join('')}</ul>
-      </article>`
-    ).join('');
-  }
-
-  function renderLore(lore) {
-    document.getElementById('lore-desc').textContent = lore.description;
-    document.getElementById('lore-grid').innerHTML = lore.blocs.map((b, i) =>
-      `<div class="lore-text reveal${i > 0 ? ' reveal-delay-2' : ''}">
-        <h3>${b.titre}</h3>
-        ${b.paragraphes.map(p => `<p>${p}</p>`).join('')}
-        <div class="quote-block${b.citation.alerte ? ' quote-block--alert' : ''}">
-          <p class="quote-text">${b.citation.texte}</p>
-          <span class="quote-author">${b.citation.auteur}</span>
-        </div>
-      </div>`
-    ).join('');
-  }
-
-  function renderFronts(fronts) {
-    document.getElementById('fronts-tabs').innerHTML = fronts.map((f, i) =>
-      `<button class="front-tab${i===0?' active':''}" role="tab" aria-selected="${i===0}" data-tab="${f.id}">${f.nom}</button>`
-    ).join('');
-    document.getElementById('fronts-panels').innerHTML = fronts.map((f, i) => {
-      const stationsHTML = f.stations ? `
-        <h4>Statut des ${f.stations.length} Agro-Stations</h4>
-        <div class="stations-grid">${f.stations.map(s =>
-          `<div class="station-card"><div class="station-num">${s.num}</div><div class="station-label">Station</div><span class="station-owner ${s.classe}">${s.proprietaire}</span></div>`
-        ).join('')}</div>` : '';
-      const imageHTML = f.image ? (f.stations
-        ? `<img src="${f.image}" alt="${f.image_alt}" width="1200" height="400" loading="lazy">`
-        : `<div class="front-visual"><img src="${f.image}" alt="${f.image_alt}" width="1600" height="900" loading="lazy"></div>`
-      ) : '';
-      const bataillesHTML = f.batailles.map(b =>
-        `<div class="battle-entry ${b.classe}">
-          <p class="battle-label">${b.label}</p>
-          <h4 class="battle-title">${b.titre}</h4>
-          <p class="battle-text">${b.texte}</p>
-          <div class="battle-factions">${b.factions.map(fc => `<span class="faction-tag ${fc.classe}">${fc.label}</span>`).join('')}</div>
-        </div>`
-      ).join('');
-      return `<div class="front-panel${i===0?' active':''}" id="tab-${f.id}" role="tabpanel">
-        <div class="front-header">
-          <div><h3 class="front-title">${f.titre}</h3><p class="front-desc">${f.description}</p></div>
-          <span class="front-status ${f.statut_classe}">${f.statut}</span>
-        </div>
-        ${imageHTML}${stationsHTML}
-        ${f.stations ? '<div class="ornament section-ornament"><span>Chronique des Batailles</span></div>' : ''}
-        <div class="battle-log">${bataillesHTML}</div>
-      </div>`;
-    }).join('');
-  }
-
-  function renderPersonnages(personnages) {
-    document.getElementById('chars-grid').innerHTML = personnages.map(p => {
-      const statsHTML = p.stats.length ? `<div class="char-stats">${p.stats.map(s =>
-        `<div class="char-stat"><span class="char-stat-val">${s.valeur}</span><span class="char-stat-label">${s.label}</span></div>`
-      ).join('')}</div>` : '';
-      return `<article class="char-card reveal${delayClass(p.delai)}">
-        <div class="char-card-header">
-          <p class="char-faction">${p.faction}</p>
-          <h3 class="char-name">${p.nom}</h3>
-          <p class="char-title">${p.titre}</p>
-        </div>
-        <div class="char-body">
-          <p class="char-lore ${p.couleur}">${p.lore}</p>
-          ${statsHTML}
-        </div>
-      </article>`;
-    }).join('');
-  }
-
-  // ── MAIN : FETCH + RENDER
-  fetch('assets/data/campagne.json')
-    .then(r => r.json())
-    .then(d => {
-      renderJoueurs(d.joueurs);
-      renderLore(d.lore);
-      renderFronts(d.fronts);
-      renderPersonnages(d.personnages);
-      initReveal();
-      initTabs();
-    })
-    .catch(err => {
-      console.error('Erreur chargement campagne.json :', err);
-      document.body.insertAdjacentHTML('afterbegin', '<div style="background:#8b1c1c;color:#fff;padding:1rem;text-align:center">Erreur : impossible de charger campagne.json</div>');
-    });
-
-  // ── CARROUSEL
-  (function () {
-    'use strict';
-    const carousel  = document.getElementById('main-carousel');
+  // ── CAROUSEL
+  function initCarousel(id) {
+    const carousel = document.getElementById(id);
     if (!carousel) return;
-    const slides    = Array.from(carousel.querySelectorAll('.carousel__slide'));
-    const dotsWrap  = carousel.querySelector('.carousel__dots');
-    const btnPrev   = carousel.querySelector('.carousel__btn--prev');
-    const btnNext   = carousel.querySelector('.carousel__btn--next');
-    if (!slides.length || !dotsWrap || !btnPrev || !btnNext) return;
-    const INTERVAL      = 3500;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let current         = 0;
-    let timer           = null;
-    const dots = slides.map((_, i) => {
+    const wrapper = carousel.querySelector('.carousel__track-wrapper');
+    const slides  = Array.from(carousel.querySelectorAll('.carousel__slide'));
+    const dotsBox = carousel.querySelector('.carousel__dots');
+    let current   = 0;
+    let autoTimer = null;
+
+    slides.forEach((_, i) => {
       const dot = document.createElement('button');
-      dot.classList.add('carousel__dot');
       dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', `Image ${i + 1} sur ${slides.length}`);
-      dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-      if (i === 0) dot.classList.add('is-active');
-      dot.addEventListener('click', () => { goTo(i); if (!reducedMotion) { stop(); start(); } });
-      dotsWrap.appendChild(dot);
-      return dot;
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsBox.appendChild(dot);
     });
-    function goTo(index) {
+
+    function goTo(n) {
       slides[current].classList.remove('is-active');
-      dots[current].classList.remove('is-active');
-      dots[current].setAttribute('aria-selected', 'false');
-      current = ((index % slides.length) + slides.length) % slides.length;
+      dotsBox.children[current].classList.remove('is-active');
+      current = (n + slides.length) % slides.length;
       slides[current].classList.add('is-active');
-      dots[current].classList.add('is-active');
-      dots[current].setAttribute('aria-selected', 'true');
+      dotsBox.children[current].classList.add('is-active');
     }
-    function start() {
-      if (reducedMotion) return;
-      stop();
-      timer = setInterval(() => goTo(current + 1), INTERVAL);
-    }
-    function stop() {
-      if (timer !== null) { clearInterval(timer); timer = null; }
-    }
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-    carousel.addEventListener('focusin',    stop);
-    carousel.addEventListener('focusout',   start);
-    btnPrev.addEventListener('click', () => { goTo(current - 1); if (!reducedMotion) { stop(); start(); } });
-    btnNext.addEventListener('click', () => { goTo(current + 1); if (!reducedMotion) { stop(); start(); } });
-    carousel.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft')  { goTo(current - 1); }
-      if (e.key === 'ArrowRight') { goTo(current + 1); }
+
+    function startAuto() { autoTimer = setInterval(() => goTo(current + 1), 4500); }
+    function stopAuto()  { clearInterval(autoTimer); }
+
+    carousel.querySelector('.carousel__btn--prev').addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
+    carousel.querySelector('.carousel__btn--next').addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
+
+    let tx = 0;
+    wrapper.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    wrapper.addEventListener('touchend',   e => {
+      const diff = tx - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { stopAuto(); goTo(current + (diff > 0 ? 1 : -1)); startAuto(); }
     });
-    start();
-  })();
+
+    goTo(0);
+    startAuto();
+  }
+
+  // ── DATA
+  const PLAYERS = [
+    { name: 'Toi', armee: 'World Eaters', faction: 'Chaos — Khorne', color: '#c84040', icon: '🪓', desc: 'Les fils d\'Angron. La rage incarnée. Là où ils frappent, il ne reste que des ruines et des os brisés.', href: 'world-eaters.html' },
+    { name: 'David', armee: 'Blood Angels', faction: 'Imperium — Adeptus Astartes', color: '#b01a1a', icon: '🩸', desc: 'Les fils de Sanguinius portent la beauté et la malédiction. Entre la noblesse et la soif de sang, un équilibre fragile.', href: 'blood-angels.html' },
+    { name: 'Jeremy', armee: 'Garde Impériale', faction: 'Imperium — Astra Militarum', color: '#8a7a3a', icon: '🦅', desc: 'Des millions d\'hommes et de femmes ordinaires face à l\'extraordinaire. La foi et l\'acier contre les ténèbres.', href: 'garde-imperiale.html' },
+    { name: 'Freddy', armee: 'Black Templars / Death Guard / Nécrons', faction: 'Multi-faction', color: '#c8a028', icon: '⚔', desc: 'L\'organisateur. Maître du chaos et de la stratégie. Ses armées couvrent tout le spectre : croisés fanatiques, pestiférés de Nurgle et anciens mécaniques.', href: 'black-templars.html' },
+  ];
+
+  const LORE_DESC = 'Aux confins de l\'Imperium, le sous-secteur Fyrentis brûle. Ce qui fut autrefois un carrefour commercial prospère est devenu le théâtre d\'une guerre sans merci.';
+
+  const LORE = [
+    { title: 'La Chute de Jakku', icon: '💀', text: 'La première bataille du sous-secteur. Jakku, monde-forge mineur, fut le premier à tomber. Les World Eaters y débarquèrent sans avertissement, laissant derrière eux des centaines de milliers de morts.' },
+    { title: 'L\'Éveil des Nécrons', icon: '☥', text: 'Sous les plaines de Fareth Prime, des tombeaux vieux de soixante millions d\'années s\'éveillent. Les Nécrons ne font pas la guerre — ils récoltent.' },
+    { title: 'La Croisade des Templars', icon: '✠', text: 'Les Black Templars ont lancé une croisade de purification. Pour eux, tout ce qui résiste à l\'Imperium doit être anéanti, qu\'il soit traître ou xenos.' },
+    { title: 'La Corruption de Nurgle', icon: '☣', text: 'La Death Guard avance lentement, inexorablement. Partout où elle passe, la pestilence s\'installe. Certaines planètes sont déjà perdues.' },
+  ];
+
+  const FRONTS = [
+    {
+      id: 'jakku', label: 'Jakku', subtitle: 'Monde-forge en ruines',
+      desc: 'Le premier théâtre de guerre. Les World Eaters y ont établi une tête de pont. La Garde Impériale tente désespérément de contenir l\'avance du Chaos.',
+      factions: ['World Eaters', 'Garde Impériale', 'Death Guard'],
+      status: 'Actif — front instable'
+    },
+    {
+      id: 'fareth', label: 'Fareth Prime', subtitle: 'Monde agricole',
+      desc: 'Les tombeaux nécrons s\'éveillent sous les plaines. Les Blood Angels ont été dépêchés pour contenir la menace, tandis que les forces du Chaos cherchent à exploiter le chaos.',
+      factions: ['Nécrons', 'Blood Angels', 'Black Templars'],
+      status: 'Actif — menace croissante'
+    },
+    {
+      id: 'sanctum', label: 'Sanctum', subtitle: 'Forteresse-monde',
+      desc: 'La citadelle finale de l\'Imperium dans le secteur. Toutes les factions convergent vers ce monde-forteresse. Qui le contrôle, contrôle le secteur.',
+      factions: ['Toutes factions'],
+      status: 'Menacé — siège imminent'
+    },
+  ];
+
+  const CHARS = [
+    { name: 'Angron', title: 'Primarque des World Eaters', faction: 'World Eaters', color: '#c84040', desc: 'Le Seigneur Rouge lui-même. Sa présence sur le champ de bataille est une catastrophe ambulante.', icon: '🪓' },
+    { name: 'Mephiston', title: 'Seigneur de la Mort', faction: 'Blood Angels', color: '#b01a1a', desc: 'Le seul Space Marine à avoir survécu à la Rage Noire sans succomber. Une énigme vivante.', icon: '🩸' },
+    { name: 'Lord Castellan Creed', title: 'Stratège de la Garde', faction: 'Garde Impériale', color: '#8a7a3a', desc: 'Le génie tactique de l\'Astra Militarum. Ses hommes mourraient pour lui — et ils le font, régulièrement.', icon: '🦅' },
+    { name: 'Helbrecht', title: 'Haut Maréchal', faction: 'Black Templars', color: '#c8a028', desc: 'Le chef de la croisade. Sa foi est une arme aussi tranchante que son épée.', icon: '✠' },
+    { name: 'Mortarion', title: 'Primarque de la Death Guard', faction: 'Death Guard', color: '#90b848', desc: 'Le Prince de la Pestilence. Patient comme la mort elle-même.', icon: '☣' },
+    { name: 'Le Roi Silencieux', title: 'Triarch Prétorienne', faction: 'Nécrons', color: '#40dd88', desc: 'L\'être le plus ancien du champ de bataille. Ses motivations sont insondables.', icon: '☥' },
+  ];
+
+  // ── RENDER PLAYERS
+  function renderPlayers() {
+    const grid = document.getElementById('players-grid');
+    if (!grid) return;
+    grid.innerHTML = PLAYERS.map(p => `
+      <article class="player-card reveal" style="--player-color:${p.color}">
+        <div class="player-icon">${p.icon}</div>
+        <div class="player-body">
+          <p class="player-name">${p.name}</p>
+          <p class="player-armee">${p.armee}</p>
+          <p class="player-faction">${p.faction}</p>
+          <p class="player-desc">${p.desc}</p>
+          <a href="${p.href}" class="player-link">Voir l'armée →</a>
+        </div>
+      </article>`).join('');
+  }
+
+  // ── RENDER LORE
+  function renderLore() {
+    const desc = document.getElementById('lore-desc');
+    const grid = document.getElementById('lore-grid');
+    if (desc) desc.textContent = LORE_DESC;
+    if (!grid) return;
+    grid.innerHTML = LORE.map(l => `
+      <div class="lore-card reveal">
+        <span class="lore-icon">${l.icon}</span>
+        <h3 class="lore-title">${l.title}</h3>
+        <p class="lore-text">${l.text}</p>
+      </div>`).join('');
+  }
+
+  // ── RENDER FRONTS
+  function renderFronts() {
+    const tabs   = document.getElementById('fronts-tabs');
+    const panels = document.getElementById('fronts-panels');
+    if (!tabs || !panels) return;
+    FRONTS.forEach((f, i) => {
+      const tab = document.createElement('button');
+      tab.className = 'front-tab' + (i === 0 ? ' active' : '');
+      tab.dataset.panel = 'panel-' + f.id;
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      tab.innerHTML = `<span>${f.label}</span><small>${f.subtitle}</small>`;
+      tabs.appendChild(tab);
+
+      const panel = document.createElement('div');
+      panel.id = 'panel-' + f.id;
+      panel.className = 'front-panel reveal';
+      panel.hidden = i !== 0;
+      panel.innerHTML = `
+        <div class="front-content">
+          <div class="front-info">
+            <h3>${f.label} <small>— ${f.subtitle}</small></h3>
+            <p>${f.desc}</p>
+            <p class="front-status"><strong>Statut :</strong> ${f.status}</p>
+            <div class="front-factions">
+              ${f.factions.map(fc => `<span class="faction-badge">${fc}</span>`).join('')}
+            </div>
+          </div>
+        </div>`;
+      panels.appendChild(panel);
+    });
+    initTabs();
+  }
+
+  // ── RENDER CHARS
+  function renderChars() {
+    const grid = document.getElementById('chars-grid');
+    if (!grid) return;
+    grid.innerHTML = CHARS.map(c => `
+      <div class="char-card reveal" style="--char-color:${c.color}">
+        <div class="char-icon">${c.icon}</div>
+        <div class="char-body">
+          <p class="char-name">${c.name}</p>
+          <p class="char-title">${c.title}</p>
+          <p class="char-faction">${c.faction}</p>
+          <p class="char-desc">${c.desc}</p>
+        </div>
+      </div>`).join('');
+  }
+
+  // ── INIT
+  renderPlayers();
+  renderLore();
+  renderFronts();
+  renderChars();
+  initReveal();
+  initCarousel('main-carousel');
 
 })();
 </script>
-
 </body>
 </html>
