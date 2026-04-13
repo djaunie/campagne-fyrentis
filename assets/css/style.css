@@ -1001,75 +1001,9 @@ footer .footer-players { display: none; }
 .carousel__btn--prev { left: var(--space-3); }
 .carousel__btn--next { right: var(--space-3); }
 
-/* --- Dots indicateurs --- */
+/* --- Dots indicateurs : masqués --- */
 .carousel__dots {
-  position: absolute;
-  bottom: var(--space-3);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 6px;
-  z-index: 10;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 90%;
-  pointer-events: auto;
-}
-
-.carousel__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(200, 160, 40, 0.3);
-  border: 1px solid rgba(200, 160, 40, 0.5);
-  cursor: pointer;
-  padding: 0;
-  transition: background var(--transition), transform 200ms ease, border-color var(--transition);
-  flex-shrink: 0;
-  min-width: 44px;
-  min-height: 44px;
-  /* Zone de clic 44px minimum, mais visuellement petit via outline */
-  width: 8px;
-  height: 8px;
-  min-width: 0;
-  min-height: 0;
-  /* padding pour augmenter la zone tactile sans changer l'apparence */
-  padding: 18px;
-  /* Le fond visible est en before */
-  background: transparent;
-  border: none;
-  position: relative;
-}
-
-.carousel__dot::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(200, 160, 40, 0.3);
-  border: 1px solid rgba(200, 160, 40, 0.5);
-  transition: background var(--transition), transform 200ms ease, border-color var(--transition);
-}
-
-.carousel__dot.is-active::before,
-.carousel__dot:hover::before,
-.carousel__dot:focus-visible::before {
-  background: var(--color-gold);
-  border-color: var(--color-gold);
-  transform: translate(-50%, -50%) scale(1.4);
-}
-
-.carousel__dot:focus-visible {
-  outline: 2px solid var(--color-gold);
-  border-radius: 50%;
-}
-
-.carousel__btn:focus-visible {
-  outline: 2px solid var(--color-gold);
+  display: none;
 }
 
 /* --- Responsive mobile < 480px --- */
@@ -1091,11 +1025,6 @@ footer .footer-players { display: none; }
     transform: scale(1.08);
   }
 
-  .carousel__dots {
-    bottom: var(--space-2);
-    gap: 4px;
-  }
-
   .carousel__caption {
     padding: var(--space-4) var(--space-4) var(--space-2);
     font-size: 0.65rem;
@@ -1107,8 +1036,7 @@ footer .footer-players { display: none; }
   .carousel__slide {
     transition: none;
   }
-  .carousel__btn,
-  .carousel__dot::before {
+  .carousel__btn {
     transition: none;
   }
 }
