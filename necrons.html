@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    /* ── BOUTONS DE NAVIGATION PAGES ──────────────────────────────────── */
+    /* ── BOUTONS DE NAVIGATION PAGES ─────────────────────────────────── */
     .nav-page-links {
       display: flex;
       gap: 0.5rem;
@@ -81,7 +81,7 @@
       --nc-silver-bg:    rgba(58,90,110,0.05);
     }
 
-    /* ── HERO MINI ──────────────────────────────────────────────────────── */
+    /* ── HERO MINI ──────────────────────────────────────────────── */
     .page-hero {
       padding: 5rem 0 3rem;
       text-align: center;
@@ -92,7 +92,7 @@
     .page-hero .section-title   { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 0.75rem; }
     .page-hero .section-desc    { max-width: 60ch; margin: 0 auto; }
 
-    /* ── LIEN RETOUR ──────────────────────────────────────────────────── */
+    /* ── LIEN RETOUR ────────────────────────────────────────────── */
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -117,7 +117,7 @@
       box-shadow: 0 0 14px var(--nc-green-glow);
     }
 
-    /* ── SECTION CENSURÉE ──────────────────────────────────────────────── */
+    /* ── SECTION CENSURÉE ────────────────────────────────────────────── */
     .censure-section {
       padding: clamp(3rem, 7vw, 6rem) 0;
     }
@@ -353,12 +353,6 @@
         <span class="nav-logo-sub">Campagne 40K</span>
       </div>
     </a>
-    <ul class="nav-links" id="nav-links" role="list">
-      <li><a href="index.html#joueurs">Joueurs</a></li>
-      <li><a href="index.html#contexte">Contexte</a></li>
-      <li><a href="index.html#fronts">Fronts</a></li>
-      <li><a href="index.html#personnages">Personnages</a></li>
-    </ul>
     <div class="nav-actions">
       <div class="nav-page-links">
         <a href="carte.html" class="btn-nav-page btn-nav-page--carte" aria-label="Voir la Carte du secteur">
@@ -509,7 +503,7 @@
 <script>
 (function () {
 
-  // ── THEME TOGGLE ──────────────────────────────────────────────────────
+  // ── THEME TOGGLE ──────────────────────────────────────────────────────────
   const themeBtn = document.querySelector('[data-theme-toggle]');
   const root = document.documentElement;
   let theme = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -524,41 +518,18 @@
   updateThemeBtn();
   if (themeBtn) themeBtn.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; root.setAttribute('data-theme', theme); updateThemeBtn(); });
 
-  // ── MOBILE NAV ────────────────────────────────────────────────────────
-  const navToggle = document.getElementById('nav-toggle');
-  const navLinks  = document.getElementById('nav-links');
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', open);
-    });
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }));
-  }
-
-  // ── NAV SCROLL + BACK-TO-TOP ──────────────────────────────────────────
+  // ── NAV SCROLL + BACK-TO-TOP ────────────────────────────────────────────────
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('nav--scrolled', window.scrollY > 60);
     document.getElementById('back-top').classList.toggle('visible', window.scrollY > 300);
   }, { passive: true });
 
-  // ── REVEAL ON SCROLL ──────────────────────────────────────────────────
+  // ── REVEAL ON SCROLL ───────────────────────────────────────────────────────
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // ── FOOTER : FETCH JOUEURS ────────────────────────────────────────────
-  fetch('assets/data/campagne.json')
-    .then(r => r.json())
-    .then(d => {
-      if (d.joueurs) {
-        document.getElementById('footer-players').innerHTML = d.joueurs.map(j =>
-          `<span class="footer-player">${j.nom} — ${j.armees.join(' / ')}</span>`
-        ).join('');
-      }
-    })
-    .catch(() => {});
 
 })();
 </script>
