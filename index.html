@@ -54,6 +54,17 @@
       box-shadow: 0 0 10px rgba(200, 60, 60, 0.25);
       color: #e06060;
     }
+    .btn-nav-page--inquisition {
+      color: #9b6fc4;
+      border-color: rgba(155, 111, 196, 0.45);
+      background: rgba(155, 111, 196, 0.07);
+    }
+    .btn-nav-page--inquisition:hover {
+      background: rgba(155, 111, 196, 0.18);
+      border-color: #9b6fc4;
+      box-shadow: 0 0 10px rgba(155, 111, 196, 0.28);
+      color: #c090e8;
+    }
     [data-theme="light"] .btn-nav-page--carte {
       color: #8a6800;
       border-color: rgba(138, 104, 0, 0.4);
@@ -71,6 +82,15 @@
     [data-theme="light"] .btn-nav-page--sanctum:hover {
       background: rgba(139, 28, 28, 0.14);
       border-color: #8b1c1c;
+    }
+    [data-theme="light"] .btn-nav-page--inquisition {
+      color: #5a2a8a;
+      border-color: rgba(90, 42, 138, 0.4);
+      background: rgba(90, 42, 138, 0.06);
+    }
+    [data-theme="light"] .btn-nav-page--inquisition:hover {
+      background: rgba(90, 42, 138, 0.14);
+      border-color: #5a2a8a;
     }
     /* ── BLOC HERO CTA ───────────────────────────────────────────────────────── */
     .hero-nav-btns {
@@ -208,6 +228,10 @@
         <a href="sanctum.html" class="btn-nav-page btn-nav-page--sanctum" aria-label="Accéder au Sanctum">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Sanctum
+        </a>
+        <a href="rapports-inquisiteurs.html" class="btn-nav-page btn-nav-page--inquisition" aria-label="Lire les Rapports Inquisitoriaux">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Inquisition
         </a>
       </div>
       <button class="btn-theme" data-theme-toggle aria-label="Basculer le thème">
