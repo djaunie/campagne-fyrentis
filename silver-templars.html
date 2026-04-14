@@ -81,7 +81,7 @@
       --st-blue-dim:     rgba(26,74,122,0.35);
     }
 
-    /* ── HERO MINI ────────────────────────────────────────────────── */
+    /* ── HERO MINI ────────────────────────────────────────────── */
     .page-hero {
       padding: 5rem 0 3rem;
       text-align: center;
@@ -92,7 +92,7 @@
     .page-hero .section-title   { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 0.75rem; }
     .page-hero .section-desc    { max-width: 60ch; margin: 0 auto; }
 
-    /* ── LIEN RETOUR ─────────────────────────────────────────────────── */
+    /* ── LIEN RETOUR ─────────────────────────────────────────────── */
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -118,7 +118,7 @@
       color: var(--st-silver-light);
     }
 
-    /* ── SECTION CENSURÉE ────────────────────────────────────────────── */
+    /* ── SECTION CENSURÉE ──────────────────────────────────────────── */
     .censure-section {
       padding: clamp(3rem, 7vw, 6rem) 0;
     }
@@ -355,12 +355,6 @@
         <span class="nav-logo-sub">Campagne 40K</span>
       </div>
     </a>
-    <ul class="nav-links" id="nav-links" role="list">
-      <li><a href="index.html#joueurs">Joueurs</a></li>
-      <li><a href="index.html#contexte">Contexte</a></li>
-      <li><a href="index.html#fronts">Fronts</a></li>
-      <li><a href="index.html#personnages">Personnages</a></li>
-    </ul>
     <div class="nav-actions">
       <div class="nav-page-links">
         <a href="carte.html" class="btn-nav-page btn-nav-page--carte" aria-label="Voir la Carte du secteur">
@@ -480,7 +474,7 @@
           </div>
         </div>
 
-        <!-- Note inquisitoriale -->      
+        <!-- Note inquisitoriale -->
         <div class="nota-bene reveal">
           <p class="nota-bene-label">Nota Inquisitoriale — Ordo Hereticus</p>
           <p>
@@ -528,13 +522,11 @@
 
   // ── MOBILE NAV
   const navToggle = document.getElementById('nav-toggle');
-  const navLinks  = document.getElementById('nav-links');
-  if (navToggle && navLinks) {
+  if (navToggle) {
     navToggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', open);
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !expanded);
     });
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }));
   }
 
   // ── NAV SCROLL + BACK-TO-TOP
@@ -549,18 +541,6 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // ── FOOTER : FETCH JOUEURS
-  fetch('assets/data/campagne.json')
-    .then(r => r.json())
-    .then(d => {
-      if (d.joueurs) {
-        document.getElementById('footer-players').innerHTML = d.joueurs.map(j =>
-          `<span class="footer-player">${j.nom} — ${j.armees.join(' / ')}</span>`
-        ).join('');
-      }
-    })
-    .catch(() => {});
 
 })();
 </script>
