@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    /* ── BOUTONS DE NAVIGATION PAGES ───────────────────────── */
+    /* ── BOUTONS DE NAVIGATION PAGES ─────────────────────────── */
     .nav-page-links {
       display: flex;
       gap: 0.5rem;
@@ -54,12 +54,25 @@
       box-shadow: 0 0 10px rgba(200, 60, 60, 0.25);
       color: #e06060;
     }
+    .btn-nav-page--inquisition {
+      color: #9b6fc4;
+      border-color: rgba(155, 111, 196, 0.45);
+      background: rgba(155, 111, 196, 0.07);
+    }
+    .btn-nav-page--inquisition:hover {
+      background: rgba(155, 111, 196, 0.18);
+      border-color: #9b6fc4;
+      box-shadow: 0 0 10px rgba(155, 111, 196, 0.28);
+      color: #c090e8;
+    }
     [data-theme="light"] .btn-nav-page--carte { color: #8a6800; border-color: rgba(138, 104, 0, 0.4); background: rgba(138, 104, 0, 0.06); }
     [data-theme="light"] .btn-nav-page--carte:hover { background: rgba(138, 104, 0, 0.14); border-color: #8a6800; }
     [data-theme="light"] .btn-nav-page--sanctum { color: #8b1c1c; border-color: rgba(139, 28, 28, 0.4); background: rgba(139, 28, 28, 0.06); }
     [data-theme="light"] .btn-nav-page--sanctum:hover { background: rgba(139, 28, 28, 0.14); border-color: #8b1c1c; }
+    [data-theme="light"] .btn-nav-page--inquisition { color: #5a2a8a; border-color: rgba(90, 42, 138, 0.4); background: rgba(90, 42, 138, 0.06); }
+    [data-theme="light"] .btn-nav-page--inquisition:hover { background: rgba(90, 42, 138, 0.14); border-color: #5a2a8a; }
 
-    /* ── COULEUR THÉMATIQUE BLACK TEMPLARS : OR IMPÉRIAL ───── */
+    /* ── COULEUR THÉMATIQUE BLACK TEMPLARS : OR IMPÉRIAL ───────── */
     :root {
       --bt-gold: #c8a028;
       --bt-gold-light: #e8c050;
@@ -77,7 +90,7 @@
       --bt-gold-glow: rgba(138, 104, 0, 0.2);
     }
 
-    /* ── HERO MINI ────────────────────────────────────────── */
+    /* ── HERO MINI ──────────────────────────────────────────── */
     .page-hero {
       padding: 5rem 0 3rem;
       text-align: center;
@@ -88,7 +101,7 @@
     .page-hero .section-title   { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 0.75rem; }
     .page-hero .section-desc    { max-width: 60ch; margin: 0 auto; }
 
-    /* ── LIEN RETOUR ─────────────────────────────────────── */
+    /* ── LIEN RETOUR ───────────────────────────────────────── */
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -114,7 +127,7 @@
       color: var(--bt-gold-light);
     }
 
-    /* ── BLOC CENSURÉ ────────────────────────────────────── */
+    /* ── BLOC CENSURÉ ────────────────────────────────────────── */
     .censure-section {
       padding: clamp(3rem, 7vw, 6rem) 0;
     }
@@ -129,7 +142,6 @@
       gap: 2.5rem;
     }
 
-    /* Cachet d'en-tête inquisitorial */
     .inquisition-seal {
       display: flex;
       flex-direction: column;
@@ -152,7 +164,6 @@
       color: var(--bt-gold);
     }
 
-    /* Blocs de texte biffé */
     .censure-bloc {
       width: 100%;
       background: rgba(10, 8, 4, 0.55);
@@ -241,7 +252,6 @@
       );
     }
 
-    /* Bandeau "Censuré" principal */
     .censure-bandeau {
       width: 100%;
       position: relative;
@@ -257,7 +267,7 @@
     }
     .censure-bandeau::before,
     .censure-bandeau::after {
-      content: '✦';
+      content: '✶';
       font-size: 0.9rem;
       color: var(--bt-gold);
       opacity: 0.5;
@@ -274,7 +284,6 @@
       text-align: center;
     }
 
-    /* Référence de document */
     .censure-ref {
       font-family: 'Crimson Text', serif;
       font-size: 0.82rem;
@@ -292,7 +301,6 @@
       letter-spacing: 0.08em;
     }
 
-    /* Note inquisitoriale en bas */
     .nota-bene {
       width: 100%;
       border: 1px solid var(--bt-gold-dim);
@@ -360,6 +368,10 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Sanctum
         </a>
+        <a href="rapports-inquisiteurs.html" class="btn-nav-page btn-nav-page--inquisition" aria-label="Lire les Rapports Inquisitoriaux">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Inquisition
+        </a>
       </div>
       <button class="btn-theme" data-theme-toggle aria-label="Basculer le thème">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -395,13 +407,10 @@
           <svg class="inquisition-seal-icon" viewBox="0 0 72 72" fill="none" aria-hidden="true">
             <circle cx="36" cy="36" r="34" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 3"/>
             <circle cx="36" cy="36" r="26" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
-            <!-- I majuscule stylisé -->
             <text x="36" y="44" text-anchor="middle" font-family="serif" font-size="26" font-weight="700" fill="currentColor">I</text>
-            <!-- Crâne simplifié -->
             <ellipse cx="36" cy="53" rx="5" ry="3.5" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
             <line x1="34" y1="56" x2="33" y2="59" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
             <line x1="38" y1="56" x2="39" y2="59" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
-            <!-- Ornements -->
             <line x1="2" y1="36" x2="10" y2="36" stroke="currentColor" stroke-width="0.8"/>
             <line x1="62" y1="36" x2="70" y2="36" stroke="currentColor" stroke-width="0.8"/>
             <polygon points="36,4 38,10 36,8 34,10" fill="currentColor" opacity="0.7"/>
@@ -416,7 +425,7 @@
 
         <!-- Référence de document -->
         <p class="censure-ref reveal">
-          <strong>Réf. Doc. :</strong> OHI-FYRENTIS-BT-██████ — Classifié <strong>Extremis Obscura</strong><br>
+          <strong>Réf. Doc. :</strong> OHI-FYRENTIS-BT-██████ — Classifié <strong>Extremis Obscura</strong><br>
           Ce dossier a été placé sous scellé inquisitorial par décision de l'Ordo Hereticus, <em>en attente de vérification des activités du Réclusiarque Grimaldus dans le sous-secteur Fyrentis.</em>
           Tout accès non autorisé constitue un acte d'hérésie passible du bûcher.
         </p>
@@ -503,7 +512,7 @@
 <script>
 (function () {
 
-  // ── THEME TOGGLE ──────────────────────────────────────────────
+  // ── THEME TOGGLE
   const themeBtn = document.querySelector('[data-theme-toggle]');
   const root = document.documentElement;
   let theme = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -518,7 +527,7 @@
   updateThemeBtn();
   if (themeBtn) themeBtn.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; root.setAttribute('data-theme', theme); updateThemeBtn(); });
 
-  // ── MOBILE NAV ────────────────────────────────────────────────
+  // ── MOBILE NAV
   const navToggle = document.getElementById('nav-toggle');
   if (navToggle) {
     navToggle.addEventListener('click', () => {
@@ -527,14 +536,14 @@
     });
   }
 
-  // ── NAV SCROLL + BACK-TO-TOP ──────────────────────────────────
+  // ── NAV SCROLL + BACK-TO-TOP
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('nav--scrolled', window.scrollY > 60);
     document.getElementById('back-top').classList.toggle('visible', window.scrollY > 300);
   }, { passive: true });
 
-  // ── REVEAL ON SCROLL ─────────────────────────────────────────
+  // ── REVEAL ON SCROLL
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
