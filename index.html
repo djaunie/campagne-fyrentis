@@ -215,6 +215,79 @@
     [data-theme="light"] .btn-armee--gi:hover { background:rgba(74,64,16,.14); border-color:#4a4010; color:#282000; }
     [data-theme="light"] .btn-armee--nc { color:#006a30; border-color:rgba(0,106,48,.5);  background:rgba(0,106,48,.06); }
     [data-theme="light"] .btn-armee--nc:hover { background:rgba(0,106,48,.14); border-color:#006a30; color:#003a18; }
+
+    /* ── PLAYER CARDS — alignées sur la palette armée principale du joueur ───── */
+    /*
+     * Jean   (red)    → World Eaters (--we)
+     * David  (blue)   → Blood Angels (--ba)
+     * Jérémy (green)  → Garde Impériale (--gi)
+     * Vincent(purple) → Iron Warriors de Khorne (--iw)
+     * Freddy (gold)   → Black Templars / MJ (--bt)
+     */
+    .player-card--red::before    { background: var(--army-we-fg); }
+    .player-card--blue::before   { background: var(--army-ba-fg); }
+    .player-card--green::before  { background: var(--army-gi-fg); }
+    .player-card--purple::before { background: var(--army-iw-fg); }
+    .player-card--gold::before   { background: var(--army-bt-fg); }
+
+    .player-card--red   .player-armies li::before { background: var(--army-we-fg); }
+    .player-card--blue  .player-armies li::before { background: var(--army-ba-fg); }
+    .player-card--green .player-armies li::before { background: var(--army-gi-fg); }
+    .player-card--purple .player-armies li::before { background: var(--army-iw-fg); }
+    .player-card--gold  .player-armies li::before { background: var(--army-bt-fg); }
+
+    /* Couleur du rôle joueur (la petite ligne en Cinzel sous le nom) */
+    .player-card--red   .player-role { color: var(--army-we-fg); }
+    .player-card--blue  .player-role { color: var(--army-ba-fg); }
+    .player-card--green .player-role { color: var(--army-gi-fg); }
+    .player-card--purple .player-role { color: var(--army-iw-fg); }
+    .player-card--gold  .player-role { color: var(--army-bt-fg); }
+
+    /* Hover glow sur les cartes joueurs */
+    .player-card--red:hover    { box-shadow: 0 8px 32px rgba(224, 80, 80, 0.18); }
+    .player-card--blue:hover   { box-shadow: 0 8px 32px rgba(204, 68, 68, 0.18); }
+    .player-card--green:hover  { box-shadow: 0 8px 32px rgba(184, 168, 96, 0.18); }
+    .player-card--purple:hover { box-shadow: 0 8px 32px rgba(200, 168, 120, 0.18); }
+    .player-card--gold:hover   { box-shadow: 0 8px 32px rgba(212, 168, 40, 0.18); }
+
+    /* ── CHAR-LORE — barre gauche par armée (alias génériques → codes armée) ── */
+    /*
+     * .red   → World Eaters → --army-we-bar
+     * .blue  → Blood Angels → --army-ba-bar
+     * .gold  → Black Templars/Grimdark → --army-bt-bar
+     * .green → Orks         → couleur ork
+     */
+    .char-lore.red   { border-left-color: var(--army-we-bar); color: var(--color-text-muted); }
+    .char-lore.blue  { border-left-color: var(--army-ba-bar); color: var(--color-text-muted); }
+    .char-lore.gold  { border-left-color: var(--army-bt-bar); color: var(--color-text-muted); }
+    .char-lore.green { border-left-color: #6aaa3c; color: var(--color-text-muted); }
+
+    /* ── FACTION TAGS — ork style cohérent avec les autres armées ────────────── */
+    .faction-tag--ork {
+      background: rgba(58, 106, 28, 0.12);
+      border-color: rgba(106, 170, 60, 0.45);
+      color: #6aaa3c;
+    }
+    .faction-tag--ork:where(*)  { /* précision sans surcharge */ }
+
+    /* ── LIGHT MODE overrides pour player-cards ─────────────────────────────── */
+    [data-theme="light"] .player-card--red::before    { background: var(--army-we-fg); }
+    [data-theme="light"] .player-card--blue::before   { background: var(--army-ba-fg); }
+    [data-theme="light"] .player-card--green::before  { background: var(--army-gi-fg); }
+    [data-theme="light"] .player-card--purple::before { background: var(--army-iw-fg); }
+    [data-theme="light"] .player-card--gold::before   { background: var(--army-bt-fg); }
+
+    [data-theme="light"] .player-card--red   .player-armies li::before { background: var(--army-we-fg); }
+    [data-theme="light"] .player-card--blue  .player-armies li::before { background: var(--army-ba-fg); }
+    [data-theme="light"] .player-card--green .player-armies li::before { background: var(--army-gi-fg); }
+    [data-theme="light"] .player-card--purple .player-armies li::before { background: var(--army-iw-fg); }
+    [data-theme="light"] .player-card--gold  .player-armies li::before { background: var(--army-bt-fg); }
+
+    [data-theme="light"] .player-card--red   .player-role { color: var(--army-we-fg); }
+    [data-theme="light"] .player-card--blue  .player-role { color: var(--army-ba-fg); }
+    [data-theme="light"] .player-card--green .player-role { color: var(--army-gi-fg); }
+    [data-theme="light"] .player-card--purple .player-role { color: var(--army-iw-fg); }
+    [data-theme="light"] .player-card--gold  .player-role { color: var(--army-bt-fg); }
   </style>
 </head>
 <body>
@@ -493,14 +566,31 @@
 
   function delayClass(n) { return n ? ` reveal-delay-${n}` : ''; }
 
+  /* ──────────────────────────────────────────────────────────────────
+   * MAPPING couleur joueur → code armée
+   * Utilisé pour ajouter un badge d'armée coloré sous chaque joueur
+   * ────────────────────────────────────────────────────────────────── */
+  const COULEUR_TO_ARMEE = {
+    red:    { code: 'we',  label: 'World Eaters' },
+    blue:   { code: 'ba',  label: 'Blood Angels' },
+    green:  { code: 'gi',  label: 'Garde Impériale' },
+    purple: { code: 'iw',  label: 'Iron Warriors' },
+    gold:   { code: 'bt',  label: 'Black Templars' }
+  };
+
   function renderJoueurs(joueurs) {
-    document.getElementById('players-grid').innerHTML = joueurs.map(j =>
-      `<article class="player-card player-card--${j.couleur} reveal${delayClass(j.delai)}">
+    document.getElementById('players-grid').innerHTML = joueurs.map(j => {
+      const mapping = COULEUR_TO_ARMEE[j.couleur];
+      const badge = mapping
+        ? `<span class="warlord-army warlord-army--${mapping.code}" style="margin-top:var(--space-3);display:inline-flex">${mapping.label}</span>`
+        : '';
+      return `<article class="player-card player-card--${j.couleur} reveal${delayClass(j.delai)}">
         <p class="player-name">${j.nom}</p>
         <p class="player-role">${j.role}</p>
+        ${badge}
         <ul class="player-armies" role="list">${j.armees.map(a => `<li>${a}</li>`).join('')}</ul>
-      </article>`
-    ).join('');
+      </article>`;
+    }).join('');
   }
 
   function renderLore(lore) {
@@ -551,8 +641,19 @@
     }).join('');
   }
 
+  /* ──────────────────────────────────────────────────────────────────
+   * MAPPING couleur perso → code armée pour la barre char-lore
+   * ────────────────────────────────────────────────────────────────── */
+  const COULEUR_TO_LORE_CLASS = {
+    red:    'we',
+    blue:   'ba',
+    gold:   'bt',
+    green:  'green'   /* Orks — pas de code armée dédié, classe CSS .green */
+  };
+
   function renderPersonnages(personnages) {
     document.getElementById('chars-grid').innerHTML = personnages.map(p => {
+      const loreClass = COULEUR_TO_LORE_CLASS[p.couleur] || p.couleur;
       const statsHTML = p.stats.length ? `<div class="char-stats">${p.stats.map(s =>
         `<div class="char-stat"><span class="char-stat-val">${s.valeur}</span><span class="char-stat-label">${s.label}</span></div>`
       ).join('')}</div>` : '';
@@ -563,7 +664,7 @@
           <p class="char-title">${p.titre}</p>
         </div>
         <div class="char-body">
-          <p class="char-lore ${p.couleur}">${p.lore}</p>
+          <p class="char-lore ${loreClass}">${p.lore}</p>
           ${statsHTML}
         </div>
       </article>`;
