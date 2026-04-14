@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    /* ── BOUTONS DE NAVIGATION PAGES ───────────────────────── */
+    /* ── BOUTONS DE NAVIGATION PAGES ───────────────────────────── */
     .nav-page-links {
       display: flex;
       gap: 0.5rem;
@@ -81,7 +81,7 @@
       --ba-gold-dim: rgba(138, 104, 0, 0.3);
     }
 
-    /* ── HERO MINI ────────────────────────────────────────── */
+    /* ── HERO MINI ──────────────────────────────────────────── */
     .page-hero {
       padding: 5rem 0 3rem;
       text-align: center;
@@ -92,7 +92,7 @@
     .page-hero .section-title   { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 0.75rem; }
     .page-hero .section-desc    { max-width: 60ch; margin: 0 auto; }
 
-    /* ── LIEN RETOUR ─────────────────────────────────────── */
+    /* ── LIEN RETOUR ─────────────────────────────────────────────── */
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -118,7 +118,7 @@
       color: var(--ba-red-light);
     }
 
-    /* ── BLOC CENSURÉ ────────────────────────────────────── */
+    /* ── BLOC CENSURÉ ────────────────────────────────────────────── */
     .censure-section {
       padding: clamp(3rem, 7vw, 6rem) 0;
     }
@@ -133,7 +133,6 @@
       gap: 2.5rem;
     }
 
-    /* Cachet d'en-tête inquisitorial */
     .inquisition-seal {
       display: flex;
       flex-direction: column;
@@ -156,7 +155,6 @@
       color: var(--ba-red);
     }
 
-    /* Blocs de texte biffé */
     .censure-bloc {
       width: 100%;
       background: rgba(10, 4, 4, 0.55);
@@ -245,7 +243,6 @@
       );
     }
 
-    /* Bandeau "Censuré" principal */
     .censure-bandeau {
       width: 100%;
       position: relative;
@@ -278,7 +275,6 @@
       text-align: center;
     }
 
-    /* Référence de document */
     .censure-ref {
       font-family: 'Crimson Text', serif;
       font-size: 0.82rem;
@@ -296,7 +292,6 @@
       letter-spacing: 0.08em;
     }
 
-    /* Note inquisitoriale en bas */
     .nota-bene {
       width: 100%;
       border: 1px solid var(--ba-red-dim);
@@ -354,12 +349,6 @@
         <span class="nav-logo-sub">Campagne 40K</span>
       </div>
     </a>
-    <ul class="nav-links" id="nav-links" role="list">
-      <li><a href="index.html#joueurs">Joueurs</a></li>
-      <li><a href="index.html#contexte">Contexte</a></li>
-      <li><a href="index.html#fronts">Fronts</a></li>
-      <li><a href="index.html#personnages">Personnages</a></li>
-    </ul>
     <div class="nav-actions">
       <div class="nav-page-links">
         <a href="carte.html" class="btn-nav-page btn-nav-page--carte" aria-label="Voir la Carte du secteur">
@@ -405,13 +394,10 @@
           <svg class="inquisition-seal-icon" viewBox="0 0 72 72" fill="none" aria-hidden="true">
             <circle cx="36" cy="36" r="34" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 3"/>
             <circle cx="36" cy="36" r="26" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
-            <!-- I majuscule stylisé -->
             <text x="36" y="44" text-anchor="middle" font-family="serif" font-size="26" font-weight="700" fill="currentColor">I</text>
-            <!-- Crâne simplifié -->
             <ellipse cx="36" cy="53" rx="5" ry="3.5" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
             <line x1="34" y1="56" x2="33" y2="59" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
             <line x1="38" y1="56" x2="39" y2="59" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
-            <!-- Ornements -->
             <line x1="2" y1="36" x2="10" y2="36" stroke="currentColor" stroke-width="0.8"/>
             <line x1="62" y1="36" x2="70" y2="36" stroke="currentColor" stroke-width="0.8"/>
             <polygon points="36,4 38,10 36,8 34,10" fill="currentColor" opacity="0.7"/>
@@ -467,7 +453,7 @@
           </div>
         </div>
 
-        <!-- Bloc III : Règles spéciales / Soif Noire -->
+        <!-- Bloc III : Règles spéciales -->
         <div class="censure-bloc reveal">
           <p class="censure-titre">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -486,7 +472,7 @@
         <div class="nota-bene reveal">
           <p class="nota-bene-label">Nota Inquisitoriale</p>
           <p>
-            « Les forces de la IXème Légion opérant dans le sous-secteur Fyrentis font l'objet d'une surveillance renforcée de l'Ordo Hereticus. Des rapports faisant état d'épisodes de Rage Noire non contrôlés lors des combats sur Jakku ont motivé l'ouverture d'un dossier d'investigation. Ces informations seront déclassifiées à l'issue de la vérification psychiatrique du Chapelain Varus et de son état-major. »
+            « Les forces de la IXème Légion opérant dans le sous-secteur Fyrentis font l'objet d'une surveillance renforcée de l'Ordo Hereticus. Des rapports faisant état d'épisodes de Rage Noire non contrôlés lors des combats sur Jakku ont motivé l'ouverture d'un dossier d'investigation. Ces informations seront déclassifyées à l'issue de la vérification psychiatrique du Chapelain Varus et de son état-major. »
           </p>
           <p style="margin-top:0.5rem;">
             — <em>Inquisiteur-Sénior ██████ █████████, Ordo Hereticus, Fyrentis Ultima</em>
@@ -513,7 +499,7 @@
 <script>
 (function () {
 
-  // ── THEME TOGGLE ──────────────────────────────────────────────
+  // ── THEME TOGGLE
   const themeBtn = document.querySelector('[data-theme-toggle]');
   const root = document.documentElement;
   let theme = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -528,41 +514,27 @@
   updateThemeBtn();
   if (themeBtn) themeBtn.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; root.setAttribute('data-theme', theme); updateThemeBtn(); });
 
-  // ── MOBILE NAV ────────────────────────────────────────────────
+  // ── MOBILE NAV
   const navToggle = document.getElementById('nav-toggle');
-  const navLinks  = document.getElementById('nav-links');
-  if (navToggle && navLinks) {
+  if (navToggle) {
     navToggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', open);
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !expanded);
     });
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }));
   }
 
-  // ── NAV SCROLL + BACK-TO-TOP ──────────────────────────────────
+  // ── NAV SCROLL + BACK-TO-TOP
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('nav--scrolled', window.scrollY > 60);
     document.getElementById('back-top').classList.toggle('visible', window.scrollY > 300);
   }, { passive: true });
 
-  // ── REVEAL ON SCROLL ─────────────────────────────────────────
+  // ── REVEAL ON SCROLL
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // ── FOOTER : FETCH JOUEURS ────────────────────────────────────
-  fetch('assets/data/campagne.json')
-    .then(r => r.json())
-    .then(d => {
-      if (d.joueurs) {
-        document.getElementById('footer-players').innerHTML = d.joueurs.map(j =>
-          `<span class="footer-player">${j.nom} — ${j.armees.join(' / ')}</span>`
-        ).join('');
-      }
-    })
-    .catch(() => {});
 
 })();
 </script>
