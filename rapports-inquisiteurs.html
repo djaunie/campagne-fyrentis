@@ -76,7 +76,7 @@
       .btn-nav-page { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
     }
 
-    /* ── PAGE INQUISITORIALE ─────────────────────────────────────────────── */
+    /* ── PAGE INQUISITORIALE ────────────────────────────────────────────── */
     .inquisition-hero {
       padding: 7rem 1.5rem 3rem;
       text-align: center;
@@ -134,7 +134,7 @@
       background: rgba(155, 111, 196, 0.35);
     }
 
-    /* ── LISTE RAPPORTS ──────────────────────────────────────────────────── */
+    /* ── LISTE RAPPORTS ──────────────────────────────────────────────── */
     .rapports-section {
       padding: 3rem 1.5rem 6rem;
     }
@@ -143,7 +143,7 @@
       margin: 0 auto;
     }
 
-    /* ── FICHE RAPPORT ───────────────────────────────────────────────────── */
+    /* ── FICHE RAPPORT ───────────────────────────────────────────────── */
     .rapport-doc {
       position: relative;
       background: rgba(30, 20, 45, 0.65);
@@ -325,12 +325,6 @@
         <span class="nav-logo-sub">Campagne 40K</span>
       </div>
     </a>
-    <ul class="nav-links" id="nav-links" role="list">
-      <li><a href="index.html#joueurs">Joueurs</a></li>
-      <li><a href="index.html#contexte">Contexte</a></li>
-      <li><a href="index.html#fronts">Fronts</a></li>
-      <li><a href="index.html#personnages">Personnages</a></li>
-    </ul>
     <div class="nav-actions">
       <div class="nav-page-links">
         <a href="carte.html" class="btn-nav-page btn-nav-page--carte" aria-label="Voir la Carte du secteur">
@@ -405,7 +399,7 @@
           <p>Morgath le Faucheur est vivant.</p>
         </div>
 
-        <p>Il mène une masse de berserkers de Khorne, dont une unité conduite par Kharak le Sanguinaire, dont les actes sur les agro-stations de Jakku sont archivés dans mes précédents rapports. Ces forces n'infiltrent pas, ne corrompent pas : elles saccagent. L'objectif est évident — les portes de la cité-forge.</p>
+        <p>Il mène une masse de berserkers de Khorne, dont une unité conduite par Kharak le Sanguinaire, dont les actes sur les agro-stations de Jakku sont archivés dans mes précédents rapports. Ces forces n'infiltrent pas, ne corrompent pas : elles saccagent. L'objectif est évident — les portes de la cité-forge.</p>
 
         <p>Agissant en coordination, les Iron Warriors de Khorne combinent la brutalité de Khorne et la rigueur héritée de la IV<sup>e</sup> Légion. J'ai été informé que des renforts Black Templars — envoyés par Helbrecht lui-même lors de la fuite de Colchis — sont dissimulés à bord de leur vaisseau amiral, le <em>Ironheart</em>, attendant le moment propice pour frapper.</p>
 
@@ -430,8 +424,8 @@
 
       <div class="rapport-footer-stamp">
         <p>Décret d'Inquisition — Reproduction non autorisée constitue un acte d'hérésie — Ordo Hereticus / Conclave d'Argent</p>
-        <p>Classification : Extremis Ultima · Fiche Rouge Nº 7 · Segmentum Obscurus — Sous-secteur Fyrentis — Système Sanctum</p>
-        <p>+++ Fin de transmission — Sceau inquisitorial vérifié — Intégrité : 94,7 % +++ [Perturbations Warp — 5,3 % de données corrompues — Non récupérables]</p>
+        <p>Classification : Extremis Ultima · Fiche Rouge Nº 7 · Segmentum Obscurus — Sous-secteur Fyrentis — Système Sanctum</p>
+        <p>+++ Fin de transmission — Sceau inquisitorial vérifié — Intégrité : 94,7 % +++ [Perturbations Warp — 5,3 % de données corrompues — Non récupérables]</p>
       </div>
 
     </article>
@@ -472,20 +466,6 @@
     root.setAttribute('data-theme', theme);
     updateThemeBtn();
   });
-
-  // ── MOBILE NAV
-  const navToggle = document.getElementById('nav-toggle');
-  const navLinks  = document.getElementById('nav-links');
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', open);
-    });
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }));
-  }
 
   // ── NAV SCROLL + BACK-TO-TOP
   const nav = document.getElementById('nav');
