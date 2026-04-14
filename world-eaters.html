@@ -54,12 +54,25 @@
       box-shadow: 0 0 10px rgba(200, 60, 60, 0.25);
       color: #e06060;
     }
+    .btn-nav-page--inquisition {
+      color: #9b6fc4;
+      border-color: rgba(155, 111, 196, 0.45);
+      background: rgba(155, 111, 196, 0.07);
+    }
+    .btn-nav-page--inquisition:hover {
+      background: rgba(155, 111, 196, 0.18);
+      border-color: #9b6fc4;
+      box-shadow: 0 0 10px rgba(155, 111, 196, 0.28);
+      color: #c090e8;
+    }
     [data-theme="light"] .btn-nav-page--carte { color: #8a6800; border-color: rgba(138, 104, 0, 0.4); background: rgba(138, 104, 0, 0.06); }
     [data-theme="light"] .btn-nav-page--carte:hover { background: rgba(138, 104, 0, 0.14); border-color: #8a6800; }
     [data-theme="light"] .btn-nav-page--sanctum { color: #8b1c1c; border-color: rgba(139, 28, 28, 0.4); background: rgba(139, 28, 28, 0.06); }
     [data-theme="light"] .btn-nav-page--sanctum:hover { background: rgba(139, 28, 28, 0.14); border-color: #8b1c1c; }
+    [data-theme="light"] .btn-nav-page--inquisition { color: #5a2a8a; border-color: rgba(90, 42, 138, 0.4); background: rgba(90, 42, 138, 0.06); }
+    [data-theme="light"] .btn-nav-page--inquisition:hover { background: rgba(90, 42, 138, 0.14); border-color: #5a2a8a; }
 
-    /* ── HERO MINI ────────────────────────────────────────────────── */
+    /* ── HERO MINI ──────────────────────────────────────────────────── */
     .page-hero {
       padding: 5rem 0 3rem;
       text-align: center;
@@ -70,7 +83,7 @@
     .page-hero .section-title   { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 0.75rem; }
     .page-hero .section-desc    { max-width: 60ch; margin: 0 auto; }
 
-    /* ── LIEN RETOUR ────────────────────────────────────────────────── */
+    /* ── LIEN RETOUR ────────────────────────────────────────────────────── */
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -132,6 +145,10 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Sanctum
         </a>
+        <a href="rapports-inquisiteurs.html" class="btn-nav-page btn-nav-page--inquisition" aria-label="Lire les Rapports Inquisitoriaux">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Inquisition
+        </a>
       </div>
       <button class="btn-theme" data-theme-toggle aria-label="Basculer le thème">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -147,7 +164,7 @@
 <header class="page-hero" id="top">
   <div class="container">
     <h1 class="section-title"><span>WORLD EATERS</span></h1>
-    <p class="section-desc">Spécificités de l'armée World Eaters : le vaisseau amiral Le Conqueror, ses bonus de campagne, ainsi que les mécaniques spéciales liées aux Crânes, au Sang et à Saint Carnage.</p>
+    <p class="section-desc">Spécificités de l'armée World Eaters : le vaisseau amiral Le Conqueror, ses bonus de campagne, ainsi que les mécaniques spéciales liées aux Crânes, au Sang et à Saint Carnage.</p>
     <a href="index.html#specificites-jean" class="back-link">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
       Retour à l'accueil
@@ -274,7 +291,7 @@
     .catch(err => {
       console.error('Erreur chargement campagne.json :', err);
       document.getElementById('mecaniques-container').innerHTML =
-        '<p style="color:var(--color-primary-bright);text-align:center;padding:2rem">Erreur : impossible de charger les données.</p>';
+        '<p style="color:var(--color-primary-bright);text-align:center;padding:2rem">Erreur : impossible de charger les données.</p>';
     });
 
 })();
