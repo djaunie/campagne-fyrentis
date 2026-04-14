@@ -4,11 +4,124 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Règles Narratives — Fyrentis</title>
+  <meta name="description" content="Règles narratives de la campagne Fyrentis, version avril 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ── BOUTONS DE NAVIGATION PAGES ─────────────────────────────────────── */
+    .nav-page-links {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .btn-nav-page {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.85rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 1px solid;
+      transition: background 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-nav-page--carte {
+      color: #c8a028;
+      border-color: rgba(200, 160, 40, 0.45);
+      background: rgba(200, 160, 40, 0.07);
+    }
+    .btn-nav-page--carte:hover {
+      background: rgba(200, 160, 40, 0.18);
+      border-color: #c8a028;
+      box-shadow: 0 0 10px rgba(200, 160, 40, 0.25);
+      color: #e8c050;
+    }
+    .btn-nav-page--sanctum {
+      color: #c84040;
+      border-color: rgba(200, 60, 60, 0.45);
+      background: rgba(200, 60, 60, 0.07);
+    }
+    .btn-nav-page--sanctum:hover {
+      background: rgba(200, 60, 60, 0.18);
+      border-color: #c84040;
+      box-shadow: 0 0 10px rgba(200, 60, 60, 0.25);
+      color: #e06060;
+    }
+    .btn-nav-page--regles {
+      color: #3aa0d8;
+      border-color: rgba(58, 160, 216, 0.55);
+      background: rgba(58, 160, 216, 0.10);
+    }
+    .btn-nav-page--regles:hover,
+    .btn-nav-page--regles.active {
+      background: rgba(58, 160, 216, 0.20);
+      border-color: #3aa0d8;
+      box-shadow: 0 0 10px rgba(58, 160, 216, 0.30);
+      color: #78c8f0;
+    }
+    .btn-nav-page--inquisition {
+      color: #9b6fc4;
+      border-color: rgba(155, 111, 196, 0.45);
+      background: rgba(155, 111, 196, 0.07);
+    }
+    .btn-nav-page--inquisition:hover {
+      background: rgba(155, 111, 196, 0.18);
+      border-color: #9b6fc4;
+      box-shadow: 0 0 10px rgba(155, 111, 196, 0.28);
+      color: #c090e8;
+    }
+    [data-theme="light"] .btn-nav-page--carte {
+      color: #8a6800;
+      border-color: rgba(138, 104, 0, 0.4);
+      background: rgba(138, 104, 0, 0.06);
+    }
+    [data-theme="light"] .btn-nav-page--carte:hover {
+      background: rgba(138, 104, 0, 0.14);
+      border-color: #8a6800;
+    }
+    [data-theme="light"] .btn-nav-page--sanctum {
+      color: #8b1c1c;
+      border-color: rgba(139, 28, 28, 0.4);
+      background: rgba(139, 28, 28, 0.06);
+    }
+    [data-theme="light"] .btn-nav-page--sanctum:hover {
+      background: rgba(139, 28, 28, 0.14);
+      border-color: #8b1c1c;
+    }
+    [data-theme="light"] .btn-nav-page--regles {
+      color: #0d6c9f;
+      border-color: rgba(13, 108, 159, 0.4);
+      background: rgba(13, 108, 159, 0.06);
+    }
+    [data-theme="light"] .btn-nav-page--regles:hover,
+    [data-theme="light"] .btn-nav-page--regles.active {
+      background: rgba(13, 108, 159, 0.16);
+      border-color: #0d6c9f;
+      color: #084e74;
+    }
+    [data-theme="light"] .btn-nav-page--inquisition {
+      color: #5a2a8a;
+      border-color: rgba(90, 42, 138, 0.4);
+      background: rgba(90, 42, 138, 0.06);
+    }
+    [data-theme="light"] .btn-nav-page--inquisition:hover {
+      background: rgba(90, 42, 138, 0.14);
+      border-color: #5a2a8a;
+    }
+    @media (max-width: 600px) {
+      .nav-page-links { gap: 0.35rem; }
+      .btn-nav-page { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
+    }
+
+    /* ── LAYOUT PAGE ─────────────────────────────────────────────────────── */
     :root {
       --bg:        #0d0b09;
       --surface:   #151210;
@@ -35,19 +148,9 @@
       --red:       #8b1c1c;
       --red-bright:#a02020;
     }
-    html { font-family: 'Crimson Text', Georgia, serif; background: var(--bg); color: var(--text); }
-    body { min-height: 100dvh; display: flex; flex-direction: column; }
 
-    /* NAV */
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; gap: 1rem; flex-wrap: wrap; }
-    .nav-title { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; }
-    .nav-links { display: flex; gap: 1.25rem; list-style: none; flex-wrap: wrap; }
-    .nav-links a { font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-    .btn-theme { background: none; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); cursor: pointer; padding: 0.35rem 0.5rem; display: flex; align-items: center; transition: color 0.2s, border-color 0.2s; }
-    .btn-theme:hover { color: var(--gold); border-color: var(--gold-dim); }
+    body { background: var(--bg); color: var(--text); font-family: 'Crimson Text', Georgia, serif; min-height: 100dvh; display: flex; flex-direction: column; }
 
-    /* LAYOUT */
     .page-wrap { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; flex: 1; }
 
     /* PAGE HEADER */
@@ -67,10 +170,8 @@
     /* SECTIONS */
     .rules-section { margin-bottom: 3rem; scroll-margin-top: 4rem; }
     .rules-section + .rules-section { border-top: 1px solid var(--border); padding-top: 2.5rem; }
-
     .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.05rem, 2.5vw, 1.4rem); color: var(--gold); letter-spacing: 0.06em; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
     .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--gold-dim), transparent); opacity: 0.4; }
-
     .subsection { margin-bottom: 1.75rem; }
     .subsection-title { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.85rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--faint); }
 
@@ -114,17 +215,55 @@
 </head>
 <body>
 
-<nav>
-  <span class="nav-title">⚔ Règles Narratives</span>
-  <ul class="nav-links">
-    <li><a href="index.html">Campagne</a></li>
-    <li><a href="carte.html">Carte</a></li>
-    <li><a href="sanctum.html">Sanctum</a></li>
-    <li><a href="regles.html" class="active">Règles</a></li>
-  </ul>
-  <button class="btn-theme" data-theme-toggle aria-label="Basculer le thème">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-  </button>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Campagne Fyrentis">
+      <svg class="nav-logo-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <polygon points="18,2 34,28 2,28" fill="none" stroke="currentColor" stroke-width="1.5" color="#c8a028"/>
+        <circle cx="18" cy="18" r="6" fill="none" stroke="currentColor" stroke-width="1.5" color="#8b1c1c"/>
+        <line x1="18" y1="2" x2="18" y2="12" stroke="currentColor" stroke-width="1" color="#c8a028"/>
+        <line x1="18" y1="24" x2="18" y2="28" stroke="currentColor" stroke-width="1" color="#c8a028"/>
+        <line x1="8.5" y1="22.3" x2="13.5" y2="18.9" stroke="currentColor" stroke-width="1" color="#c8a028"/>
+        <line x1="27.5" y1="22.3" x2="22.5" y2="18.9" stroke="currentColor" stroke-width="1" color="#c8a028"/>
+      </svg>
+      <div>
+        <span class="nav-logo-text">Fyrentis</span>
+        <span class="nav-logo-sub">Campagne 40K</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html#joueurs">Joueurs</a></li>
+      <li><a href="index.html#contexte">Contexte</a></li>
+      <li><a href="index.html#fronts">Fronts</a></li>
+      <li><a href="index.html#personnages">Personnages</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="nav-page-links">
+        <a href="carte.html" class="btn-nav-page btn-nav-page--carte" aria-label="Voir la Carte du secteur">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          Carte
+        </a>
+        <a href="sanctum.html" class="btn-nav-page btn-nav-page--sanctum" aria-label="Accéder au Sanctum">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Sanctum
+        </a>
+        <a href="regles.html" class="btn-nav-page btn-nav-page--regles active" aria-label="Consulter les Règles Narratives" aria-current="page">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
+          Règles
+        </a>
+        <a href="rapports-inquisiteurs.html" class="btn-nav-page btn-nav-page--inquisition" aria-label="Lire les Rapports Inquisitoriaux">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Inquisition
+        </a>
+      </div>
+      <button class="btn-theme" data-theme-toggle aria-label="Basculer le thème">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
 </nav>
 
 <main class="page-wrap">
@@ -350,7 +489,7 @@
       <p class="subsection-title">Phase de Charge</p>
       <div class="rule-block rule-highlight">
         <strong>Inspi V11</strong>
-        <p class="prose">Pour qu'une unité réalise une charge il n'y a plus à annoncer la cible, s'il y a des unités à 12 ps alors on jette et si un score permet d'engager au CAC l'unité fonce vers la cible choisie après le jet ! Le jet se fait donc avant tout ciblage ou réflexion de la part du joueur sur qui ou quoi charger. Cependant l'unité pourra se mamer un Tir en état d'alerte.</p>
+        <p class="prose">Pour qu'une unité réalise une charge il n'y a plus à annoncer la cible, s'il y a des unités à 12 ps alors on jette et si un score permet d'engager au CAC l'unité fonce vers la cible choisie après le jet ! Le jet se fait donc avant tout ciblage ou réflexion de la part du joueur sur qui ou quoi charger. Cependant l'unité pourra se manger un Tir en état d'alerte.</p>
         <p class="prose">Réaliser une charge demande de jeter 2D6 et une unité ennemie à 12 ps.</p>
         <p class="prose">Certains décors auront cet effet (je préciserai quand ça sera le cas) = si décors de plus de 3 ps de haut à franchir (bloque pour une raison ou une autre la charge), il ralenti la course et doit compter dans le total de la charge.</p>
         <p class="prose">Réussir une charge offre Combat en premier à l'unité.</p>
@@ -493,14 +632,20 @@
 </main>
 
 <footer>
-  <div>
-    <p class="footer-line">Sous-Secteur Fyrentis</p>
+  <div class="container">
+    <div class="footer-logo">Sous-Secteur Fyrentis</div>
+    <p class="footer-line">« Dans le futur sombre de l'humanité, il n'y a que la guerre. »</p>
     <p class="footer-line">Warhammer 40 000 • Campagne Narrative • 41ème Millénaire</p>
   </div>
 </footer>
 
+<a href="#" class="back-top" id="back-top" aria-label="Retour en haut">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+</a>
+
 <script>
 (function () {
+  // ── THEME TOGGLE
   const themeBtn = document.querySelector('[data-theme-toggle]');
   const root = document.documentElement;
   let theme = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -518,6 +663,27 @@
     root.setAttribute('data-theme', theme);
     updateThemeBtn();
   });
+
+  // ── MOBILE NAV
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks  = document.getElementById('nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  // ── NAV SCROLL + BACK-TO-TOP
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav--scrolled', window.scrollY > 60);
+    document.getElementById('back-top').classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
 })();
 </script>
 
