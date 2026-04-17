@@ -141,7 +141,7 @@
     .breadcrumb-inner .sep { color: rgba(200,60,60,0.4); font-size: 0.55rem; }
     .breadcrumb-inner .current { color: rgba(200,60,60,0.8); }
 
-    /* ── FICHE CLASSEMENT DU DOCUMENT ────────────────────────── */
+    /* ── SECTION PRINCIPALE ───────────────────────────────────── */
     .bataille-section {
       padding: 2rem 1.5rem 6rem;
     }
@@ -208,11 +208,6 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
-    .rapport-badge--sang {
-      color: #e06060;
-      border: 1px solid rgba(200,60,60,0.55);
-      background: rgba(200,60,60,0.12);
-    }
     .rapport-badge--victoire-chaos {
       color: #e07030;
       border: 1px solid rgba(200,100,30,0.55);
@@ -258,7 +253,7 @@
     }
     .rapport-body p:last-child { margin-bottom: 0; }
 
-    /* ── ENCADRÉS D'ALERTE / DE SANG ─────────────────────────── */
+    /* ── ENCADRÉS D'ALERTE ────────────────────────────────────── */
     .rapport-alerte {
       margin: 1.2rem 0;
       padding: 0.9rem 1.2rem;
@@ -312,9 +307,7 @@
       border-bottom: 1px solid rgba(200,60,60,0.16);
       background: rgba(200,60,60,0.07);
     }
-    [data-theme="light"] .theatre-block-header {
-      background: rgba(139,28,28,0.05);
-    }
+    [data-theme="light"] .theatre-block-header { background: rgba(139,28,28,0.05); }
     .theatre-num {
       font-family: 'Cinzel', serif;
       font-size: 0.55rem;
@@ -356,16 +349,12 @@
       margin: 1.2rem 0 1.4rem;
     }
     @media (max-width: 540px) { .oddb-grid { grid-template-columns: 1fr; } }
-    .oddb-col {
-      padding: 0.9rem 1.2rem;
-    }
+    .oddb-col { padding: 0.9rem 1.2rem; }
     .oddb-col--imperial {
       background: rgba(30,40,60,0.45);
       border-right: 1px solid rgba(200,60,60,0.12);
     }
-    .oddb-col--chaos {
-      background: rgba(60,15,10,0.45);
-    }
+    .oddb-col--chaos { background: rgba(60,15,10,0.45); }
     [data-theme="light"] .oddb-col--imperial { background: rgba(200,215,240,0.25); }
     [data-theme="light"] .oddb-col--chaos { background: rgba(240,200,190,0.3); }
     .oddb-col-title {
@@ -378,10 +367,7 @@
     }
     .oddb-col--imperial .oddb-col-title { color: #6080c0; }
     .oddb-col--chaos .oddb-col-title { color: #c84040; }
-    .oddb-col ul {
-      list-style: none;
-      padding: 0; margin: 0;
-    }
+    .oddb-col ul { list-style: none; padding: 0; margin: 0; }
     .oddb-col ul li {
       font-family: 'Crimson Text', serif;
       font-size: 0.9rem;
@@ -432,10 +418,7 @@
       color: #c84040;
       margin-top: 0.1rem;
     }
-    .phase-content {
-      padding-top: 0.15rem;
-      flex: 1;
-    }
+    .phase-content { padding-top: 0.15rem; flex: 1; }
     .phase-label {
       font-family: 'Cinzel', serif;
       font-size: 0.62rem;
@@ -482,7 +465,7 @@
       text-align: center;
     }
 
-    /* ── SIGNATURE FINAL ────────────────────────────────────── */
+    /* ── SIGNATURE FINALE ───────────────────────────────────── */
     .rapport-signature {
       padding: 1.2rem 1.6rem;
       border-top: 1px solid rgba(200,60,60,0.15);
@@ -609,7 +592,7 @@
 <header class="bataille-hero" id="top">
   <p class="bataille-eyebrow">Rapport de Bataille · Système Sanctum · Archives Militaires — Ref. B335-C/BROKHA</p>
   <h1 class="bataille-title">Fer et <span>Sang</span> sur Brokha</h1>
-  <p class="bataille-subtitle">Double assaut hérétique — L'<em>IronHeart</em> en flammes et les portes de la lune fracturées.</p>
+  <p class="bataille-subtitle">Frappe surprise sur le vaisseau amiral <em>IronHeart</em> — et les portes de la lune fracturées par le Chaos.</p>
   <div class="bataille-ornament">Sang pour le Dieu du Sang</div>
 </header>
 
@@ -634,7 +617,7 @@
       <div class="rapport-doc-header">
         <div>
           <p class="rapport-ref">Réf. B335-C/BROKHA · Rapport d'engagement militaire · Daté 216.M42 · Cogitator-crâne B334-C</p>
-          <h2 class="rapport-title" id="rapport-brokha-titre">Double Engagement — <em>IronHeart</em> &amp; Lune de Brokha — Victoire du Chaos</h2>
+          <h2 class="rapport-title" id="rapport-brokha-titre">Double Engagement — Vaisseau Amiral <em>IronHeart</em> &amp; Lune de Brokha — Victoire du Chaos</h2>
         </div>
         <span class="rapport-badge rapport-badge--victoire-chaos">⚔ Victoire Chaos</span>
       </div>
@@ -646,11 +629,11 @@
         </div>
         <div class="rapport-meta-item">
           <p class="rapport-meta-label">Théâtres</p>
-          <p class="rapport-meta-value">Station orbitale <em>IronHeart</em><br>Porte fortifiée — Lune Brokha</p>
+          <p class="rapport-meta-value">Vaisseau amiral <em>IronHeart</em><br>Porte fortifiée — Lune Brokha</p>
         </div>
         <div class="rapport-meta-item">
           <p class="rapport-meta-label">Factions engagées</p>
-          <p class="rapport-meta-value">World Eaters · Iron Warriors de Khorne<br>vs. Black Templars · Astra Militarum</p>
+          <p class="rapport-meta-value">Black Templars (assaut surprise)<br>vs. Iron Warriors · World Eaters de Khorne</p>
         </div>
         <div class="rapport-meta-item">
           <p class="rapport-meta-label">Issue</p>
@@ -659,8 +642,7 @@
       </div>
 
       <div class="rapport-body">
-        <p>Les événements du <strong style="color:#e06060;">216.M42</strong> constituent l'une des journées les plus sombres de la défense du système Sanctum. En l'espace de quelques heures, les forces hérétiques ont frappé simultanément en deux points critiques : à bord de la station orbitale <em>IronHeart</em>, et devant les portes fortifiées de la lune Brokha. La coordination entre les World Eaters et les Iron Warriors de Khorne — déjà signalée dans le précédent rapport de l'Inquisiteur Hortis — s'est révélée redoutable.</p>
-
+        <p>Les événements du <strong style="color:#e06060;">216.M42</strong> constituent l'une des journées les plus sombres de la défense du système Sanctum. Les Black Templars ont tenté une frappe audacieuse et simultanée en deux points : un assaut surprise à bord de l'<em>IronHeart</em> — vaisseau amiral des Iron Warriors de Khorne — et une défense acharnée des portes fortifiées de la lune Brokha. Si l'audace de l'opération ne peut être niée, son issue fut catastrophique pour les forces de l'Imperium.</p>
         <div class="rapport-alerte">
           <p>La porte protégeant les positions de l'Astra Militarum a été détruite. La voie vers la forteresse est désormais ouverte.</p>
         </div>
@@ -672,7 +654,7 @@
     <figure class="rapport-img-block">
       <img
         src="assets/img/rapport/sanctum/combat-general.jpg"
-        alt="Vue générale des forces en présence sur la lune de Brokha — convergence des rhinos et du Land Raider Iron Warriors vers la porte fortifiée"
+        alt="Vue générale de la bataille sur Brokha — convergence des rhinos et du Land Raider Iron Warriors vers la porte fortifiée défendue par les Black Templars et l'Astra Militarum"
         width="820"
         height="420"
         loading="lazy"
@@ -684,37 +666,39 @@
     </figure>
 
     <!-- ════════════════════════════════════════════════════ -->
-    <!-- THÉÂTRE 1 — IRONHEART -->
+    <!-- THÉÂTRE 1 — L'IRONHEART -->
     <!-- ════════════════════════════════════════════════════ -->
     <div class="theatre-sep">
       <div class="theatre-sep-line"></div>
-      <span class="theatre-sep-label">⚔ Théâtre I — Station Orbitale</span>
+      <span class="theatre-sep-label">⚔ Théâtre I — Vaisseau Amiral IronHeart</span>
       <div class="theatre-sep-line"></div>
     </div>
 
     <section class="theatre-block" aria-labelledby="theatre-ironheart">
 
       <div class="theatre-block-header">
-        <p class="theatre-num">Théâtre d'opération I · Station orbitale</p>
-        <h3 class="theatre-title" id="theatre-ironheart">L'<span>IronHeart</span> en Feu</h3>
+        <p class="theatre-num">Théâtre d'opération I · Vaisseau amiral des Iron Warriors de Khorne</p>
+        <h3 class="theatre-title" id="theatre-ironheart">Assaut Surprise sur l'<span>IronHeart</span></h3>
       </div>
 
       <div class="theatre-body">
 
+        <p>L'<em>IronHeart</em> n'est pas une station, ni un simple croiseur de guerre : c'est le cœur battant de la flotte Iron Warriors de Khorne, leur vaisseau amiral, forteresse navigante forgée dans les aciers maudits du Warp. Ses coursives résonnent du martelage perpétuel des Forgesprêtres, ses ponts d'armes sont gardés par des légions de berserks consacrés au Dieu du Sang. Aucun ennemi n'avait osé le défier directement — jusqu'à ce jour.</p>
+
         <!-- Ordre de bataille IronHeart -->
         <div class="oddb-grid" role="region" aria-label="Ordre de bataille IronHeart">
           <div class="oddb-col oddb-col--imperial">
-            <p class="oddb-col-title">⚔ Forces Impériales</p>
+            <p class="oddb-col-title">⚔ Forces d'Assaut Impériales</p>
             <ul>
-              <li><strong>Escouade Terminator</strong> — Black Templars<br>Infiltration à bord de l'IronHeart</li>
-              <li><strong>Techmarine</strong> — Black Templars<br>Opération de sabotage clandestin</li>
+              <li><strong>Escouade Terminator</strong> — Black Templars<br>Téléportation directe dans les ponts inférieurs</li>
+              <li><strong>Techmarine</strong> — Black Templars<br>Mission de sabotage des systèmes cogitateurs</li>
             </ul>
           </div>
           <div class="oddb-col oddb-col--chaos">
-            <p class="oddb-col-title">☠ Forces Hérétiques</p>
+            <p class="oddb-col-title">☠ Défenseurs Hérétiques</p>
             <ul>
-              <li><strong>Escouade Berserks</strong> — World Eaters de Khorne</li>
-              <li><strong>Escouade Berserks</strong> — Iron Warriors de Khorne<br>Gardiens des entrailles de l'IronHeart</li>
+              <li><strong>Escouade Berserks</strong> — World Eaters de Khorne<br>Garnison itinérante à bord de l'IronHeart</li>
+              <li><strong>Escouade Berserks</strong> — Iron Warriors de Khorne<br>Gardiens des ponts et des cogitateurs</li>
             </ul>
           </div>
         </div>
@@ -723,50 +707,57 @@
         <figure class="rapport-img-block">
           <img
             src="assets/img/rapport/sanctum/combat-dans-IronHeart-filtre.jpg"
-            alt="Combat dans les entrailles de la station orbitale IronHeart — Terminators Black Templars face aux berserks de Khorne dans les coursives industrielles"
+            alt="Combat dans les ponts inférieurs du vaisseau amiral IronHeart — Terminators Black Templars face aux berserks de Khorne dans les coursives industrielles du navire"
             width="820"
             height="400"
             loading="lazy"
             decoding="async"
           >
           <figcaption class="rapport-img-caption">
-            <p>Coursives inférieures de l'IronHeart — Reconstitution par serviteur-peintre d'après les relevés vox des Terminators · Réf. IMG-B335-02</p>
+            <p>Ponts inférieurs de l'IronHeart — Reconstitution par serviteur-peintre d'après les relevés vox récupérés sur les Terminators · Réf. IMG-B335-02</p>
           </figcaption>
         </figure>
 
-        <!-- Timeline des phases -->
+        <!-- Timeline des phases IronHeart -->
         <ul class="phase-timeline">
           <li class="phase-item">
             <div class="phase-dot">I</div>
             <div class="phase-content">
-              <p class="phase-label">Infiltration &amp; Découverte</p>
-              <p class="phase-text">Le <strong>Techmarine Black Templar</strong>, infiltré depuis des heures dans les niveaux les plus profonds de l'<em>IronHeart</em>, progresse à travers les soutes de machinerie corrompue. Son objectif : les cogitateurs centraux. Les capteurs organiques des <strong>berserks Iron Warriors</strong> le repèrent dans un couloir de maintenance. Le combat est brutal, sans pitié. Le Techmarine tombe, son armure éventrée par les lames tronçonneuses des servants de Khorne. Ses données de sabotage disparaissent avec lui.</p>
+              <p class="phase-label">Téléportation & Pénétration</p>
+              <p class="phase-text">Dans l'obscurité des ponts inférieurs de l'<em>IronHeart</em>, le <strong>Techmarine Black Templar</strong> se matérialise au cœur même du vaisseau ennemi. Sa mission : rejoindre les cogitateurs centraux, y implanter un virus machine capable de neutraliser les systèmes d'armement du navire amiral — un coup décisif porté au cœur de la flotte Iron Warriors. Simultanément, l'<strong>escouade Terminator</strong> se téléporte en position d'appui dans une soute de machinerie pour couvrir sa retraite. L'audace de l'opération est réelle. Mais les capteurs organiques des <strong>berserks Iron Warriors</strong> — forgesprêtres corrompus et gardiens des ponts — repèrent les intrus dans les minutes qui suivent leur matérialisation.</p>
             </div>
           </li>
           <li class="phase-item">
             <div class="phase-dot">II</div>
             <div class="phase-content">
-              <p class="phase-label">Première Charge — World Eaters</p>
-              <p class="phase-text">Simultanément, une <strong>escouade de berserks World Eaters</strong> localise l'unité Terminator via le sang de leur frère Iron Warrior versé dans les coursives. La rage de Khorne les aveugle. Ils chargent sans coordination, sans réfléchir — c'est dans leur nature. Les <strong>Terminators Black Templars</strong>, impassibles dans leurs lourdes armures Tactical Dreadnought, reçoivent l'assaut comme un mur d'adamantium. Coups de masses énergétiques, crânes fracassés. Les World Eaters sont annihilés jusqu'au dernier. Le sang recouvre les plaques métalliques.</p>
+              <p class="phase-label">Chute du Techmarine</p>
+              <p class="phase-text">Les <strong>berserks Iron Warriors</strong> convergent sur le Techmarine avant qu'il n'atteigne ses objectifs. La lutte est inégale dans l'espace contraint des coursives — les lames tronçonneuses et les haches électro des servants de Khorne n'ont aucune pitié. Le Techmarine tombe, son armure éventrée, ses données de sabotage perdues avec lui. Tout l'espoir d'une neutralisation de l'<em>IronHeart</em> s'effondre sur les plaques métalliques maculées de son sang.</p>
             </div>
           </li>
           <li class="phase-item">
             <div class="phase-dot">III</div>
             <div class="phase-content">
-              <p class="phase-label">Deuxième Charge — Iron Warriors de Khorne</p>
-              <p class="phase-text">L'odeur du sang attise la fureur des <strong>berserks Iron Warriors</strong> qui viennent d'exécuter le Techmarine. Ils chargent à leur tour les Terminators dans un corps à corps d'une violence sauvage. La discipline héritée de la IV<sup>e</sup> Légion combinée à la frénésie de Khorne les rend redoutables — leurs coups sont précis autant que furieux. Les Terminators encaissent, ripostent, mais l'issue reste incertaine. Les coursives de l'<em>IronHeart</em> résonnent du fracas de l'acier contre l'armure.</p>
+              <p class="phase-label">Première Charge — World Eaters</p>
+              <p class="phase-text">L'odeur du sang Astartes se répand à travers les conduits d'aération du vaisseau. Elle attise une autre forme de fureur : celle des <strong>World Eaters</strong>, garnison embarquée à bord de l'<em>IronHeart</em> dont la frénésie de Khorne n'attend qu'un prétexte pour exploser. Ils localisent les Terminators et chargent sans ordre, sans coordination — c'est dans leur nature corrompue. Les <strong>Terminators Black Templars</strong>, impassibles dans leurs armures Tactical Dreadnought, reçoivent l'assaut comme un mur d'adamantium. Coups de masses énergétiques. Crânes fracassés. Les World Eaters sont annihilés jusqu'au dernier. Leur sang se mêle à celui du Techmarine dans les coursives de l'<em>IronHeart</em>.</p>
             </div>
           </li>
           <li class="phase-item">
             <div class="phase-dot">IV</div>
             <div class="phase-content">
-              <p class="phase-label">L'Explosion du Prométhéum</p>
-              <p class="phase-text">Un <strong>tir de fuseur surchargé</strong> — dont l'origine reste débattue dans les rapports — perfore la paroi d'un conteneur de prométhéum industriel. L'explosion qui suit est dévastatrice : un mur de feu et de souffle d'une violence inouïe dévaste la zone de combat entière. Les <strong>berserks Iron Warriors sont exterminés</strong> dans la déflagration — leur chair et leur métal fondus ensemble dans un hurlement de gloire à Khorne. Mais les Terminators Black Templars, sentant l'imminence du danger, avaient activé leurs systèmes de téléportation quelques secondes auparavant. Ils se matérialisent dans les soutes supérieures, indemnes, leurs armures encore fumantes.</p>
+              <p class="phase-label">Deuxième Charge — Iron Warriors de Khorne</p>
+              <p class="phase-text">Les <strong>berserks Iron Warriors</strong>, galvanisés par le sang versé, chargent à leur tour les Terminators. Ici, la précision disciplinée de la IV<sup>e</sup> Légion s'allie à la frénésie de Khorne — leurs coups sont calibrés autant que furieux. Les Terminators encaissent, ripostent. Le corps à corps est d'une violence rare, même aux standards de ce vaisseau qui en a vu d'autres. L'issue est incertaine.</p>
+            </div>
+          </li>
+          <li class="phase-item">
+            <div class="phase-dot">V</div>
+            <div class="phase-content">
+              <p class="phase-label">L'Explosion du Prométhéum — Retraite des Terminators</p>
+              <p class="phase-text">Un <strong>tir de fuseur surchargé</strong> — dont l'origine exacte reste débattue dans les rapports — perfore la paroi d'un conteneur de prométhéum de la salle des machines. L'explosion est dévastatrice : mur de feu, pression d'onde, métal en fusion. Les <strong>berserks Iron Warriors sont exterminés</strong> dans la déflagration, leur chair et leur armure fondues en une offrande improvisée au Trône de Crânes. Les <strong>Terminators Black Templars</strong>, sentant l'imminence du désastre, activent leurs systèmes de téléportation quelques secondes avant l'impact. Ils se matérialisent dans les ponts supérieurs, indemnes — mais sans leur Techmarine, sans le sabotage, sans rien sinon leurs vies sauvées de justesse. L'assaut sur l'<em>IronHeart</em> est un échec total.</p>
             </div>
           </li>
         </ul>
 
-        <p>L'<em>IronHeart</em> porte désormais les cicatrices de cette bataille dans ses entrailles calcinées. Le Techmarine est tombé, le sabotage a échoué. Mais les Terminators ont survécu — témoins silencieux d'une victoire amère.</p>
+        <p>L'<em>IronHeart</em> porte dans ses ponts inférieurs les traces de cette tentative audacieuse : coursives brûlées, cogitateurs intacts, et les restes calcinés de ses défenseurs comme autant d'offrandes à Khorne. Le vaisseau amiral tient. Sa flotte continue d'avancer.</p>
 
       </div>
     </section>
@@ -817,14 +808,14 @@
             <div class="phase-dot">I</div>
             <div class="phase-content">
               <p class="phase-label">Phase d'Approche — Échange de Tirs</p>
-              <p class="phase-text">Les deux <strong>Rhinos</strong> de Khorne avancent en terrain ouvert sous les rafales impériales, leurs coques criblées de marques de balles mais leurs moteurs rugissants. Le <strong>Land Raider Iron Warriors</strong> progresse avec une implacabilité mécanique, ses canons lourds répondant coup pour coup aux armes de Thaddeus. Les deux camps manœuvrent prudemment, chaque commandant sachant que les <strong>champs de mines</strong> dissimulés sous la poussière lunaire peuvent transformer une charge triomphante en catastrophe. Le Sénéchal Manfred ordonne à ses croisés de tenir la ligne : <em>"Pas de martyr inutile. Tenons les murs."</em></p>
+              <p class="phase-text">Les deux <strong>Rhinos</strong> de Khorne avancent en terrain ouvert sous les rafales impériales, leurs coques criblées de marques de balles mais leurs moteurs rugissants. Le <strong>Land Raider Iron Warriors</strong> progresse avec une implacabilité mécanique, ses canons lourds répondant coup pour coup aux armes du Dreadnought Thaddeus. Les deux camps manœuvrent prudemment, chaque commandant sachant que les <strong>champs de mines</strong> dissimulés sous la poussière lunaire peuvent transformer une charge triomphante en catastrophe. Le Sénéchal Manfred ordonne à ses croisés de tenir la ligne : <em>"Pas de martyr inutile. Tenons les murs."</em></p>
             </div>
           </li>
           <li class="phase-item">
             <div class="phase-dot">II</div>
             <div class="phase-content">
               <p class="phase-label">Le Contact — Corps à Corps Titanesque</p>
-              <p class="phase-text">Les portes des Rhinos s'ouvrent en hurlant. <strong>Kharak le Sanguinaire</strong> et <strong>Morgath le Faucheur</strong> jaillissent à la tête de leurs meutes sanglantes, leurs cris de guerre résonnant à travers les plaines de la lune. Le <strong>Métabrutus</strong> de fer forge son chemin à travers les lignes impériales comme un bélier vivant. Le <strong>Sénéchal Manfred</strong> et ses vingt croisés reçoivent le choc avec tout le fanatisme des fils de Sigismund — les lames s'entrechoquent, les boucliers se fracassent. Mais ils sont trop nombreux. La balance du combat penche inexorablement en faveur de l'alliance World Eaters – Iron Warriors. Les croisés tombent un à un, chacun vendant chèrement sa vie.</p>
+              <p class="phase-text">Les portes des Rhinos s'ouvrent en hurlant. <strong>Kharak le Sanguinaire</strong> et <strong>Morgath le Faucheur</strong> jaillissent à la tête de leurs meutes sanglantes, leurs cris de guerre résonnant à travers les plaines de la lune. Le <strong>Métabrutus</strong> de fer forge son chemin à travers les lignes impériales comme un bélier de métal maudit. Le <strong>Sénéchal Manfred</strong> et ses vingt croisés reçoivent le choc avec tout le fanatisme des fils de Sigismund — les lames s'entrechoquent, les boucliers se fracassent. Mais ils sont trop nombreux. La balance du combat penche inexorablement en faveur de l'alliance World Eaters – Iron Warriors. Les croisés tombent un à un, chacun vendant chèrement sa vie.</p>
             </div>
           </li>
           <li class="phase-item">
@@ -847,7 +838,7 @@
         <figure class="rapport-img-block">
           <img
             src="assets/img/rapport/sanctum/metabrutus-vs-char.jpg"
-            alt="Le Métabrutus Iron Warriors de Khorne dans son duel contre le char impérial sur la lune de Brokha — les runes de sang inscrites sur son blindage déchiré brillent d'une lueur rouge"
+            alt="Le Métabrutus Iron Warriors de Khorne dans son duel contre le char impérial sur la lune de Brokha — son blindage criblé d'impacts, les runes de sang gravées dans le métal brillent d'une lueur rouge sang"
             width="820"
             height="420"
             loading="lazy"
@@ -872,10 +863,10 @@
 
     <div class="bilan-block" role="region" aria-labelledby="bilan-titre">
       <p class="bilan-title" id="bilan-titre">✦ Analyse Post-Engagement — Cogitator B334-C</p>
-      <p>La journée du 216.M42 marque une victoire stratégique significative pour la coalition World Eaters – Iron Warriors de Khorne. Sur l'<em>IronHeart</em>, si les Terminators Black Templars ont survécu grâce à leur téléportation opportune, l'objectif de sabotage est un échec total et le Techmarine est perdu. Sur Brokha, le bilan impérial est lourd : le Dreadnought Thaddeus est détruit, le char Leman Russ réduit à l'état de ferraille, et les pertes parmi les croisés du Sénéchal Manfred sont sévères.</p>
-      <p>Le sacrifice du Métabrutus — acclamé dans les rangs hérétiques comme une offrande parfaite au Trône de Crânes — a ouvert la route vers la forteresse. Les forces de Kharak le Sanguinaire et de Morgath le Faucheur, à peine essoufflées malgré le carnage, se reforment déjà pour l'assaut final. L'Inquisiteur Hortis avait averti : <em>"Brokha n'a pas besoin de martyrs."</em> Elle en a produit de nombreux ce jour.</p>
+      <p>La stratégie impériale du 216.M42 était audacieuse : frapper simultanément le cœur de la flotte ennemie depuis l'intérieur de l'<em>IronHeart</em>, tout en tenant les portes de Brokha. Sur le papier, un coup décisif. Dans les faits, un désastre sur les deux fronts. L'assaut surprise sur l'<em>IronHeart</em> — le vaisseau amiral des Iron Warriors, chez eux, en territoire hostile — n'a jamais eu de chance réelle : le Techmarine est mort sans atteindre ses objectifs, et les Terminators ont fui sans avoir accompli leur mission.</p>
+      <p>Sur Brokha, le bilan impérial est tout aussi lourd : le Dreadnought Thaddeus est détruit, le char Leman Russ réduit à la ferraille, et les croisés du Sénéchal Manfred ont subi des pertes sévères. Le sacrifice du <strong>Métabrutus</strong> — acclamé dans les rangs hérétiques comme une offrande parfaite au Trône de Crânes — a ouvert la route vers la forteresse. Les forces de Kharak le Sanguinaire et de Morgath le Faucheur se reforment déjà. L'Inquisiteur Hortis avait averti : <em>"Brokha n'a pas besoin de martyrs."</em> Elle en a produit de nombreux ce jour.</p>
       <div class="rapport-alerte">
-        <p>Alerte maximale : la forteresse de Brokha est désormais à portée des forces hérétiques. Demande de renforts urgente transmise à l'Amiral de la flotte et au Haut-Sénéchal Helbrecht.</p>
+        <p>Alerte maximale : la forteresse de Brokha est désormais à portée des forces hérétiques. L'IronHeart navigue sans entrave. Demande de renforts urgente transmise à l'Amiral de la flotte et au Haut-Sénéchal Helbrecht.</p>
       </div>
     </div>
 
@@ -913,7 +904,6 @@
 
 <script>
 (function () {
-  // ── THEME TOGGLE
   const themeBtn = document.querySelector('[data-theme-toggle]');
   const root = document.documentElement;
   let theme = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -931,8 +921,6 @@
     root.setAttribute('data-theme', theme);
     updateThemeBtn();
   });
-
-  // ── NAV SCROLL + BACK-TO-TOP
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('nav--scrolled', window.scrollY > 60);
