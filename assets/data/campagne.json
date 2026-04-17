@@ -11,7 +11,7 @@
       "role": "Maître du jeu",
       "couleur": "gold",
       "delai": 2,
-      "armees": ["Black Templars", "Silver Templars", "Death Guard", "Nécrons"]
+      "armees": ["Black Templars", "Silver Templars", "Death Guard", "Nécrons", "Adeptus Mechanicus"]
     },
     {
       "nom": "Jean",

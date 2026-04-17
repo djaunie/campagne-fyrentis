@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/personnages-carousel.css">
   <style>
     /* ── BOUTONS DE NAVIGATION PAGES ─────────────────────────────────────── */
     .nav-page-links {
@@ -199,6 +200,11 @@
     .btn-armee--gi:hover { background:rgba(138,122,58,.20); border-color:#8a7a3a; box-shadow:0 0 20px rgba(138,122,58,.25); color:#d8c878; }
     .btn-armee--nc { color:#40dd88; border-color:rgba(26,200,100,.50); background:rgba(26,200,100,.07); }
     .btn-armee--nc:hover { background:rgba(26,200,100,.16); border-color:#1aff7a; box-shadow:0 0 22px rgba(26,255,122,.28); color:#80ffb8; }
+    /* ── ADEPTUS MECHANICUS — rouge sang / acier rouillé ── */
+    .btn-armee--am { color:#c8303a; border-color:rgba(192,40,50,.55); background:rgba(160,24,32,.10); }
+    .btn-armee--am:hover { background:rgba(160,24,32,.22); border-color:#c8303a; box-shadow:0 0 22px rgba(192,40,50,.40), 0 0 8px rgba(138,154,170,.18); color:#e05060; }
+    [data-theme="light"] .btn-armee--am { color:#7a0c14; border-color:rgba(122,12,20,.5); background:rgba(122,12,20,.06); }
+    [data-theme="light"] .btn-armee--am:hover { background:rgba(122,12,20,.14); border-color:#7a0c14; color:#4a0408; }
     [data-theme="light"] .btn-armee--iw { color:#5a3a18; border-color:rgba(90,58,24,.5);  background:rgba(90,58,24,.06); }
     [data-theme="light"] .btn-armee--iw:hover { background:rgba(90,58,24,.14); border-color:#5a3a18; color:#3a2008; }
     [data-theme="light"] .btn-armee--st { color:#2a3a50; border-color:rgba(42,58,80,.5);  background:rgba(42,58,80,.06); }
@@ -217,13 +223,6 @@
     [data-theme="light"] .btn-armee--nc:hover { background:rgba(0,106,48,.14); border-color:#006a30; color:#003a18; }
 
     /* ── PLAYER CARDS — alignées sur la palette armée principale du joueur ───── */
-    /*
-     * Jean   (red)    → World Eaters (--we)
-     * David  (blue)   → Blood Angels (--ba)
-     * Jérémy (green)  → Garde Impériale (--gi)
-     * Vincent(purple) → Iron Warriors de Khorne (--iw)
-     * Freddy (gold)   → Black Templars / MJ (--bt)
-     */
     .player-card--red::before    { background: var(--army-we-fg); }
     .player-card--blue::before   { background: var(--army-ba-fg); }
     .player-card--green::before  { background: var(--army-gi-fg); }
@@ -236,33 +235,23 @@
     .player-card--purple .player-armies li::before { background: var(--army-iw-fg); }
     .player-card--gold  .player-armies li::before { background: var(--army-bt-fg); }
 
-    /* Couleur du rôle joueur (la petite ligne en Cinzel sous le nom) */
     .player-card--red   .player-role { color: var(--army-we-fg); }
     .player-card--blue  .player-role { color: var(--army-ba-fg); }
     .player-card--green .player-role { color: var(--army-gi-fg); }
     .player-card--purple .player-role { color: var(--army-iw-fg); }
     .player-card--gold  .player-role { color: var(--army-bt-fg); }
 
-    /* Hover glow sur les cartes joueurs */
     .player-card--red:hover    { box-shadow: 0 8px 32px rgba(224, 80, 80, 0.18); }
     .player-card--blue:hover   { box-shadow: 0 8px 32px rgba(204, 68, 68, 0.18); }
     .player-card--green:hover  { box-shadow: 0 8px 32px rgba(184, 168, 96, 0.18); }
     .player-card--purple:hover { box-shadow: 0 8px 32px rgba(200, 168, 120, 0.18); }
     .player-card--gold:hover   { box-shadow: 0 8px 32px rgba(212, 168, 40, 0.18); }
 
-    /* ── CHAR-LORE — barre gauche par armée (alias génériques → codes armée) ── */
-    /*
-     * .red   → World Eaters → --army-we-bar
-     * .blue  → Blood Angels → --army-ba-bar
-     * .gold  → Black Templars/Grimdark → --army-bt-bar
-     * .green → Orks         → couleur ork
-     */
     .char-lore.red   { border-left-color: var(--army-we-bar); color: var(--color-text-muted); }
     .char-lore.blue  { border-left-color: var(--army-ba-bar); color: var(--color-text-muted); }
     .char-lore.gold  { border-left-color: var(--army-bt-bar); color: var(--color-text-muted); }
     .char-lore.green { border-left-color: #6aaa3c; color: var(--color-text-muted); }
 
-    /* ── FACTION TAGS — ork style cohérent avec les autres armées ────────────── */
     .faction-tag--ork {
       background: rgba(58, 106, 28, 0.12);
       border-color: rgba(106, 170, 60, 0.45);
@@ -270,7 +259,6 @@
     }
     .faction-tag--ork:where(*)  { /* précision sans surcharge */ }
 
-    /* ── LIGHT MODE overrides pour player-cards ─────────────────────────────── */
     [data-theme="light"] .player-card--red::before    { background: var(--army-we-fg); }
     [data-theme="light"] .player-card--blue::before   { background: var(--army-ba-fg); }
     [data-theme="light"] .player-card--green::before  { background: var(--army-gi-fg); }
@@ -355,6 +343,7 @@
       <a href="death-guard.html"             class="btn-armee btn-armee--dg">☣ Death Guard</a>
       <a href="garde-imperiale.html"         class="btn-armee btn-armee--gi">🦅 Garde Impériale</a>
       <a href="necrons.html"                 class="btn-armee btn-armee--nc">☥ Nécrons</a>
+      <a href="adeptus-mechanicus.html"      class="btn-armee btn-armee--am">⚙ Adeptus Mechanicus</a>
     </div>
   </div>
   <span class="hero-scroll" aria-hidden="true">Défiler</span>
@@ -453,7 +442,6 @@
         <img src="assets/img/carroussel/28.jpg" loading="lazy">
       </li>
     </ul>
-    </ul>
 
     <button class="carousel__btn carousel__btn--prev" aria-label="Image précédente">&#10094;</button>
     <button class="carousel__btn carousel__btn--next" aria-label="Image suivante">&#10095;</button>
@@ -500,17 +488,17 @@
 </section>
 
 <!-- PERSONNAGES -->
-<section id="personnages" class="bg-surface">
-  <div class="container--wide">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-eyebrow">Légendes du Secteur</p>
-        <h2 class="section-title">Personnages <span>Clés</span></h2>
-        <p class="section-desc">Des héros et des monstres dont les actes résonneront à travers les âges.</p>
-      </div>
+<section id="personnages" class="bg-surface perso-carousel-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Légendes du Secteur</p>
+      <h2 class="section-title">Personnages <span>Clés</span></h2>
+      <p class="section-desc">Des héros et des monstres dont les actes résonneront à travers les âges.</p>
     </div>
-    <div class="chars-grid" id="chars-grid"></div>
   </div>
+
+  <!-- Zone d'injection du carrousel — remplie par personnages-carousel.js -->
+  <div id="perso-carousel-container" class="container"></div>
 </section>
 
 <footer>
@@ -575,10 +563,6 @@
 
   function delayClass(n) { return n ? ` reveal-delay-${n}` : ''; }
 
-  /* ──────────────────────────────────────────────────────────────────
-   * MAPPING couleur joueur → code armée
-   * Utilisé pour ajouter un badge d'armée coloré sous chaque joueur
-   * ────────────────────────────────────────────────────────────────── */
   const COULEUR_TO_ARMEE = {
     red:    { code: 'we',  label: 'World Eaters' },
     blue:   { code: 'ba',  label: 'Blood Angels' },
@@ -650,36 +634,6 @@
     }).join('');
   }
 
-  /* ──────────────────────────────────────────────────────────────────
-   * MAPPING couleur perso → code armée pour la barre char-lore
-   * ────────────────────────────────────────────────────────────────── */
-  const COULEUR_TO_LORE_CLASS = {
-    red:    'we',
-    blue:   'ba',
-    gold:   'bt',
-    green:  'green'   /* Orks — pas de code armée dédié, classe CSS .green */
-  };
-
-  function renderPersonnages(personnages) {
-    document.getElementById('chars-grid').innerHTML = personnages.map(p => {
-      const loreClass = COULEUR_TO_LORE_CLASS[p.couleur] || p.couleur;
-      const statsHTML = p.stats.length ? `<div class="char-stats">${p.stats.map(s =>
-        `<div class="char-stat"><span class="char-stat-val">${s.valeur}</span><span class="char-stat-label">${s.label}</span></div>`
-      ).join('')}</div>` : '';
-      return `<article class="char-card reveal${delayClass(p.delai)}">
-        <div class="char-card-header">
-          <p class="char-faction">${p.faction}</p>
-          <h3 class="char-name">${p.nom}</h3>
-          <p class="char-title">${p.titre}</p>
-        </div>
-        <div class="char-body">
-          <p class="char-lore ${loreClass}">${p.lore}</p>
-          ${statsHTML}
-        </div>
-      </article>`;
-    }).join('');
-  }
-
   // ── MAIN : FETCH + RENDER
   fetch('assets/data/campagne.json')
     .then(r => r.json())
@@ -687,13 +641,14 @@
       renderJoueurs(d.joueurs);
       renderLore(d.lore);
       renderFronts(d.fronts);
-      renderPersonnages(d.personnages);
-      initReveal();
       initTabs();
     })
     .catch(err => {
       console.error('Erreur chargement campagne.json :', err);
       document.body.insertAdjacentHTML('afterbegin', '<div style="background:#8b1c1c;color:#fff;padding:1rem;text-align:center">Erreur : impossible de charger campagne.json</div>');
+    })
+    .finally(() => {
+      initReveal(); // Toujours exécuté, même si le fetch échoue
     });
 
   // ── CARROUSEL
@@ -753,6 +708,6 @@
 
 })();
 </script>
-
+<script src="assets/js/personnages-carousel.js"></script>
 </body>
 </html>

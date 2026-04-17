@@ -1,41 +1,46 @@
-# campagne-fyrentis
+# campagne-fyrentis-2
 
-Site web statique pour la campagne narrative Warhammer 40,000 — Sous-secteur Fyrentis.
+Site web statique pour la campagne narrative Warhammer 40,000 — Sous-secteur Fyrentis (Saison 2).
 
-> **Site en ligne :** [djaunie.github.io/campagne-fyrentis](https://djaunie.github.io/campagne-fyrentis)
+> **Site en ligne :** [djaunie.github.io/campagne-fyrentis-2](https://djaunie.github.io/campagne-fyrentis-2)
 
 ---
 
 ## Structure du projet
 
 ```
-campagne-fyrentis/
-├── index.html                    # Page d'accueil — hub de navigation
-├── carte.html                    # Carte interactive du sous-secteur
-├── sanctum.html                  # Fiche du système Sanctum
-├── regles.html                   # Recapitulatif des règles
-├── black-templars.html           # Fiche armée — Black Templars (Freddy)
-├── blood-angels.html             # Fiche armée — Blood Angels (David)
-├── death-guard.html              # Fiche armée — Death Guard (Freddy)
-├── garde-imperiale.html          # Fiche armée — Garde Impériale (Jeremy)
-├── iron-warriors-de-khorne.html  # Fiche armée — Iron Warriors de Khorne (Vincent)
-├── necrons.html                  # Fiche armée — Nécrons (Freddy)
-├── silver-templars.html          # Fiche armée — Silver Templars (Freddy)
-├── world-eaters.html             # Fiche armée — World Eaters (Jean)
+campagne-fyrentis-2/
+├── index.html                        # Page d'accueil — hub de navigation
+├── carte.html                        # Carte interactive du sous-secteur
+├── sanctum.html                      # Fiche du système Sanctum
+├── rapports-inquisiteurs.html        # Rapports des inquisiteurs
+├── regles.html                       # Récapitulatif des règles
+├── adeptus-mechanicus.html           # Fiche armée — Adeptus Mechanicus (Freddy)
+├── black-templars.html               # Fiche armée — Black Templars (Freddy)
+├── blood-angels.html                 # Fiche armée — Blood Angels (David)
+├── death-guard.html                  # Fiche armée — Death Guard (Freddy)
+├── garde-imperiale.html              # Fiche armée — Garde Impériale (Jeremy)
+├── iron-warriors-de-khorne.html      # Fiche armée — Iron Warriors de Khorne (Vincent)
+├── necrons.html                      # Fiche armée — Nécrons (Freddy)
+├── silver-templars.html              # Fiche armée — Silver Templars (Freddy)
+├── world-eaters.html                 # Fiche armée — World Eaters (Jean)
 ├── README.md
 └── assets/
-    ├── css/                        # Feuilles de style
-    ├── img/                        # Images et illustrations
-    └── data/                       # Données JSON (scores, armées, etc.)
+    ├── css/                          # Feuilles de style (thème Warhammer 40K)
+    ├── js/                           # Scripts JavaScript (interactions, carte dynamique, scores)
+    ├── img/                          # Images, illustrations et bannières des factions
+    └── data/                         # Données JSON (scores, armées, résultats de batailles)
 ```
 
 ---
 
 ## Technologies utilisées
 
-- **HTML5 / CSS3** — site entièrement statique, sans framework
-- **JavaScript vanilla** — interactions et navigation
-- **GitHub Pages** — hébergement gratuit depuis la branche `main`
+- **HTML5 / CSS3** — site entièrement statique, sans framework front-end
+- **JavaScript vanilla** — gestion des interactions, cartes dynamiques et navigation
+- **JSON** — stockage des données de campagne (scores, armées, résultats)
+- **GitHub Pages** — hébergement gratuit et déploiement automatique depuis la branche `master`
+- **Git** — gestion de version et collaboration entre joueurs
 
 ---
 
@@ -44,8 +49,8 @@ campagne-fyrentis/
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/djaunie/campagne-fyrentis.git
-cd campagne-fyrentis
+git clone https://github.com/djaunie/campagne-fyrentis-2.git
+cd campagne-fyrentis-2
 ```
 
 ### 2. Ouvrir le site en local
@@ -70,14 +75,14 @@ git add .
 # 3. Créer le commit avec un message descriptif
 git commit -m "Mise à jour fiche World Eaters"
 
-# 4. Pousser vers GitHub (branche main)
-git push origin main
+# 4. Pousser vers GitHub (branche master)
+git push origin master
 ```
 
 ### Récupérer les dernières modifications (si travail à plusieurs)
 
 ```bash
-git pull origin main
+git pull origin master
 ```
 
 ### Vérifier l'historique des commits
@@ -90,14 +95,14 @@ git log --oneline
 
 ## Déploiement — GitHub Pages
 
-Le site est déployé automatiquement depuis la branche `main` via **GitHub Pages**.
+Le site est déployé automatiquement depuis la branche `master` via **GitHub Pages**.
 
 Pour activer ou vérifier le déploiement :
 1. Aller dans **Settings** du dépôt sur GitHub
-2. Section **Pages** → Source : `Deploy from a branch` → branche `main` → dossier `/ (root)`
-3. Le site est accessible à l'adresse : `https://djaunie.github.io/campagne-fyrentis`
+2. Section **Pages** → Source : `Deploy from a branch` → branche `master` → dossier `/ (root)`
+3. Le site est accessible à l'adresse : `https://djaunie.github.io/campagne-fyrentis-2`
 
-Chaque `git push` sur `main` déclenche automatiquement une mise à jour du site (délai ~1 minute).
+Chaque `git push` sur `master` déclenche automatiquement une mise à jour du site (délai ~1 minute).
 
 ---
 
@@ -116,7 +121,7 @@ cp world-eaters.html nouvelle-faction.html
 # 4. Pousser
 git add nouvelle-faction.html index.html
 git commit -m "Ajout page nouvelle-faction"
-git push origin main
+git push origin master
 ```
 
 ---
@@ -128,8 +133,8 @@ git push origin main
 | `git status` | Voir les fichiers modifiés / non suivis |
 | `git add .` | Ajouter tous les changements à l'index |
 | `git commit -m "message"` | Créer un commit |
-| `git push origin main` | Envoyer les commits vers GitHub |
-| `git pull origin main` | Récupérer les derniers commits depuis GitHub |
+| `git push origin master` | Envoyer les commits vers GitHub |
+| `git pull origin master` | Récupérer les derniers commits depuis GitHub |
 | `git log --oneline` | Historique des commits (format court) |
 | `git diff` | Voir les modifications non encore commitées |
 | `git restore nom-fichier` | Annuler les modifications d'un fichier |

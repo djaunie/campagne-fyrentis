@@ -332,11 +332,185 @@
       max-width: 65ch;
     }
 
+    /* ── BLOC DÉCLASSIFIÉ ─────────────────────────────────────── */
+    .declassifie-bloc {
+      width: 100%;
+      background: rgba(10, 8, 4, 0.65);
+      border: 1px solid rgba(200,160,40,0.35);
+      border-top: 3px solid var(--bt-gold);
+      border-radius: 2px;
+      padding: 1.75rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .declassifie-bloc::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(200,160,40,0.025) 0px,
+        rgba(200,160,40,0.025) 1px,
+        transparent 1px,
+        transparent 6px
+      );
+      pointer-events: none;
+    }
+    [data-theme="light"] .declassifie-bloc {
+      background: rgba(240,236,225,0.75);
+      border-color: rgba(138,104,0,0.35);
+      border-top-color: var(--bt-gold);
+    }
+
+    .declassifie-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid rgba(200,160,40,0.2);
+    }
+    .declassifie-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #0a0804;
+      background: var(--bt-gold);
+      padding: 0.22rem 0.6rem;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .declassifie-header-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.7rem, 1.8vw, 0.88rem);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bt-gold);
+      flex: 1;
+    }
+
+    .declassifie-entries {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .declassifie-entry {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.6rem 0.85rem;
+      align-items: start;
+    }
+
+    .declassifie-entry-icon {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--bt-gold-dim);
+      border-radius: 2px;
+      background: var(--bt-gold-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--bt-gold);
+      margin-top: 0.1rem;
+    }
+
+    .declassifie-entry-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bt-gold);
+      margin-bottom: 0.22rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .status-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.12rem 0.45rem;
+      border-radius: 2px;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+    .status-tag--operationnel {
+      color: #5aaa5a;
+      border-color: rgba(90,170,90,0.4);
+      background: rgba(90,170,90,0.08);
+    }
+    .status-tag--ruine {
+      color: #c84040;
+      border-color: rgba(200,60,60,0.4);
+      background: rgba(200,60,60,0.07);
+    }
+    .status-tag--actif {
+      color: var(--bt-gold);
+      border-color: var(--bt-gold-dim);
+      background: var(--bt-gold-bg);
+    }
+    [data-theme="light"] .status-tag--operationnel {
+      color: #2a7a2a;
+      border-color: rgba(42,122,42,0.4);
+      background: rgba(42,122,42,0.07);
+    }
+    [data-theme="light"] .status-tag--ruine {
+      color: #8b1c1c;
+      border-color: rgba(139,28,28,0.4);
+      background: rgba(139,28,28,0.06);
+    }
+
+    .declassifie-entry-text {
+      font-family: 'Crimson Text', serif;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--color-text-muted, #9a9896);
+    }
+    [data-theme="light"] .declassifie-entry-text {
+      color: #4a4540;
+    }
+    .declassifie-entry-text em {
+      color: var(--bt-gold);
+      font-style: normal;
+    }
+
+    .declassifie-separator {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(200,160,40,0.2), transparent);
+      margin: 0;
+    }
+
+    .declassifie-footer {
+      margin-top: 1.3rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(200,160,40,0.15);
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(200,160,40,0.45);
+      text-align: right;
+    }
+
     @media (max-width: 600px) {
       .nav-page-links { gap: 0.35rem; }
       .btn-nav-page   { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
       .censure-bloc   { padding: 1.25rem 1rem; }
       .censure-bandeau { padding: 1rem; gap: 0.75rem; }
+      .declassifie-bloc { padding: 1.25rem 1rem; }
+      .declassifie-entry { grid-template-columns: 1fr; }
+      .declassifie-entry-icon { display: none; }
     }
   </style>
 </head>
@@ -425,7 +599,7 @@
 
         <!-- Référence de document -->
         <p class="censure-ref reveal">
-          <strong>Réf. Doc. :</strong> OHI-FYRENTIS-BT-██████ — Classifié <strong>Extremis Obscura</strong><br>
+          <strong>Réf. Doc. :</strong> OHI-FYRENTIS-BT-██████ — Classifié <strong>Extremis Obscura</strong><br>
           Ce dossier a été placé sous scellé inquisitorial par décision de l'Ordo Hereticus, <em>en attente de vérification des activités du Réclusiarque Grimaldus dans le sous-secteur Fyrentis.</em>
           Tout accès non autorisé constitue un acte d'hérésie passible du bûcher.
         </p>
@@ -480,6 +654,96 @@
             <div class="censure-ligne censure-ligne--moyen"></div>
           </div>
         </div>
+
+        <!-- ══════════════════════════════════════════════════════════
+             BLOC IV : DÉCLASSIFICATION PARTIELLE — SITUATION TACTIQUE
+             ══════════════════════════════════════════════════════════ -->
+        <div class="declassifie-bloc reveal">
+
+          <div class="declassifie-header">
+            <span class="declassifie-badge">Déclassifié</span>
+            <span class="declassifie-header-title">Situation Tactique — Secteur Sanctum &amp; Orbite</span>
+          </div>
+
+          <div class="declassifie-entries">
+
+            <!-- Entrée 1 : Lune-Forteresse Brokha -->
+            <div class="declassifie-entry">
+              <div class="declassifie-entry-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/><circle cx="17" cy="5" r="1.5" fill="currentColor"/></svg>
+              </div>
+              <div class="declassifie-entry-content">
+                <p class="declassifie-entry-label">
+                  Lune-Forteresse Brokha
+                  <span class="status-tag status-tag--actif">En orbite — Sanctum</span>
+                </p>
+                <p class="declassifie-entry-text">
+                  Station orbitale de classe forteresse, en orbite stabilisée autour de <em>Sanctum</em>. Les garnisons du Chapitre — désignées collectivement sous l'appellation <em>Croisés de Brokha</em> — en tiennent l'intégralité des secteurs défensifs. Aucune brèche signalée. L'accès y est conditionnel à l'accréditation de rang Croisé ou supérieur.
+                </p>
+              </div>
+            </div>
+
+            <div class="declassifie-separator"></div>
+
+            <!-- Entrée 2 : Bastion Alpha -->
+            <div class="declassifie-entry">
+              <div class="declassifie-entry-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              </div>
+              <div class="declassifie-entry-content">
+                <p class="declassifie-entry-label">
+                  Bastion Alpha
+                  <span class="status-tag status-tag--operationnel">Intact — Sous contrôle</span>
+                </p>
+                <p class="declassifie-entry-text">
+                  Position fortifiée confirmée comme opérationnelle. Les défenses périmètriques sont intactes et le commandement du Bastion Alpha est assuré par les frères du Chapitre. <em>Aucune menace ennemie active n'a été enregistrée à ce poste lors du dernier rapport de situation.</em>
+                </p>
+              </div>
+            </div>
+
+            <div class="declassifie-separator"></div>
+
+            <!-- Entrée 3 : Bastion Bêta -->
+            <div class="declassifie-entry">
+              <div class="declassifie-entry-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+              </div>
+              <div class="declassifie-entry-content">
+                <p class="declassifie-entry-label">
+                  Bastion Bêta
+                  <span class="status-tag status-tag--ruine">En ruines</span>
+                </p>
+                <p class="declassifie-entry-text">
+                  La position est <em>hors d'état de combattre</em>. Les structures du Bastion Bêta ont été réduites en ruines lors d'engagements antérieurs non documentés dans ce rapport. Le secteur est à considérer comme zone de combat potentielle et constitue un objectif tactique de reconquête ou de déni d'accès à l'ennemi.
+                </p>
+              </div>
+            </div>
+
+            <div class="declassifie-separator"></div>
+
+            <!-- Entrée 4 : Flotte de Croisade Helbrecht -->
+            <div class="declassifie-entry">
+              <div class="declassifie-entry-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div class="declassifie-entry-content">
+                <p class="declassifie-entry-label">
+                  Flotte de Croisade — Helbrecht
+                  <span class="status-tag status-tag--actif">Visible depuis Sanctum</span>
+                </p>
+                <p class="declassifie-entry-text">
+                  La flotte de croisade placée sous le commandement du Haut Maréchal <em>Helbrecht</em> est visible à l'œil nu depuis la surface de Sanctum. Son envergure — vaisseaux de ligne, croiseurs d'escorte et transports d'assaut — est telle qu'elle constitue à elle seule <em>un théâtre d'opérations à part entière</em>, susceptible d'accueillir des missions d'abordage, de défense orbitale ou de représailles. Son statut tactique est classé <em>Zone d'Engagement Secondaire — Priorité Croisade</em>.
+                </p>
+              </div>
+            </div>
+
+          </div><!-- /declassifie-entries -->
+
+          <p class="declassifie-footer">
+            Extrait autorisé — OHI-FYRENTIS-BT-SITREP-04 · Déclassification partielle accordée par autorité du Commandeur de la Croisade
+          </p>
+
+        </div><!-- /declassifie-bloc -->
 
         <!-- Note inquisitoriale -->
         <div class="nota-bene reveal">
