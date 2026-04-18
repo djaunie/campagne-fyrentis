@@ -144,6 +144,17 @@
       "image_alt": "Vue panoramique du monde-forge Sanctum, avec cité-usine gothique et Titan en maintenance",
       "batailles": [
         {
+          "label": "Brokha • Grande Bataille",
+          "titre": "La lune Brokha",
+          "texte": "Les Black Templars défende la lune Brokha d'une invasion chaotique.",
+          "classe": "battle-entry--victory",
+          "factions": [
+            { "label": "World Eaters", "classe": "faction-tag--we" },
+            { "label": "Iron Warriors de Khorne", "classe": "faction-tag--iw" },
+            { "label": "Black Templars", "classe": "faction-tag--bt" }
+          ]
+        },
+        {
           "label": "Colchis • Grande Bataille",
           "titre": "La Cité-Ruche Grimah",
           "texte": "Grimaldus et les Black Templars défendent la cité-ruche contre Angron et ses Octoliés. Le Héros de Helsreach défie Angron en combat singulier — un halo sacré se manifeste autour de lui. Malgré l'héroïsme des Templiers, la Porte Est tombe. Le Seigneur Invocatus avec ses Ferrocerberus Scythak et Morthrex ravage la Porte Ouest.",
