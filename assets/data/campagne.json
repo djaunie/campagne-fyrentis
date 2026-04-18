@@ -146,7 +146,7 @@
         {
           "label": "Brokha • Grande Bataille",
           "titre": "La lune Brokha",
-          "texte": "Les Black Templars défende la lune Brokha d'une invasion chaotique.",
+          "texte": "Les Black Templars défendent la lune Brokha d'une invasion chaotique. Plus d'info en cliquant sur ce rapport.",
           "classe": "battle-entry--victory",
           "factions": [
             { "label": "World Eaters", "classe": "faction-tag--we" },
