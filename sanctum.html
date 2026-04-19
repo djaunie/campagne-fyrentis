@@ -104,7 +104,6 @@
     .danger-pip { width: 14px; height: 6px; border-radius: 2px; background: var(--faint); }
     .danger-pip.on { background: var(--red-bright); }
 
-    /* ÉDITEUR TACTIQUE */
     .editor-section { padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--border); }
     .editor-section h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dim); margin-bottom: 0.7rem; }
     .editor-row { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.75rem; }
@@ -223,6 +222,8 @@
 <script>
 (function () {
 
+  const STORAGE_KEY = 'fyrentis-sanctum-tactical-state';
+
   const FACTION_ICONS = {
     'Mechanicus': '⚙', 'Black Templars': '✠', 'Inquisition': '☩',
     'Blood Angels': '🩸', 'Garde Impériale': '⚔', 'default': '★'
@@ -265,6 +266,34 @@
       imperial_status_label: '⚠ Inachevé — Vulnérable', imperial_status_class: 'warn'
     }
   ];
+
+  function saveTacticalState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        flags: state.flags,
+        ships: state.ships,
+        shipCounter: state.shipCounter
+      }));
+    } catch (e) {
+      console.warn('Sauvegarde impossible :', e);
+    }
+  }
+
+  function loadTacticalState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return {
+        flags: parsed.flags && typeof parsed.flags === 'object' ? parsed.flags : null,
+        ships: Array.isArray(parsed.ships) ? parsed.ships : null,
+        shipCounter: Number.isFinite(parsed.shipCounter) ? parsed.shipCounter : null
+      };
+    } catch (e) {
+      console.warn('Chargement sauvegarde impossible :', e);
+      return null;
+    }
+  }
 
   function statusClass(status) {
     if (!status) return 'imp';
@@ -334,7 +363,6 @@
       }
     });
 
-    // Bastions — rendus comme des planètes
     const bpos = [ polar(RADII[0] - 30, 60), polar(RADII[1] + 30, 200) ];
     BASTION_DATA.forEach((bd, i) => {
       const bp = bpos[i];
@@ -395,15 +423,26 @@
     state.shipCounter += 1;
     state.ships.push({ id: 'ship-' + state.shipCounter, type, x: CX + 140, y: CY - 120 });
     renderShips();
+    saveTacticalState();
   }
 
-  function clearShips() { state.ships = []; renderShips(); }
-  function clearFlags() { state.flags = {}; renderFlags(); }
+  function clearShips() {
+    state.ships = [];
+    renderShips();
+    saveTacticalState();
+  }
+
+  function clearFlags() {
+    state.flags = {};
+    renderFlags();
+    saveTacticalState();
+  }
 
   function setPlanetFlag(pid) {
     const faction = document.getElementById('faction-select').value;
     state.flags[pid] = faction;
     renderFlags();
+    saveTacticalState();
   }
 
   function bindShipDragging() {
@@ -428,7 +467,11 @@
       ship.y = Math.max(20, Math.min(540, p.y - state.drag.dy));
       renderShips();
     });
-    const endDrag = () => { state.drag = null; document.querySelectorAll('.ship-token.dragging').forEach(el => el.classList.remove('dragging')); };
+    const endDrag = () => {
+      if (state.drag) saveTacticalState();
+      state.drag = null;
+      document.querySelectorAll('.ship-token.dragging').forEach(el => el.classList.remove('dragging'));
+    };
     svg.addEventListener('pointerup', endDrag);
     svg.addEventListener('pointerleave', endDrag);
   }
@@ -549,8 +592,17 @@
       document.getElementById('star-type').textContent = sys.star.type;
       document.getElementById('sb-title').textContent = sys.name;
       buildOrrery(sys);
+
       if (sys.planets) sys.planets.forEach(p => { if (p.occupation_flag) state.flags[String(p.id)] = p.occupation_flag; });
       if (sys.ships) { state.ships = sys.ships.map(s => ({ ...s })); state.shipCounter = sys.ships.length; }
+
+      const savedState = loadTacticalState();
+      if (savedState) {
+        if (savedState.flags) state.flags = savedState.flags;
+        if (savedState.ships) state.ships = savedState.ships;
+        if (savedState.shipCounter !== null) state.shipCounter = savedState.shipCounter;
+      }
+
       bindClicks(sys);
       bindEditor();
       renderWarpAlert(sys.warp_route);
