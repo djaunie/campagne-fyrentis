@@ -34,34 +34,27 @@
     html { font-family: 'Crimson Text', Georgia, serif; background: var(--bg); color: var(--text); height: 100%; }
     body { min-height: 100dvh; display: flex; flex-direction: column; }
 
-    /* NAV */
     nav { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; gap: 1rem; }
     .nav-title { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; }
     .nav-links { display: flex; gap: 1.25rem; list-style: none; flex-wrap: wrap; }
     .nav-links a { font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
-    /* LAYOUT */
     .page-layout { display: grid; grid-template-columns: 1fr 340px; flex: 1; overflow: hidden; height: calc(100dvh - 49px); }
     @media (max-width: 960px) { .page-layout { grid-template-columns: 1fr; height: auto; overflow: visible; } }
 
-    /* ORRERY ZONE */
     .orrery-zone { position: relative; overflow: hidden; background: radial-gradient(ellipse at 50% 50%, #10100a 0%, #0d0b09 80%); display: flex; flex-direction: column; }
     .orrery-zone::before { content:''; position:absolute; inset:0; background-image: radial-gradient(circle, rgba(255,255,200,0.12) 1px, transparent 1px); background-size: 35px 35px; opacity: 0.12; pointer-events: none; }
-
     .orrery-header { padding: 1.2rem 1.5rem 0.5rem; position: relative; z-index: 1; }
     .orrery-title { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.1em; }
     .orrery-subtitle { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-top: 0.2rem; }
-
     #orrery-svg { width: 100%; flex: 1; cursor: default; }
 
-    /* Orbits */
     .orbit-ring { fill: none; stroke: var(--faint); stroke-width: 0.8; stroke-dasharray: 4 6; opacity: 0.5; }
     .warp-path { fill: none; stroke: var(--purple); stroke-width: 1.5; stroke-dasharray: 6 5; opacity: 0.55; }
     @keyframes warp-pulse { 0%,100%{stroke-dashoffset:0;} 100%{stroke-dashoffset:-44;} }
     .warp-path { animation: warp-pulse 4s linear infinite; }
 
-    /* Planet groups */
     .planet-group { cursor: pointer; }
     .planet-group:focus { outline: none; }
     .planet-bg { transition: filter 0.25s, r 0.25s; }
@@ -70,11 +63,17 @@
     .planet-label { font-family: 'Cinzel', serif; font-size: 8px; fill: var(--text); pointer-events: none; }
     .planet-sublabel { font-size: 7px; fill: var(--muted); pointer-events: none; font-family: 'Crimson Text', serif; font-style: italic; }
 
-    /* Danger pips */
     @keyframes danger-blink { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
     .danger-4 .planet-bg { animation: danger-blink 1.8s ease-in-out infinite; }
 
-    /* SIDEBAR */
+    .flag-group { cursor: pointer; }
+    .flag-label { font-family: 'Cinzel', serif; font-size: 7px; fill: var(--text); pointer-events: none; }
+    .ship-token { cursor: grab; }
+    .ship-token.dragging { cursor: grabbing; }
+    .ship-body { stroke: #111; stroke-width: 0.9; }
+    .ship-label { font-size: 6.5px; fill: var(--text); pointer-events: none; font-family: 'Crimson Text', serif; }
+    .ship-hitbox { fill: transparent; }
+
     .sidebar { background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; }
     .sidebar-top { padding: 1.25rem 1.25rem 0.75rem; border-bottom: 1px solid var(--border); }
     .sidebar-top h2 { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold); margin-bottom: 0.2rem; }
@@ -105,23 +104,21 @@
     .danger-pip { width: 14px; height: 6px; border-radius: 2px; background: var(--faint); }
     .danger-pip.on { background: var(--red-bright); }
 
-    /* BASTIONS SECTION (sidebar list) */
-    .bastions-section { padding: 1rem 1.25rem; border-top: 1px solid var(--border); }
-    .bastions-section h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dim); margin-bottom: 0.7rem; }
-    .bastion-list { display: flex; flex-direction: column; gap: 0.5rem; }
-    .bastion-card { padding: 0.6rem 0.75rem; background: var(--surface-2); border: 1px solid var(--border); border-radius: 4px; }
-    .bastion-name { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--text); margin-bottom: 0.15rem; }
-    .bastion-status { font-size: 0.7rem; padding: 0.1rem 0.4rem; border-radius: 999px; display: inline-block; margin-bottom: 0.3rem; }
-    .status--ok { background: rgba(42,107,48,0.2); color: var(--green-bright); border: 1px solid var(--green); }
-    .status--warn { background: rgba(200,90,26,0.2); color: var(--orange-bright); border: 1px solid var(--orange); }
-    .bastion-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.45; }
+    /* ÉDITEUR TACTIQUE */
+    .editor-section { padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--border); }
+    .editor-section h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dim); margin-bottom: 0.7rem; }
+    .editor-row { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.75rem; }
+    .editor-row label { font-size: 0.74rem; color: var(--muted); }
+    .editor-row select { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); padding: 0.45rem 0.55rem; border-radius: 4px; font-family: 'Crimson Text', serif; font-size: 0.85rem; }
+    .editor-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.5rem; }
+    .editor-actions button { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.78rem; cursor: pointer; transition: 0.2s ease; }
+    .editor-actions button:hover { border-color: var(--gold-dim); color: var(--gold); }
+    .editor-help { font-size: 0.74rem; color: var(--muted); line-height: 1.45; margin-top: 0.75rem; }
 
-    /* WARP ALERT */
     .warp-alert { margin: 0.75rem 1.25rem 1rem; padding: 0.65rem 0.85rem; background: rgba(122,92,158,0.12); border: 1px solid rgba(122,92,158,0.4); border-radius: 4px; }
     .warp-alert-title { font-family: 'Cinzel', serif; font-size: 0.72rem; color: #a080cc; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.3rem; }
     .warp-alert-text { font-size: 0.78rem; color: var(--muted); line-height: 1.45; }
 
-    /* PERSONNAGES */
     .figures-section { padding: 0.75rem 1.25rem 1.25rem; border-top: 1px solid var(--border); }
     .figures-section h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dim); margin-bottom: 0.6rem; }
     .figure-item { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.45rem; }
@@ -129,7 +126,6 @@
     .figure-info p { font-size: 0.8rem; color: var(--text); line-height: 1.3; }
     .figure-info span { font-size: 0.72rem; color: var(--muted); }
 
-    /* EMPTY STATE */
     .empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; color: var(--muted); gap: 0.6rem; }
     .empty-state-icon { font-size: 2rem; opacity: 0.35; }
     .empty-state p { font-size: 0.83rem; line-height: 1.5; }
@@ -147,7 +143,6 @@
 
 <div class="page-layout">
 
-  <!-- ORRERY -->
   <div class="orrery-zone">
     <div class="orrery-header">
       <div class="orrery-title" id="star-name">Chargement…</div>
@@ -165,18 +160,15 @@
           <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
-      <!-- Dynamically injected by JS -->
     </svg>
   </div>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-top">
       <h2 id="sb-title">Système Sanctum</h2>
       <p id="sb-sub">Sélectionne un monde pour afficher ses données de reconnaissance.</p>
     </div>
 
-    <!-- DETAIL ZONE (injecté par JS) -->
     <div id="detail-zone">
       <div class="empty-state" id="empty-state">
         <div class="empty-state-icon">◈</div>
@@ -184,16 +176,43 @@
       </div>
     </div>
 
-    <!-- BASTIONS (injecté par JS) -->
-    <div class="bastions-section" id="bastions-section" style="display:none">
-      <h3>Fortifications du Système</h3>
-      <div class="bastion-list" id="bastion-list"></div>
-    </div>
-
-    <!-- WARP ALERT (injecté par JS) -->
     <div id="warp-alert-zone"></div>
 
-    <!-- PERSONNAGES (injecté par JS) -->
+    <div class="editor-section" id="editor-section">
+      <h3>Éditeur tactique</h3>
+      <div class="editor-row">
+        <label for="faction-select">Faction</label>
+        <select id="faction-select">
+          <option value="black-templars">Black Templars</option>
+          <option value="silver-templars">Silver Templars</option>
+          <option value="death-guard">Death Guard</option>
+          <option value="necrons">Nécrons</option>
+          <option value="adeptus-mechanicus">Adeptus Mechanicus</option>
+          <option value="votann">Votann</option>
+          <option value="world-eaters">World Eaters</option>
+          <option value="blood-angels">Blood Angels</option>
+          <option value="iron-warriors">Iron Warriors de Khorne</option>
+          <option value="garde-imperiale">Garde Impériale</option>
+        </select>
+      </div>
+      <div class="editor-row">
+        <label for="ship-type">Type de vaisseau</label>
+        <select id="ship-type">
+          <option value="croiseur">Croiseur</option>
+          <option value="cuirasse">Cuirassé</option>
+          <option value="transport">Transport</option>
+          <option value="escorte">Escorte</option>
+          <option value="gloriana">Gloriana</option>
+        </select>
+      </div>
+      <div class="editor-actions">
+        <button type="button" id="add-ship-btn">+ Ajouter un vaisseau</button>
+        <button type="button" id="clear-ships-btn">Retirer les vaisseaux</button>
+        <button type="button" id="clear-flags-btn">Retirer les drapeaux</button>
+      </div>
+      <p class="editor-help">Clique sur une planète pour y planter un drapeau. Fais glisser un vaisseau pour le déplacer.</p>
+    </div>
+
     <div class="figures-section" id="figures-section" style="display:none">
       <h3>Personnages Clés</h3>
       <div id="figures-list"></div>
@@ -208,9 +227,44 @@
     'Mechanicus': '⚙', 'Black Templars': '✠', 'Inquisition': '☩',
     'Blood Angels': '🩸', 'Garde Impériale': '⚔', 'default': '★'
   };
-  const FACTION_CLASSES = {
-    'Mechanicus': 'teal', 'Black Templars': 'gold', 'Inquisition': 'blue', 'default': ''
+
+  const FACTION_FLAG_STYLES = {
+    'black-templars':    { label: 'Black Templars',           color: '#c8a028', short: 'BT'  },
+    'silver-templars':   { label: 'Silver Templars',          color: '#aaccff', short: 'ST'  },
+    'death-guard':       { label: 'Death Guard',              color: '#6b8c3a', short: 'DG'  },
+    'necrons':           { label: 'Nécrons',                  color: '#33ffcc', short: 'NEC' },
+    'adeptus-mechanicus':{ label: 'Adeptus Mechanicus',       color: '#33aaaa', short: 'AM'  },
+    'votann':            { label: 'Votann',                   color: '#d4882a', short: 'VOT' },
+    'world-eaters':      { label: 'World Eaters',             color: '#c43030', short: 'WE'  },
+    'blood-angels':      { label: 'Blood Angels',             color: '#cc1111', short: 'BA'  },
+    'iron-warriors':     { label: 'Iron Warriors de Khorne',  color: '#8855cc', short: 'IW'  },
+    'garde-imperiale':   { label: 'Garde Impériale',          color: '#4488dd', short: 'GI'  }
   };
+
+  const SHIP_STYLES = {
+    croiseur:  { color: '#4488dd', short: 'CR' },
+    cuirasse:  { color: '#c43030', short: 'BS' },
+    transport: { color: '#55aa66', short: 'TR' },
+    escorte:   { color: '#c8a028', short: 'ES' },
+    gloriana:  { color: '#bb88ff', short: 'GL' }
+  };
+
+  const BASTION_DATA = [
+    {
+      pid: 'bastion1', color: '#c8a028', r: 7, label: 'B.Alpha', sublabel: 'Fortin stellaire',
+      eyebrow: 'Fortification Orbitale — Système Sanctum',
+      danger_level: 1,
+      notable_features: ['Garnison Astartes — Black Templars', 'Armement lourd', 'Première ligne de défense'],
+      imperial_status_label: '⚔ Opérationnel', imperial_status_class: 'ok'
+    },
+    {
+      pid: 'bastion2', color: '#c85a1a', r: 7, label: 'B.Beta', sublabel: 'Forteresse',
+      eyebrow: 'Fortification Orbitale — Système Sanctum',
+      danger_level: 3,
+      notable_features: ['Construction inachevée', 'Défenses incomplètes', 'Priorité Mechanicus & Black Templars'],
+      imperial_status_label: '⚠ Inachevé — Vulnérable', imperial_status_class: 'warn'
+    }
+  ];
 
   function statusClass(status) {
     if (!status) return 'imp';
@@ -226,65 +280,41 @@
     return h + '</div>';
   }
 
-  // Orbital positions : cx/cy autour du centre (350,285)
   const CX = 350, CY = 280;
   const RADII = [70, 120, 185, 255, 330];
-  const ANGLES = [-90, 45, 160, -30, 110]; // en degrés
+  const ANGLES = [-90, 45, 160, -30, 110];
+
+  const state = { system: null, planetPositions: {}, flags: {}, ships: [], shipCounter: 0, drag: null };
 
   function polar(r, angleDeg) {
     const a = angleDeg * Math.PI / 180;
     return { x: CX + r * Math.cos(a), y: CY + r * Math.sin(a) };
   }
 
-  // Données enrichies pour les bastions (utilisées dans showDetail)
-  const BASTION_DATA = [
-    {
-      pid: 'bastion1',
-      color: '#c8a028',
-      r: 7,
-      label: 'B.Alpha',
-      sublabel: 'Fortin stellaire',
-      eyebrow: 'Fortification Orbitale — Système Sanctum',
-      danger_level: 1,
-      notable_features: ['Garnison Astartes — Black Templars', 'Armement lourd', 'Première ligne de défense'],
-      imperial_status_label: '⚔ Opérationnel',
-      imperial_status_class: 'ok'
-    },
-    {
-      pid: 'bastion2',
-      color: '#c85a1a',
-      r: 7,
-      label: 'B.Beta',
-      sublabel: 'Forteresse',
-      eyebrow: 'Fortification Orbitale — Système Sanctum',
-      danger_level: 3,
-      notable_features: ['Construction inachevée', 'Défenses incomplètes', 'Priorité Mechanicus & Black Templars'],
-      imperial_status_label: '⚠ Inachevé — Vulnérable',
-      imperial_status_class: 'warn'
-    }
-  ];
+  function svgPoint(evt, svg) {
+    const pt = svg.createSVGPoint();
+    pt.x = evt.clientX; pt.y = evt.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  }
 
   function buildOrrery(data) {
     const svg = document.getElementById('orrery-svg');
     let html = '';
 
-    // Chemin warp
     html += `<path class="warp-path" d="M ${CX-300} ${CY+180} Q ${CX} ${CY-220} ${CX+320} ${CY+80}" />`;
     html += `<text x="${CX-180}" y="${CY+195}" font-size="7" fill="#7a5c9e" font-family="Crimson Text,serif" font-style="italic" opacity="0.7">Chemin warp naissant</text>`;
 
-    // Orbites planètes
     data.planets.forEach((_, i) => {
       html += `<circle class="orbit-ring" cx="${CX}" cy="${CY}" r="${RADII[i]}"/>`;
     });
 
-    // Étoile
     html += `<circle cx="${CX}" cy="${CY}" r="38" fill="url(#star-glow)" opacity="0.5"/>`;
     html += `<circle cx="${CX}" cy="${CY}" r="20" fill="#ffe87a" filter="url(#planet-glow)"/>`;
     html += `<text x="${CX}" y="${CY+34}" text-anchor="middle" font-family="Cinzel,serif" font-size="7.5" fill="#c8a028" letter-spacing="0.05em">${data.star.name}</text>`;
 
-    // Planètes
     data.planets.forEach((p, i) => {
       const pos = polar(RADII[i], ANGLES[i]);
+      state.planetPositions[String(p.id)] = { x: pos.x, y: pos.y };
       const r = i === 2 ? 12 : i >= 3 ? 8 : 10;
       const dangerCls = p.danger_level >= 4 ? ' danger-4' : '';
       html += `
@@ -294,9 +324,8 @@
           <text class="planet-label" x="${pos.x}" y="${pos.y + r + 11}" text-anchor="middle">${p.name}</text>
           <text class="planet-sublabel" x="${pos.x}" y="${pos.y + r + 20}" text-anchor="middle">${p.type.split('—')[0].trim()}</text>
         </g>`;
-
-      // Lune Brokha sur Sanctum
       if (p.id === 1) {
+        state.planetPositions['brokha'] = { x: pos.x + 18, y: pos.y - 14 };
         html += `
           <g class="planet-group" data-pid="brokha" tabindex="0" role="button" aria-label="Lune Brokha">
             <circle cx="${pos.x+18}" cy="${pos.y-14}" r="5" fill="#aaaaaa" opacity="0.8" filter="url(#planet-glow)"/>
@@ -305,25 +334,103 @@
       }
     });
 
-    // Bastions — rendus comme des planètes (cercle + halo + label)
-    const bpos = [
-      polar(RADII[0] - 30, 60),   // Bastion Alpha
-      polar(RADII[1] + 30, 200)    // Bastion Beta
-    ];
-
+    // Bastions — rendus comme des planètes
+    const bpos = [ polar(RADII[0] - 30, 60), polar(RADII[1] + 30, 200) ];
     BASTION_DATA.forEach((bd, i) => {
       const bp = bpos[i];
-      const r = bd.r;
+      state.planetPositions[bd.pid] = { x: bp.x, y: bp.y };
       html += `
         <g class="planet-group" data-pid="${bd.pid}" tabindex="0" role="button" aria-label="${bd.label}">
-          <circle cx="${bp.x}" cy="${bp.y}" r="${r+8}" fill="${bd.color}" opacity="0.08"/>
-          <circle class="planet-bg" cx="${bp.x}" cy="${bp.y}" r="${r}" fill="${bd.color}" stroke="${bd.color}" stroke-width="0.8" filter="url(#planet-glow)"/>
-          <text class="planet-label" x="${bp.x}" y="${bp.y + r + 11}" text-anchor="middle">${bd.label}</text>
-          <text class="planet-sublabel" x="${bp.x}" y="${bp.y + r + 20}" text-anchor="middle">${bd.sublabel}</text>
+          <circle cx="${bp.x}" cy="${bp.y}" r="${bd.r+8}" fill="${bd.color}" opacity="0.08"/>
+          <circle class="planet-bg" cx="${bp.x}" cy="${bp.y}" r="${bd.r}" fill="${bd.color}" stroke="${bd.color}" stroke-width="0.8" filter="url(#planet-glow)"/>
+          <text class="planet-label" x="${bp.x}" y="${bp.y + bd.r + 11}" text-anchor="middle">${bd.label}</text>
+          <text class="planet-sublabel" x="${bp.x}" y="${bp.y + bd.r + 20}" text-anchor="middle">${bd.sublabel}</text>
         </g>`;
     });
 
+    html += `<g id="flags-layer"></g>`;
+    html += `<g id="ships-layer"></g>`;
     svg.insertAdjacentHTML('beforeend', html);
+  }
+
+  function renderFlags() {
+    const layer = document.getElementById('flags-layer');
+    if (!layer) return;
+    let html = '';
+    Object.entries(state.flags).forEach(([pid, factionKey]) => {
+      const pos = state.planetPositions[pid];
+      const faction = FACTION_FLAG_STYLES[factionKey];
+      if (!pos || !faction) return;
+      const fx = pos.x + 12, fy = pos.y - 18;
+      html += `
+        <g class="flag-group" data-flag-for="${pid}">
+          <line x1="${fx}" y1="${fy}" x2="${fx}" y2="${fy+18}" stroke="${faction.color}" stroke-width="1.4"/>
+          <path d="M ${fx} ${fy} L ${fx+13} ${fy+4} L ${fx} ${fy+8} Z" fill="${faction.color}" stroke="#111" stroke-width="0.5"/>
+          <text class="flag-label" x="${fx+16}" y="${fy+7}">${faction.short}</text>
+        </g>`;
+    });
+    layer.innerHTML = html;
+  }
+
+  function renderShips() {
+    const layer = document.getElementById('ships-layer');
+    if (!layer) return;
+    let html = '';
+    state.ships.forEach(ship => {
+      const style = SHIP_STYLES[ship.type] || SHIP_STYLES.croiseur;
+      html += `
+        <g class="ship-token" data-ship-id="${ship.id}" transform="translate(${ship.x}, ${ship.y})">
+          <circle class="ship-hitbox" cx="0" cy="0" r="12"></circle>
+          <path class="ship-body" d="M -8 0 L 0 -6 L 8 0 L 0 6 Z" fill="${style.color}"></path>
+          <circle cx="0" cy="0" r="2.2" fill="#111"></circle>
+          <text class="ship-label" x="0" y="16" text-anchor="middle">${style.short}</text>
+        </g>`;
+    });
+    layer.innerHTML = html;
+    bindShipDragging();
+  }
+
+  function addShip() {
+    const type = document.getElementById('ship-type').value;
+    state.shipCounter += 1;
+    state.ships.push({ id: 'ship-' + state.shipCounter, type, x: CX + 140, y: CY - 120 });
+    renderShips();
+  }
+
+  function clearShips() { state.ships = []; renderShips(); }
+  function clearFlags() { state.flags = {}; renderFlags(); }
+
+  function setPlanetFlag(pid) {
+    const faction = document.getElementById('faction-select').value;
+    state.flags[pid] = faction;
+    renderFlags();
+  }
+
+  function bindShipDragging() {
+    const svg = document.getElementById('orrery-svg');
+    document.querySelectorAll('.ship-token').forEach(el => {
+      el.addEventListener('pointerdown', ev => {
+        ev.stopPropagation();
+        const ship = state.ships.find(s => s.id === el.dataset.shipId);
+        if (!ship) return;
+        const p = svgPoint(ev, svg);
+        state.drag = { id: el.dataset.shipId, dx: p.x - ship.x, dy: p.y - ship.y };
+        el.classList.add('dragging');
+        el.setPointerCapture(ev.pointerId);
+      });
+    });
+    svg.addEventListener('pointermove', ev => {
+      if (!state.drag) return;
+      const ship = state.ships.find(s => s.id === state.drag.id);
+      if (!ship) return;
+      const p = svgPoint(ev, svg);
+      ship.x = Math.max(20, Math.min(680, p.x - state.drag.dx));
+      ship.y = Math.max(20, Math.min(540, p.y - state.drag.dy));
+      renderShips();
+    });
+    const endDrag = () => { state.drag = null; document.querySelectorAll('.ship-token.dragging').forEach(el => el.classList.remove('dragging')); };
+    svg.addEventListener('pointerup', endDrag);
+    svg.addEventListener('pointerleave', endDrag);
   }
 
   function showDetail(data, pid) {
@@ -333,22 +440,23 @@
     const zone = document.getElementById('detail-zone');
     let html = '';
 
+    const currentFlag = state.flags[pid];
+    const flagInfo = currentFlag ? FACTION_FLAG_STYLES[currentFlag] : null;
+    const flagBlock = flagInfo
+      ? `<div class="pd-section"><h4>Occupation visible</h4><div class="tags"><span class="tag gold">Drapeau : ${flagInfo.label}</span></div></div>`
+      : '';
+
     if (pid === 'brokha') {
-      const b = data.bastions[2]; // Brokha — Bastion Chapitral
-      const featuresHTML = b && b.notable_features
-        ? b.notable_features.map(f => `<span class="tag gold">${f}</span>`).join('')
-        : '<span class="tag gold">✠ QG Croisade</span><span class="tag">Forteresse stellaire lourde</span><span class="tag">Garnison Astartes</span>';
-      const dl = b && b.danger_level != null ? b.danger_level : 1;
       html = `<div class="planet-detail active">
         <p class="pd-eyebrow">Lune de Sanctum — Fortification</p>
         <h3 class="pd-name">Brokha</h3>
         <p class="pd-type">Lune — Bastion Chapitral</p>
         <span class="pd-status ok">✠ Opérationnel — QG de Croisade</span>
         <p class="pd-desc">Forteresse stellaire lourde implantée sur la lune Brokha. Siège de la présence des Black Templars dans le système et quartier général de la Croisade Fyrentis. Le Sénéchal Manfred y commande l'ensemble des forces alliées du sous-secteur.</p>
-        <div class="pd-section"><h4>Installations</h4><div class="tags">${featuresHTML}</div></div>
-        <div class="pd-section"><h4>Niveau de danger</h4>${dangerPips(dl)}</div>
+        ${flagBlock}
+        <div class="pd-section"><h4>Installations</h4><div class="tags"><span class="tag gold">✠ QG Croisade</span><span class="tag">Forteresse stellaire lourde</span><span class="tag">Garnison Astartes</span></div></div>
+        <div class="pd-section"><h4>Niveau de danger</h4>${dangerPips(1)}</div>
       </div>`;
-
     } else if (pid === 'bastion1' || pid === 'bastion2') {
       const idx = pid === 'bastion1' ? 0 : 1;
       const b = data.bastions[idx];
@@ -361,11 +469,11 @@
           <p class="pd-type">${b.type}</p>
           <span class="pd-status ${bd.imperial_status_class}">${bd.imperial_status_label}</span>
           <p class="pd-desc">${b.description}</p>
+          ${flagBlock}
           <div class="pd-section"><h4>Caractéristiques</h4><div class="tags">${featuresHTML}</div></div>
           <div class="pd-section"><h4>Niveau de danger</h4>${dangerPips(bd.danger_level)}</div>
         </div>`;
       }
-
     } else {
       const p = data.planets.find(pl => pl.id === parseInt(pid));
       if (p) {
@@ -377,6 +485,7 @@
           <p class="pd-type">${p.type} &mdash; ${p.orbital_distance_au} UA</p>
           <span class="pd-status ${scls}">${p.imperial_status}</span>
           <p class="pd-desc">${p.description}</p>
+          ${flagBlock}
           <div class="pd-section"><h4>Caractéristiques</h4><div class="tags">${featuresHTML}</div></div>
           <div class="pd-section"><h4>Niveau de danger</h4>${dangerPips(p.danger_level)}</div>
         </div>`;
@@ -388,21 +497,20 @@
 
   function bindClicks(data) {
     document.querySelectorAll('.planet-group').forEach(g => {
-      g.addEventListener('click', () => showDetail(data, g.dataset.pid));
-      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showDetail(data, g.dataset.pid); } });
+      g.addEventListener('click', () => {
+        const pid = g.dataset.pid;
+        showDetail(data, pid);
+        setPlanetFlag(pid);
+      });
+      g.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const pid = g.dataset.pid;
+          showDetail(data, pid);
+          setPlanetFlag(pid);
+        }
+      });
     });
-  }
-
-  function renderBastions(bastions) {
-    if (!bastions || !bastions.length) return;
-    document.getElementById('bastions-section').style.display = '';
-    document.getElementById('bastion-list').innerHTML = bastions.map(b =>
-      `<div class="bastion-card">
-        <div class="bastion-name">${b.name}</div>
-        <span class="bastion-status ${b.status_class}">${b.status}</span>
-        <p class="bastion-desc">${b.description}</p>
-      </div>`
-    ).join('');
   }
 
   function renderWarpAlert(warp) {
@@ -426,19 +534,29 @@
     }).join('');
   }
 
-  // MAIN
+  function bindEditor() {
+    document.getElementById('add-ship-btn').addEventListener('click', addShip);
+    document.getElementById('clear-ships-btn').addEventListener('click', clearShips);
+    document.getElementById('clear-flags-btn').addEventListener('click', clearFlags);
+  }
+
   fetch('assets/data/sanctum.json')
     .then(r => r.json())
     .then(d => {
       const sys = d.system;
+      state.system = sys;
       document.getElementById('star-name').textContent = sys.star.name;
       document.getElementById('star-type').textContent = sys.star.type;
       document.getElementById('sb-title').textContent = sys.name;
       buildOrrery(sys);
+      if (sys.planets) sys.planets.forEach(p => { if (p.occupation_flag) state.flags[String(p.id)] = p.occupation_flag; });
+      if (sys.ships) { state.ships = sys.ships.map(s => ({ ...s })); state.shipCounter = sys.ships.length; }
       bindClicks(sys);
-      renderBastions(sys.bastions);
+      bindEditor();
       renderWarpAlert(sys.warp_route);
       renderFigures(sys.key_figures);
+      renderFlags();
+      renderShips();
     })
     .catch(err => {
       console.error('Erreur chargement sanctum.json :', err);
