@@ -197,11 +197,14 @@
       <div class="editor-row">
         <label for="ship-type">Type de vaisseau</label>
         <select id="ship-type">
-          <option value="croiseur">Croiseur</option>
+          <option value="escorteur">Escorteur</option>
+          <option value="croiseur-attaque">Croiseur d’attaque</option>
+          <option value="barge-bataille">Barge de bataille</option>
+          <option value="croiseur-lourd">Croiseur lourd</option>
           <option value="cuirasse">Cuirassé</option>
           <option value="transport">Transport</option>
-          <option value="escorte">Escorte</option>
           <option value="gloriana">Gloriana</option>
+          <option value="forteresse-monastere">Forteresse-monastère</option>
         </select>
       </div>
       <div class="editor-actions">
@@ -243,11 +246,14 @@
   };
 
   const SHIP_STYLES = {
-    croiseur:  { color: '#4488dd', short: 'CR' },
-    cuirasse:  { color: '#c43030', short: 'BS' },
-    transport: { color: '#55aa66', short: 'TR' },
-    escorte:   { color: '#c8a028', short: 'ES' },
-    gloriana:  { color: '#bb88ff', short: 'GL' }
+    'escorteur':            { color: '#c8a028', short: 'ESC' },
+    'croiseur-attaque':     { color: '#4488dd', short: 'CA'  },
+    'barge-bataille':       { color: '#c43030', short: 'BB'  },
+    'croiseur-lourd':       { color: '#e07030', short: 'CL'  },
+    'cuirasse':             { color: '#8b1c1c', short: 'CU'  },
+    'transport':            { color: '#55aa66', short: 'TR'  },
+    'gloriana':             { color: '#bb88ff', short: 'GL'  },
+    'forteresse-monastere': { color: '#33aaaa', short: 'FM'  }
   };
 
   const BASTION_DATA = [
@@ -405,7 +411,7 @@
     if (!layer) return;
     let html = '';
     state.ships.forEach(ship => {
-      const style = SHIP_STYLES[ship.type] || SHIP_STYLES.croiseur;
+      const style = SHIP_STYLES[ship.type] || SHIP_STYLES['croiseur-attaque'];
       html += `
         <g class="ship-token" data-ship-id="${ship.id}" transform="translate(${ship.x}, ${ship.y})">
           <circle class="ship-hitbox" cx="0" cy="0" r="12"></circle>
