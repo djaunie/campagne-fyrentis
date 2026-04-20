@@ -66,12 +66,13 @@
     @keyframes danger-blink { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
     .danger-4 .planet-bg { animation: danger-blink 1.8s ease-in-out infinite; }
 
-    .flag-group { cursor: pointer; }
+    .flag-group { cursor: context-menu; }
+    .flag-group:hover { filter: brightness(1.15); }
     .flag-label { font-family: 'Cinzel', serif; font-size: 7px; fill: var(--text); pointer-events: none; }
     .ship-token { cursor: grab; }
     .ship-token.dragging { cursor: grabbing; }
     .ship-body { stroke: #111; stroke-width: 0.9; }
-    .ship-label { font-size: 6.5px; fill: var(--text); pointer-events: none; font-family: 'Crimson Text', serif; }
+    .ship-label { font-size: 5.8px; fill: var(--text); pointer-events: none; font-family: 'Crimson Text', serif; }
     .ship-hitbox { fill: transparent; }
 
     .sidebar { background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; }
@@ -103,6 +104,10 @@
     .danger-bar { display: flex; gap: 3px; margin-top: 0.5rem; }
     .danger-pip { width: 14px; height: 6px; border-radius: 2px; background: var(--faint); }
     .danger-pip.on { background: var(--red-bright); }
+    .flag-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.55rem; }
+    .inline-action-btn { background: rgba(139,28,28,0.12); color: var(--red-bright); border: 1px solid var(--red); padding: 0.35rem 0.65rem; border-radius: 4px; font-size: 0.76rem; cursor: pointer; transition: 0.2s ease; }
+    .inline-action-btn:hover { background: rgba(139,28,28,0.22); }
+    .inline-help { font-size: 0.72rem; color: var(--muted); line-height: 1.4; margin-top: 0.45rem; }
 
     .editor-section { padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--border); }
     .editor-section h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dim); margin-bottom: 0.7rem; }
@@ -198,7 +203,7 @@
         <label for="ship-type">Type de vaisseau</label>
         <select id="ship-type">
           <option value="barge-bataille">Barge de bataille</option>
-          <option value="croiseur-attaque">Croiseur d’attaque</option>
+          <option value="croiseur-attaque">Croiseur d'attaque</option>
           <option value="croiseur-lourd">Croiseur lourd</option>
           <option value="cuirasse-classe-gloriana">Cuirassé de classe Gloriana</option>
           <option value="destroyer-classe-gladius">Destroyer de classe Gladius</option>
@@ -215,7 +220,7 @@
         <button type="button" id="clear-ships-btn">Retirer les vaisseaux</button>
         <button type="button" id="clear-flags-btn">Retirer les drapeaux</button>
       </div>
-      <p class="editor-help">Clique sur une planète pour y planter un drapeau. Fais glisser un vaisseau pour le déplacer.</p>
+      <p class="editor-help">Clic droit sur une planète pour y planter le drapeau de la faction sélectionnée. Clic droit sur un drapeau existant pour le retirer. Fais glisser un vaisseau pour le déplacer. <strong style="color:var(--gold-dim)">Clic droit sur un vaisseau</strong> pour le supprimer instantanément.</p>
     </div>
 
     <div class="figures-section" id="figures-section" style="display:none">
@@ -263,6 +268,20 @@
     'vaisseau-commandement':    { color: '#aaccff', short: 'VC'  }
   };
 
+  const SHIP_TYPE_LABELS = {
+    'barge-bataille':           'Barge de Bataille',
+    'croiseur-attaque':         "Croiseur d'Attaque",
+    'croiseur-lourd':           'Croiseur Lourd',
+    'cuirasse-classe-gloriana': 'Cuirassé Gloriana',
+    'destroyer-classe-gladius': 'Destroyer Gladius',
+    'destroyer-classe-hunter':  'Destroyer Hunter',
+    'destroyer-classe-nova':    'Destroyer Nova',
+    'forteresse-monastere':     'Forteresse Monastère',
+    'transport-logistique':     'Transport Logistique',
+    'transport-troupe':         'Transport de Troupe',
+    'vaisseau-commandement':    'Vaisseau de Commandement'
+  };
+
   const LEGACY_SHIP_TYPE_MAP = {
     'escorteur': 'destroyer-classe-gladius',
     'escorte': 'destroyer-classe-gladius',
@@ -276,22 +295,11 @@
     'forteresse-monastere': 'forteresse-monastere'
   };
 
-  const BASTION_DATA = [
-    {
-      pid: 'bastion1', color: '#c8a028', r: 7, label: 'B.Alpha', sublabel: 'Fortin stellaire',
-      eyebrow: 'Fortification Orbitale — Système Sanctum',
-      danger_level: 1,
-      notable_features: ['Garnison Astartes — Black Templars', 'Armement lourd', 'Première ligne de défense'],
-      imperial_status_label: '⚔ Opérationnel', imperial_status_class: 'ok'
-    },
-    {
-      pid: 'bastion2', color: '#c85a1a', r: 7, label: 'B.Beta', sublabel: 'Forteresse',
-      eyebrow: 'Fortification Orbitale — Système Sanctum',
-      danger_level: 3,
-      notable_features: ['Construction inachevée', 'Défenses incomplètes', 'Priorité Mechanicus & Black Templars'],
-      imperial_status_label: '⚠ Inachevé — Vulnérable', imperial_status_class: 'warn'
-    }
-  ];
+  const SPECIAL_POSITIONS = {
+    'near_inner': null,
+    'near_outer': null,
+    'brokha_moon': null
+  };
 
   function normalizeShipType(type) {
     if (SHIP_STYLES[type]) return type;
@@ -309,11 +317,7 @@
 
   function purgeLegacyStorage() {
     LEGACY_STORAGE_KEYS.forEach(key => {
-      try {
-        localStorage.removeItem(key);
-      } catch (e) {
-        console.warn('Purge stockage legacy impossible :', e);
-      }
+      try { localStorage.removeItem(key); } catch (e) { console.warn('Purge stockage legacy impossible :', e); }
     });
   }
 
@@ -324,9 +328,7 @@
         ships: state.ships,
         shipCounter: state.shipCounter
       }));
-    } catch (e) {
-      console.warn('Sauvegarde impossible :', e);
-    }
+    } catch (e) { console.warn('Sauvegarde impossible :', e); }
   }
 
   function loadTacticalState() {
@@ -339,10 +341,7 @@
         ships: normalizeShips(parsed.ships),
         shipCounter: Number.isFinite(parsed.shipCounter) ? parsed.shipCounter : null
       };
-    } catch (e) {
-      console.warn('Chargement sauvegarde impossible :', e);
-      return null;
-    }
+    } catch (e) { console.warn('Chargement sauvegarde impossible :', e); return null; }
   }
 
   function statusClass(status) {
@@ -350,6 +349,8 @@
     const s = status.toLowerCase();
     if (s.includes('mechanicus')) return 'mech';
     if (s.includes('chaos') || s.includes('contesté')) return 'contested';
+    if (s.includes('inachevé') || s.includes('vulnérable')) return 'warn';
+    if (s.includes('opérationnel')) return 'ok';
     return 'imp';
   }
 
@@ -363,7 +364,7 @@
   const RADII = [70, 120, 185, 255, 330];
   const ANGLES = [-90, 45, 160, -30, 110];
 
-  const state = { system: null, planetPositions: {}, flags: {}, ships: [], shipCounter: 0, drag: null };
+  const state = { system: null, planetPositions: {}, flags: {}, ships: [], shipCounter: 0, drag: null, selectedPid: null };
 
   function polar(r, angleDeg) {
     const a = angleDeg * Math.PI / 180;
@@ -383,7 +384,8 @@
     html += `<path class="warp-path" d="M ${CX-300} ${CY+180} Q ${CX} ${CY-220} ${CX+320} ${CY+80}" />`;
     html += `<text x="${CX-180}" y="${CY+195}" font-size="7" fill="#7a5c9e" font-family="Crimson Text,serif" font-style="italic" opacity="0.7">Chemin warp naissant</text>`;
 
-    data.planets.forEach((_, i) => {
+    const orbitalPlanets = data.planets.filter(p => p.orbital_position !== null && p.orbital_position !== undefined);
+    orbitalPlanets.forEach((_, i) => {
       html += `<circle class="orbit-ring" cx="${CX}" cy="${CY}" r="${RADII[i]}"/>`;
     });
 
@@ -391,7 +393,7 @@
     html += `<circle cx="${CX}" cy="${CY}" r="20" fill="#ffe87a" filter="url(#planet-glow)"/>`;
     html += `<text x="${CX}" y="${CY+34}" text-anchor="middle" font-family="Cinzel,serif" font-size="7.5" fill="#c8a028" letter-spacing="0.05em">${data.star.name}</text>`;
 
-    data.planets.forEach((p, i) => {
+    orbitalPlanets.forEach((p, i) => {
       const pos = polar(RADII[i], ANGLES[i]);
       state.planetPositions[String(p.id)] = { x: pos.x, y: pos.y };
       const r = i === 2 ? 12 : i >= 3 ? 8 : 10;
@@ -403,6 +405,7 @@
           <text class="planet-label" x="${pos.x}" y="${pos.y + r + 11}" text-anchor="middle">${p.name}</text>
           <text class="planet-sublabel" x="${pos.x}" y="${pos.y + r + 20}" text-anchor="middle">${p.type.split('—')[0].trim()}</text>
         </g>`;
+
       if (p.id === 1) {
         state.planetPositions['brokha'] = { x: pos.x + 18, y: pos.y - 14 };
         html += `
@@ -413,22 +416,47 @@
       }
     });
 
-    const bpos = [ polar(RADII[0] - 30, 60), polar(RADII[1] + 30, 200) ];
-    BASTION_DATA.forEach((bd, i) => {
-      const bp = bpos[i];
-      state.planetPositions[bd.pid] = { x: bp.x, y: bp.y };
+    const specialPositions = {
+      'near_inner': polar(RADII[0] - 30, 60),
+      'near_outer': polar(RADII[1] + 30, 200),
+      'brokha_moon': (() => {
+        const sanctum = orbitalPlanets.find(p => p.id === 1);
+        if (!sanctum) return { x: CX + 40, y: CY - 50 };
+        const sp = polar(RADII[0], ANGLES[0]);
+        return { x: sp.x + 18, y: sp.y - 14 };
+      })()
+    };
+
+    const specialPlanets = data.planets.filter(p => p.svg_position);
+    specialPlanets.forEach(p => {
+      const pos = specialPositions[p.svg_position] || { x: CX + 50, y: CY - 50 };
+      state.planetPositions[String(p.id)] = { x: pos.x, y: pos.y };
+      const r = 7;
+      const dangerCls = p.danger_level >= 4 ? ' danger-4' : '';
+      const shortLabel = p.name.length > 12 ? p.name.split(' ')[0] + '…' : p.name;
       html += `
-        <g class="planet-group" data-pid="${bd.pid}" tabindex="0" role="button" aria-label="${bd.label}">
-          <circle cx="${bp.x}" cy="${bp.y}" r="${bd.r+8}" fill="${bd.color}" opacity="0.08"/>
-          <circle class="planet-bg" cx="${bp.x}" cy="${bp.y}" r="${bd.r}" fill="${bd.color}" stroke="${bd.color}" stroke-width="0.8" filter="url(#planet-glow)"/>
-          <text class="planet-label" x="${bp.x}" y="${bp.y + bd.r + 11}" text-anchor="middle">${bd.label}</text>
-          <text class="planet-sublabel" x="${bp.x}" y="${bp.y + bd.r + 20}" text-anchor="middle">${bd.sublabel}</text>
+        <g class="planet-group${dangerCls}" data-pid="${p.id}" tabindex="0" role="button" aria-label="${p.name}">
+          <circle cx="${pos.x}" cy="${pos.y}" r="${r+8}" fill="${p.color_hex}" opacity="0.08"/>
+          <circle class="planet-bg" cx="${pos.x}" cy="${pos.y}" r="${r}" fill="${p.color_hex}" stroke="${p.color_hex}" stroke-width="0.8" filter="url(#planet-glow)"/>
+          <text class="planet-label" x="${pos.x}" y="${pos.y + r + 11}" text-anchor="middle">${shortLabel}</text>
+          <text class="planet-sublabel" x="${pos.x}" y="${pos.y + r + 20}" text-anchor="middle">${p.type.split('—')[0].trim()}</text>
         </g>`;
     });
 
     html += `<g id="flags-layer"></g>`;
     html += `<g id="ships-layer"></g>`;
     svg.insertAdjacentHTML('beforeend', html);
+  }
+
+  function bindFlagInteractions() {
+    document.querySelectorAll('.flag-group').forEach(el => {
+      el.addEventListener('contextmenu', ev => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        const pid = el.dataset.flagFor;
+        removePlanetFlag(pid);
+      });
+    });
   }
 
   function renderFlags() {
@@ -441,38 +469,70 @@
       if (!pos || !faction) return;
       const fx = pos.x + 12, fy = pos.y - 18;
       html += `
-        <g class="flag-group" data-flag-for="${pid}">
+        <g class="flag-group" data-flag-for="${pid}" role="button" aria-label="Retirer le drapeau de ${pid}">
           <line x1="${fx}" y1="${fy}" x2="${fx}" y2="${fy+18}" stroke="${faction.color}" stroke-width="1.4"/>
           <path d="M ${fx} ${fy} L ${fx+13} ${fy+4} L ${fx} ${fy+8} Z" fill="${faction.color}" stroke="#111" stroke-width="0.5"/>
           <text class="flag-label" x="${fx+16}" y="${fy+7}">${faction.short}</text>
         </g>`;
     });
     layer.innerHTML = html;
+    bindFlagInteractions();
   }
 
   function renderShips() {
     const layer = document.getElementById('ships-layer');
     if (!layer) return;
+
     let html = '';
     state.ships.forEach(ship => {
       const normalizedType = normalizeShipType(ship.type);
       const style = SHIP_STYLES[normalizedType];
+      const displayName = ship.name || style.short;
+
       html += `
         <g class="ship-token" data-ship-id="${ship.id}" transform="translate(${ship.x}, ${ship.y})">
-          <circle class="ship-hitbox" cx="0" cy="0" r="12"></circle>
+          <circle class="ship-hitbox" cx="0" cy="0" r="14"></circle>
           <path class="ship-body" d="M -8 0 L 0 -6 L 8 0 L 0 6 Z" fill="${style.color}"></path>
           <circle cx="0" cy="0" r="2.2" fill="#111"></circle>
-          <text class="ship-label" x="0" y="16" text-anchor="middle">${style.short}</text>
+          <text class="ship-label" x="0" y="20" text-anchor="middle">${displayName}</text>
         </g>`;
     });
+
     layer.innerHTML = html;
     bindShipDragging();
+
+    layer.querySelectorAll('.ship-token').forEach(el => {
+      el.addEventListener('contextmenu', ev => {
+        ev.preventDefault();
+        ev.stopPropagation();
+
+        const id = el.dataset.shipId;
+        state.ships = state.ships.filter(s => s.id !== id);
+
+        renderShips();
+        saveTacticalState();
+      });
+    });
   }
 
   function addShip() {
     const type = normalizeShipType(document.getElementById('ship-type').value);
+    const factionKey = document.getElementById('faction-select').value;
+    const factionLabel = FACTION_FLAG_STYLES[factionKey]
+      ? FACTION_FLAG_STYLES[factionKey].label
+      : factionKey;
+    const typeLabel = SHIP_TYPE_LABELS[type] || type;
+    const shipName = typeLabel + ' – ' + factionLabel;
+
     state.shipCounter += 1;
-    state.ships.push({ id: 'ship-' + state.shipCounter, type, x: CX + 140, y: CY - 120 });
+    state.ships.push({
+      id: 'ship-' + state.shipCounter,
+      type,
+      name: shipName,
+      x: CX + 140,
+      y: CY - 120
+    });
+
     renderShips();
     saveTacticalState();
   }
@@ -486,6 +546,7 @@
   function clearFlags() {
     state.flags = {};
     renderFlags();
+    if (state.selectedPid) showDetail(state.system, state.selectedPid);
     saveTacticalState();
   }
 
@@ -493,6 +554,15 @@
     const faction = document.getElementById('faction-select').value;
     state.flags[pid] = faction;
     renderFlags();
+    showDetail(state.system, pid);
+    saveTacticalState();
+  }
+
+  function removePlanetFlag(pid) {
+    if (!state.flags[pid]) return;
+    delete state.flags[pid];
+    renderFlags();
+    showDetail(state.system, pid);
     saveTacticalState();
   }
 
@@ -527,7 +597,18 @@
     svg.addEventListener('pointerleave', endDrag);
   }
 
+  function bindDetailActions() {
+    const removeBtn = document.getElementById('remove-flag-btn');
+    if (removeBtn) {
+      removeBtn.addEventListener('click', () => {
+        const pid = removeBtn.dataset.pid;
+        removePlanetFlag(pid);
+      });
+    }
+  }
+
   function showDetail(data, pid) {
+    state.selectedPid = pid;
     document.querySelectorAll('.planet-group').forEach(g => g.classList.remove('selected'));
     document.querySelectorAll('[data-pid="' + pid + '"]').forEach(g => g.classList.add('selected'));
 
@@ -537,46 +618,35 @@
     const currentFlag = state.flags[pid];
     const flagInfo = currentFlag ? FACTION_FLAG_STYLES[currentFlag] : null;
     const flagBlock = flagInfo
-      ? `<div class="pd-section"><h4>Occupation visible</h4><div class="tags"><span class="tag gold">Drapeau : ${flagInfo.label}</span></div></div>`
+      ? `<div class="pd-section"><h4>Occupation visible</h4><div class="tags"><span class="tag gold">Drapeau : ${flagInfo.label}</span></div><div class="flag-actions"><button type="button" class="inline-action-btn" id="remove-flag-btn" data-pid="${pid}">Retirer le drapeau</button></div><p class="inline-help">Astuce : fais un clic droit sur le drapeau directement dans l'orrérie pour le retirer.</p></div>`
       : '';
 
     if (pid === 'brokha') {
       html = `<div class="planet-detail active">
         <p class="pd-eyebrow">Lune de Sanctum — Fortification</p>
         <h3 class="pd-name">Brokha</h3>
-        <p class="pd-type">Lune — Bastion Chapitral</p>
+        <p class="pd-type">Lune — Fortification Chapitrale</p>
         <span class="pd-status ok">✠ Opérationnel — QG de Croisade</span>
         <p class="pd-desc">Forteresse stellaire lourde implantée sur la lune Brokha. Siège de la présence des Black Templars dans le système et quartier général de la Croisade Fyrentis. Le Sénéchal Manfred y commande l'ensemble des forces alliées du sous-secteur.</p>
         ${flagBlock}
         <div class="pd-section"><h4>Installations</h4><div class="tags"><span class="tag gold">✠ QG Croisade</span><span class="tag">Forteresse stellaire lourde</span><span class="tag">Garnison Astartes</span></div></div>
         <div class="pd-section"><h4>Niveau de danger</h4>${dangerPips(1)}</div>
       </div>`;
-    } else if (pid === 'bastion1' || pid === 'bastion2') {
-      const idx = pid === 'bastion1' ? 0 : 1;
-      const b = data.bastions[idx];
-      const bd = BASTION_DATA[idx];
-      if (b) {
-        const featuresHTML = bd.notable_features.map(f => `<span class="tag">${f}</span>`).join('');
-        html = `<div class="planet-detail active">
-          <p class="pd-eyebrow">${bd.eyebrow}</p>
-          <h3 class="pd-name">${b.name}</h3>
-          <p class="pd-type">${b.type}</p>
-          <span class="pd-status ${bd.imperial_status_class}">${bd.imperial_status_label}</span>
-          <p class="pd-desc">${b.description}</p>
-          ${flagBlock}
-          <div class="pd-section"><h4>Caractéristiques</h4><div class="tags">${featuresHTML}</div></div>
-          <div class="pd-section"><h4>Niveau de danger</h4>${dangerPips(bd.danger_level)}</div>
-        </div>`;
-      }
     } else {
-      const p = data.planets.find(pl => pl.id === parseInt(pid));
+      const p = data.planets.find(pl => String(pl.id) === String(pid));
       if (p) {
         const scls = statusClass(p.imperial_status);
         const featuresHTML = p.notable_features.map(f => `<span class="tag">${f}</span>`).join('');
+        const eyebrow = p.orbital_position
+          ? `Corps Céleste — Orbite ${p.orbital_position}`
+          : `Fortification — Système Sanctum`;
+        const subtitle = p.orbital_distance_au
+          ? `${p.type} &mdash; ${p.orbital_distance_au} UA`
+          : p.type;
         html = `<div class="planet-detail active">
-          <p class="pd-eyebrow">Corps Céleste — Orbite ${p.orbital_position}</p>
+          <p class="pd-eyebrow">${eyebrow}</p>
           <h3 class="pd-name">${p.name}</h3>
-          <p class="pd-type">${p.type} &mdash; ${p.orbital_distance_au} UA</p>
+          <p class="pd-type">${subtitle}</p>
           <span class="pd-status ${scls}">${p.imperial_status}</span>
           <p class="pd-desc">${p.description}</p>
           ${flagBlock}
@@ -587,6 +657,7 @@
     }
 
     zone.innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">◈</div><p>Aucune donnée disponible.</p></div>';
+    bindDetailActions();
   }
 
   function bindClicks(data) {
@@ -594,14 +665,21 @@
       g.addEventListener('click', () => {
         const pid = g.dataset.pid;
         showDetail(data, pid);
-        setPlanetFlag(pid);
+      });
+      g.addEventListener('contextmenu', ev => { ev.preventDefault();
+        const pid = g.dataset.pid;
+        showDetail(data, pid);
+        if (state.flags[pid]) {
+          removePlanetFlag(pid);
+        } else {
+          setPlanetFlag(pid);
+        }
       });
       g.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           const pid = g.dataset.pid;
           showDetail(data, pid);
-          setPlanetFlag(pid);
         }
       });
     });

@@ -93,29 +93,58 @@
           "Dérivés énergétiques : benzène",
           "Perturbé par le nouveau chemin warp naissant"
         ]
-      }
-    ],
-    "bastions": [
+      },
       {
+        "id": 6,
         "name": "Bastion Alpha",
+        "orbital_position": null,
+        "orbital_distance_au": null,
         "type": "Fortin stellaire — Garnison Astartes",
-        "status": "Opérationnel — Lourdement armé",
-        "status_class": "status--ok",
-        "description": "Fortin stellaire lourdement armé, doté d'une garnison Astartes des Black Templars. Positionné au voisinage de Brokha, il constitue la première ligne de défense du système."
+        "imperial_status": "Opérationnel — Lourdement armé",
+        "description": "Fortin stellaire lourdement armé, doté d'une garnison Astartes des Black Templars. Positionné au voisinage de Brokha, il constitue la première ligne de défense du système.",
+        "danger_level": 1,
+        "color_hex": "#c8a028",
+        "svg_position": "near_inner",
+        "notable_features": [
+          "Garnison Astartes — Black Templars",
+          "Armement lourd",
+          "Première ligne de défense"
+        ]
       },
       {
+        "id": 7,
         "name": "Bastion Beta",
+        "orbital_position": null,
+        "orbital_distance_au": null,
         "type": "Forteresse stellaire — En construction",
-        "status": "Inachevé — Vulnérable",
-        "status_class": "status--warn",
-        "description": "Encore inachevé, facilement accessible. Sa complétion est une priorité urgente du Mechanicus et des Black Templars."
+        "imperial_status": "Inachevé — Vulnérable",
+        "description": "Encore inachevé, facilement accessible. Sa complétion est une priorité urgente du Mechanicus et des Black Templars.",
+        "danger_level": 3,
+        "color_hex": "#c85a1a",
+        "svg_position": "near_outer",
+        "notable_features": [
+          "Construction inachevée",
+          "Défenses incomplètes",
+          "Priorité Mechanicus & Black Templars"
+        ]
       },
       {
+        "id": 8,
         "name": "Brokha — Bastion Chapitral",
+        "orbital_position": null,
+        "orbital_distance_au": null,
         "type": "Forteresse lune — QG Black Templars",
-        "status": "Opérationnel — QG de Croisade",
-        "status_class": "status--ok",
-        "description": "Forteresse stellaire lourde implantée sur la lune Brokha de Sanctum. Siège de la présence des Black Templars et quartier général de la Croisade Fyrentis. Sénéchal Manfred y commande les forces alliées."
+        "imperial_status": "Opérationnel — QG de Croisade",
+        "description": "Forteresse stellaire lourde implantée sur la lune Brokha de Sanctum. Siège de la présence des Black Templars et quartier général de la Croisade Fyrentis. Sénéchal Manfred y commande les forces alliées.",
+        "danger_level": 5,
+        "color_hex": "#aaaaaa",
+        "svg_position": "brokha_moon",
+        "notable_features": [
+          "✠ QG Croisade Fyrentis",
+          "Forteresse stellaire lourde",
+          "Garnison Astartes — Black Templars",
+          "Sénéchal Manfred — Commandant en chef"
+        ]
       }
     ],
     "warp_route": {
