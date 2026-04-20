@@ -225,7 +225,8 @@
 <script>
 (function () {
 
-  const STORAGE_KEY = 'fyrentis-sanctum-tactical-state';
+  const STORAGE_KEY = 'fyrentis-sanctum-tactical-state-v2';
+  const LEGACY_STORAGE_KEYS = ['fyrentis-sanctum-tactical-state'];
 
   const FACTION_ICONS = {
     'Mechanicus': '⚙', 'Black Templars': '✠', 'Inquisition': '☩',
@@ -256,6 +257,14 @@
     'forteresse-monastere': { color: '#33aaaa', short: 'FM'  }
   };
 
+  const LEGACY_SHIP_TYPE_MAP = {
+    'croiseur': 'croiseur-attaque',
+    'cuirasse': 'cuirasse',
+    'transport': 'transport',
+    'escorte': 'escorteur',
+    'gloriana': 'gloriana'
+  };
+
   const BASTION_DATA = [
     {
       pid: 'bastion1', color: '#c8a028', r: 7, label: 'B.Alpha', sublabel: 'Fortin stellaire',
@@ -272,6 +281,30 @@
       imperial_status_label: '⚠ Inachevé — Vulnérable', imperial_status_class: 'warn'
     }
   ];
+
+  function normalizeShipType(type) {
+    if (SHIP_STYLES[type]) return type;
+    if (LEGACY_SHIP_TYPE_MAP[type]) return LEGACY_SHIP_TYPE_MAP[type];
+    return 'croiseur-attaque';
+  }
+
+  function normalizeShips(ships) {
+    if (!Array.isArray(ships)) return [];
+    return ships.map(ship => ({
+      ...ship,
+      type: normalizeShipType(ship.type)
+    }));
+  }
+
+  function purgeLegacyStorage() {
+    LEGACY_STORAGE_KEYS.forEach(key => {
+      try {
+        localStorage.removeItem(key);
+      } catch (e) {
+        console.warn('Purge stockage legacy impossible :', e);
+      }
+    });
+  }
 
   function saveTacticalState() {
     try {
@@ -292,7 +325,7 @@
       const parsed = JSON.parse(raw);
       return {
         flags: parsed.flags && typeof parsed.flags === 'object' ? parsed.flags : null,
-        ships: Array.isArray(parsed.ships) ? parsed.ships : null,
+        ships: normalizeShips(parsed.ships),
         shipCounter: Number.isFinite(parsed.shipCounter) ? parsed.shipCounter : null
       };
     } catch (e) {
@@ -411,7 +444,8 @@
     if (!layer) return;
     let html = '';
     state.ships.forEach(ship => {
-      const style = SHIP_STYLES[ship.type] || SHIP_STYLES['croiseur-attaque'];
+      const normalizedType = normalizeShipType(ship.type);
+      const style = SHIP_STYLES[normalizedType];
       html += `
         <g class="ship-token" data-ship-id="${ship.id}" transform="translate(${ship.x}, ${ship.y})">
           <circle class="ship-hitbox" cx="0" cy="0" r="12"></circle>
@@ -425,7 +459,7 @@
   }
 
   function addShip() {
-    const type = document.getElementById('ship-type').value;
+    const type = normalizeShipType(document.getElementById('ship-type').value);
     state.shipCounter += 1;
     state.ships.push({ id: 'ship-' + state.shipCounter, type, x: CX + 140, y: CY - 120 });
     renderShips();
@@ -589,6 +623,8 @@
     document.getElementById('clear-flags-btn').addEventListener('click', clearFlags);
   }
 
+  purgeLegacyStorage();
+
   fetch('assets/data/sanctum.json')
     .then(r => r.json())
     .then(d => {
@@ -600,12 +636,12 @@
       buildOrrery(sys);
 
       if (sys.planets) sys.planets.forEach(p => { if (p.occupation_flag) state.flags[String(p.id)] = p.occupation_flag; });
-      if (sys.ships) { state.ships = sys.ships.map(s => ({ ...s })); state.shipCounter = sys.ships.length; }
+      if (sys.ships) { state.ships = normalizeShips(sys.ships.map(s => ({ ...s }))); state.shipCounter = sys.ships.length; }
 
       const savedState = loadTacticalState();
       if (savedState) {
         if (savedState.flags) state.flags = savedState.flags;
-        if (savedState.ships) state.ships = savedState.ships;
+        if (savedState.ships) state.ships = normalizeShips(savedState.ships);
         if (savedState.shipCounter !== null) state.shipCounter = savedState.shipCounter;
       }
 
@@ -615,6 +651,7 @@
       renderFigures(sys.key_figures);
       renderFlags();
       renderShips();
+      saveTacticalState();
     })
     .catch(err => {
       console.error('Erreur chargement sanctum.json :', err);
