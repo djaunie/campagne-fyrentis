@@ -381,9 +381,6 @@
     const svg = document.getElementById('orrery-svg');
     let html = '';
 
-    html += `<path class="warp-path" d="M ${CX-300} ${CY+180} Q ${CX} ${CY-220} ${CX+320} ${CY+80}" />`;
-    html += `<text x="${CX-180}" y="${CY+195}" font-size="7" fill="#7a5c9e" font-family="Crimson Text,serif" font-style="italic" opacity="0.7">Chemin warp naissant</text>`;
-
     const orbitalPlanets = data.planets.filter(p => p.orbital_position !== null && p.orbital_position !== undefined);
     orbitalPlanets.forEach((_, i) => {
       html += `<circle class="orbit-ring" cx="${CX}" cy="${CY}" r="${RADII[i]}"/>`;
