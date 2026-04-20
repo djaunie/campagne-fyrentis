@@ -197,14 +197,17 @@
       <div class="editor-row">
         <label for="ship-type">Type de vaisseau</label>
         <select id="ship-type">
-          <option value="escorteur">Escorteur</option>
-          <option value="croiseur-attaque">Croiseur d’attaque</option>
           <option value="barge-bataille">Barge de bataille</option>
+          <option value="croiseur-attaque">Croiseur d’attaque</option>
           <option value="croiseur-lourd">Croiseur lourd</option>
-          <option value="cuirasse">Cuirassé</option>
-          <option value="transport">Transport</option>
-          <option value="gloriana">Gloriana</option>
-          <option value="forteresse-monastere">Forteresse-monastère</option>
+          <option value="cuirasse-classe-gloriana">Cuirassé de classe Gloriana</option>
+          <option value="destroyer-classe-gladius">Destroyer de classe Gladius</option>
+          <option value="destroyer-classe-hunter">Destroyer de classe Hunter</option>
+          <option value="destroyer-classe-nova">Destroyer de classe Nova</option>
+          <option value="forteresse-monastere">Forteresse monastère</option>
+          <option value="transport-logistique">Transport logistique</option>
+          <option value="transport-troupe">Transport de Troupe</option>
+          <option value="vaisseau-commandement">Vaisseau de commandement</option>
         </select>
       </div>
       <div class="editor-actions">
@@ -225,8 +228,8 @@
 <script>
 (function () {
 
-  const STORAGE_KEY = 'fyrentis-sanctum-tactical-state-v2';
-  const LEGACY_STORAGE_KEYS = ['fyrentis-sanctum-tactical-state'];
+  const STORAGE_KEY = 'fyrentis-sanctum-tactical-state-v3';
+  const LEGACY_STORAGE_KEYS = ['fyrentis-sanctum-tactical-state', 'fyrentis-sanctum-tactical-state-v2'];
 
   const FACTION_ICONS = {
     'Mechanicus': '⚙', 'Black Templars': '✠', 'Inquisition': '☩',
@@ -247,22 +250,30 @@
   };
 
   const SHIP_STYLES = {
-    'escorteur':            { color: '#c8a028', short: 'ESC' },
-    'croiseur-attaque':     { color: '#4488dd', short: 'CA'  },
-    'barge-bataille':       { color: '#c43030', short: 'BB'  },
-    'croiseur-lourd':       { color: '#e07030', short: 'CL'  },
-    'cuirasse':             { color: '#8b1c1c', short: 'CU'  },
-    'transport':            { color: '#55aa66', short: 'TR'  },
-    'gloriana':             { color: '#bb88ff', short: 'GL'  },
-    'forteresse-monastere': { color: '#33aaaa', short: 'FM'  }
+    'barge-bataille':           { color: '#c43030', short: 'BB'  },
+    'croiseur-attaque':         { color: '#4488dd', short: 'CA'  },
+    'croiseur-lourd':           { color: '#e07030', short: 'CL'  },
+    'cuirasse-classe-gloriana': { color: '#bb88ff', short: 'CG'  },
+    'destroyer-classe-gladius': { color: '#c8a028', short: 'DGD' },
+    'destroyer-classe-hunter':  { color: '#55aa66', short: 'DH'  },
+    'destroyer-classe-nova':    { color: '#33aaaa', short: 'DN'  },
+    'forteresse-monastere':     { color: '#8b1c1c', short: 'FM'  },
+    'transport-logistique':     { color: '#6b8c3a', short: 'TL'  },
+    'transport-troupe':         { color: '#d4882a', short: 'TT'  },
+    'vaisseau-commandement':    { color: '#aaccff', short: 'VC'  }
   };
 
   const LEGACY_SHIP_TYPE_MAP = {
+    'escorteur': 'destroyer-classe-gladius',
+    'escorte': 'destroyer-classe-gladius',
     'croiseur': 'croiseur-attaque',
-    'cuirasse': 'cuirasse',
-    'transport': 'transport',
-    'escorte': 'escorteur',
-    'gloriana': 'gloriana'
+    'croiseur-attaque': 'croiseur-attaque',
+    'barge-bataille': 'barge-bataille',
+    'croiseur-lourd': 'croiseur-lourd',
+    'cuirasse': 'cuirasse-classe-gloriana',
+    'transport': 'transport-logistique',
+    'gloriana': 'cuirasse-classe-gloriana',
+    'forteresse-monastere': 'forteresse-monastere'
   };
 
   const BASTION_DATA = [
